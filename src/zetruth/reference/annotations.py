@@ -9,7 +9,18 @@ from collections.abc import Mapping, Sequence
 from datetime import date
 from pathlib import Path
 
+from pydantic import ValidationError
+
 from zetruth.corpus.fredsum import TRANSCRIPTS_DIR, Turn, load_turns
+from zetruth.model import (
+    Claim,
+    ClaimedValue,
+    ClaimType,
+    Qualifier,
+    Utterance,
+    ValueNature,
+    VerdictLabel,
+)
 from zetruth.sources.registry import Registry, UnknownSourceError, load_registry
 
 ANNOTATIONS_FILE = Path("data/reference/affirmations.csv")
@@ -23,67 +34,124 @@ COLUMNS = [
     "type",
     "sujet",
     "indicateur",
+    "qualificatif",
     "valeur",
+    "valeur_max",
     "unite",
     "periode",
     "perimetre",
+    "nature_valeur",
     "verdict",
     "valeur_officielle",
     "source_organisme",
     "source_reference",
     "source_url",
+    "sources_complementaires",
     "date_publication",
     "date_consultation",
+    "valeur_du_debat",
     "commentaire",
 ]
 
-TYPES = {"factuelle", "opinion", "promesse", "prediction"}
-FACTUAL_VERDICTS = {"VRAI", "FAUX", "TROMPEUR", "IMPRECIS", "INVERIFIABLE"}
-NON_FACTUAL_VERDICT = "NON_FACTUEL"
-
 ALWAYS_REQUIRED = ["id", "fichier", "tour", "locuteur", "citation", "type", "verdict"]
-REQUIRED_IF_FACTUAL = ["indicateur", "valeur", "periode"]
+REQUIRED_IF_FACTUAL = ["indicateur", "qualificatif", "valeur", "periode"]
 REQUIRED_IF_SOURCED = [
+    "nature_valeur",
     "valeur_officielle",
     "source_organisme",
     "source_reference",
     "source_url",
     "date_consultation",
+    "valeur_du_debat",
 ]
 DATE_COLUMNS = ["date_publication", "date_consultation"]
+YES_NO = {"oui", "non"}
 
 Row = Mapping[str, str]
 TurnsByFile = Mapping[str, Sequence[Turn]]
 
 
+def _get(row: Row, column: str) -> str:
+    return row.get(column, "").strip()
+
+
 def _missing(row: Row, columns: list[str]) -> list[str]:
-    return [c for c in columns if not row.get(c, "").strip()]
+    return [c for c in columns if not _get(row, c)]
 
 
-def _check_verdict(row: Row) -> list[str]:
-    kind, verdict = row["type"], row["verdict"]
-    if kind not in TYPES:
-        return [f"type inconnu {kind!r}, attendu parmi {sorted(TYPES)}"]
-    if kind != "factuelle":
-        if verdict != NON_FACTUAL_VERDICT:
-            return [f"une affirmation de type {kind} doit avoir le verdict {NON_FACTUAL_VERDICT}"]
+def _first_error(error: ValidationError) -> str:
+    return str(error.errors()[0]["msg"]).removeprefix("Value error, ")
+
+
+def to_claim(row: Row) -> Claim:
+    """Affirmation normalisée telle qu'annotée, pour la comparer à celle du pipeline."""
+    claimed = None
+    if _get(row, "valeur"):
+        claimed = ClaimedValue.model_validate(
+            {
+                "qualifier": _get(row, "qualificatif"),
+                "value": _get(row, "valeur"),
+                "upper": _get(row, "valeur_max") or None,
+            }
+        )
+    return Claim(
+        utterance=Utterance(
+            source_file=_get(row, "fichier"),
+            turn=int(_get(row, "tour")),
+            speaker=_get(row, "locuteur"),
+            quote=_get(row, "citation"),
+        ),
+        type=ClaimType(_get(row, "type")),
+        subject=_get(row, "sujet") or None,
+        indicator=_get(row, "indicateur") or None,
+        claimed=claimed,
+        unit=_get(row, "unite") or None,
+        period=_get(row, "periode") or None,
+        scope=_get(row, "perimetre") or None,
+    )
+
+
+def _check_claim(row: Row) -> list[str]:
+    kind, verdict = _get(row, "type"), _get(row, "verdict")
+    if kind not in set(ClaimType):
+        return [f"type inconnu {kind!r}, attendu parmi {sorted(ClaimType)}"]
+    if verdict not in set(VerdictLabel):
+        return [f"verdict inconnu {verdict!r}, attendu parmi {sorted(VerdictLabel)}"]
+    if kind != ClaimType.FACTUELLE:
+        if verdict != VerdictLabel.NON_FACTUEL:
+            return [f"une affirmation de type {kind} doit avoir le verdict NON_FACTUEL"]
         return []
-    if verdict not in FACTUAL_VERDICTS:
-        return [f"verdict {verdict!r} invalide pour une affirmation factuelle"]
+    if verdict == VerdictLabel.NON_FACTUEL:
+        return ["une affirmation factuelle ne peut pas être NON_FACTUEL"]
 
     errors = [f"champ obligatoire vide : {c}" for c in _missing(row, REQUIRED_IF_FACTUAL)]
-    if verdict != "INVERIFIABLE":
+    if verdict != VerdictLabel.INVERIFIABLE:
         errors += [
             f"champ obligatoire vide (verdict sourcé) : {c}"
             for c in _missing(row, REQUIRED_IF_SOURCED)
         ]
+    if errors:
+        return errors
+
+    if _get(row, "qualificatif") not in set(Qualifier):
+        return [f"qualificatif inconnu, attendu parmi {sorted(Qualifier)}"]
+    try:
+        to_claim(row)
+    except ValidationError as e:
+        errors.append(f"valeur annoncée invalide : {_first_error(e)}")
+    nature = _get(row, "nature_valeur")
+    if nature and nature not in set(ValueNature):
+        errors.append(f"nature_valeur inconnue, attendu parmi {sorted(ValueNature)}")
+    at_debate = _get(row, "valeur_du_debat")
+    if at_debate and at_debate not in YES_NO:
+        errors.append("valeur_du_debat doit valoir oui ou non")
     return errors
 
 
 def _check_dates(row: Row) -> list[str]:
     errors = []
     for column in DATE_COLUMNS:
-        value = row.get(column, "").strip()
+        value = _get(row, column)
         if not value:
             continue
         try:
@@ -110,16 +178,21 @@ def _check_against_transcript(row: Row, turns_by_file: TurnsByFile) -> list[str]
 
 
 def _check_source(row: Row, registry: Registry) -> list[str]:
-    source_id, url = row.get("source_organisme", "").strip(), row.get("source_url", "").strip()
-    if not source_id:
-        return []
-    try:
-        source = registry.get(source_id)
-        if url and not source.covers(url):
-            return [f"source_url n'appartient pas à la source {source_id}"]
-    except (UnknownSourceError, ValueError) as e:
-        return [str(e)]
-    return []
+    source_id, url = _get(row, "source_organisme"), _get(row, "source_url")
+    errors = []
+    if source_id:
+        try:
+            source = registry.get(source_id)
+            if url and not source.covers(url):
+                errors.append(f"source_url n'appartient pas à la source {source_id}")
+        except (UnknownSourceError, ValueError) as e:
+            errors.append(str(e))
+    for extra_url in _get(row, "sources_complementaires").split():
+        try:
+            registry.for_url(extra_url)
+        except (UnknownSourceError, ValueError) as e:
+            errors.append(f"sources_complementaires : {e}")
+    return errors
 
 
 def validate_row(
@@ -133,7 +206,7 @@ def validate_row(
     if not row["tour"].isdigit():
         return [f"tour doit être un entier positif, reçu {row['tour']!r}"]
 
-    errors = _check_verdict(row) + _check_dates(row)
+    errors = _check_claim(row) + _check_dates(row)
     if turns_by_file is not None:
         errors += _check_against_transcript(row, turns_by_file)
     if registry is not None:

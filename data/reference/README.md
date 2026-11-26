@@ -29,25 +29,30 @@ Une ligne par affirmation, encodage UTF-8, séparateur virgule.
 | citation | Extrait copié mot pour mot du tour |
 | type | `factuelle`, `opinion`, `promesse` ou `prediction` |
 | sujet | Thème libre : chômage, dette, inflation... |
-| indicateur | Ce qui est mesuré, le plus précisément possible (« taux de chômage au sens du BIT », pas « chômage ») |
-| valeur | Valeur annoncée par l'intervenant |
+| indicateur | Ce qui est mesuré, le plus précisément possible (« taux de chômage au sens du BIT », pas « chômage »). Pour une hausse ou une baisse, le dire dans l'indicateur (« baisse du taux de chômage ») et mettre une valeur positive |
+| qualificatif | Comment la valeur est énoncée : `egal`, `environ`, `plus_de`, `moins_de` ou `entre` |
+| valeur | Valeur annoncée, en nombre (point décimal) : « plus de 2 points » donne qualificatif `plus_de` et valeur `2` |
+| valeur_max | Borne haute, seulement pour `entre` |
 | unite | %, points, milliards d'euros, personnes... |
 | periode | Période concernée, par exemple `2007-2012` ou `T4 2016` |
 | perimetre | France entière, métropole, zone euro... |
+| nature_valeur | `constatee` pour une donnée mesurée, `prevision` pour une projection (Banque de France, FMI...) |
 | verdict | `VRAI`, `FAUX`, `TROMPEUR`, `IMPRECIS`, `INVERIFIABLE` ou `NON_FACTUEL` |
 | valeur_officielle | Valeur trouvée dans la source |
 | source_organisme | Identifiant de la source dans `config/sources.toml` : `insee`, `eurostat`, `dares`... |
 | source_reference | Identifiant de série, nom de la publication ou du texte |
 | source_url | Lien vers la donnée elle-même, pas vers une page d'accueil. Doit appartenir à la source indiquée |
+| sources_complementaires | Autres URL utilisées, séparées par des espaces (par exemple le second pays d'une comparaison). Chacune doit appartenir à une source de la liste blanche |
 | date_publication | Date de publication de la donnée utilisée (AAAA-MM-JJ) |
 | date_consultation | Date à laquelle on l'a consultée (AAAA-MM-JJ) |
+| valeur_du_debat | `oui` si la valeur officielle est celle connue le jour du débat, `non` si elle a pu être révisée depuis (Eurostat, série INSEE sans historique suffisant) |
 | commentaire | Tout ce qui aide à comprendre le verdict : définition retenue, révision, contexte |
 
 Ce qui est obligatoire :
 
 - toujours : id, fichier, tour, locuteur, citation, type, verdict
-- pour une affirmation factuelle : indicateur, valeur, periode
-- pour un verdict autre que `INVERIFIABLE` : valeur_officielle, source_organisme, source_reference, source_url, date_consultation
+- pour une affirmation factuelle : indicateur, qualificatif, valeur, periode
+- pour un verdict autre que `INVERIFIABLE` : nature_valeur, valeur_officielle, source_organisme, source_reference, source_url, date_consultation, valeur_du_debat
 - une opinion, une promesse ou une prédiction a toujours le verdict `NON_FACTUEL`
 
 ## Règles d'annotation
@@ -56,7 +61,7 @@ Ce qui est obligatoire :
 - La valeur officielle doit être celle qui était disponible à la date du débat. Si elle a été révisée depuis, on garde la version d'époque et on mentionne la révision en commentaire. Voir plus bas pour retrouver ces valeurs.
 - Les sources doivent faire partie de la liste blanche du projet. Un article de presse peut aider à trouver la source, mais ne se cite pas.
 - Dans le doute, `INVERIFIABLE`. Ce n'est pas un échec, c'est une information utile pour l'évaluation.
-- Une même phrase peut contenir plusieurs affirmations : on fait une ligne par affirmation, avec la même citation si besoin.
+- Une même phrase peut contenir plusieurs affirmations : on fait une ligne par affirmation, avec la même citation si besoin. « Le chômage est passé de 9,6 à 7,4 % » donne deux lignes.
 
 ## Retrouver la valeur publiée à la date du débat
 

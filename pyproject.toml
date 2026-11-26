@@ -4,7 +4,9 @@ version = "0.1.0"
 description = "Vérification des affirmations factuelles des débats politiques à partir de sources officielles"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "pydantic>=2.14.4",
+]
 
 [dependency-groups]
 dev = [
