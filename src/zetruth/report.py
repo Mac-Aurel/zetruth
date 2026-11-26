@@ -152,6 +152,14 @@ def _claim_section(row: Row, registry: Registry) -> list[str]:
         f"Ce qui est affirmé : {row['indicateur']}, {claimed_value(row)}, "
         f"période {row['periode']}, périmètre {row['perimetre'] or 'non précisé'}.",
     ]
+    cited = row.get("source_citee", "").strip()
+    if row["verdict"] == "INVERIFIABLE":
+        lines += [
+            "",
+            "Aucune source officielle sur ce sujet ne permet de vérifier cette affirmation. "
+            "En l'état, elle n'est pas établie et ne doit pas être tenue pour un fait.",
+        ]
+    lines += ["", f"L'intervenant cite : {cited}." if cited else "L'intervenant ne cite aucune source."]
     if row["source_url"]:
         published = (
             f", publié le {french_date(row['date_publication'])}" if row["date_publication"] else ""
@@ -202,7 +210,8 @@ def render(debate: Debate, rows: Sequence[Row], registry: Registry) -> str:
         "source officielle et sur la valeur connue le jour du débat. Une affirmation est vraie "
         "si la valeur officielle, arrondie à la précision avec laquelle elle a été énoncée, "
         "tombe juste ; imprécise jusqu'à 2 % d'écart ; fausse au-delà. Un chiffre exact présenté "
-        "comme le seul alors que la source en donne plusieurs est trompeur.",
+        "comme le seul alors que la source en donne plusieurs est trompeur. Une affirmation "
+        "invérifiable n'est pas établie : aucune source officielle ne permet de la confirmer.",
         "",
         "## En résumé",
         "",
