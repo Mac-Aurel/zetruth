@@ -13,3 +13,8 @@ mandat_sortant_depuis = 2017-05-14
 [debats.Hollande_Sarkozy]
 date = 2012-05-02
 mandat_sortant_depuis = 2007-05-16
+
+# Débat Programme contre programme, BFMTV. Darmanin défend le bilan du sortant.
+[debats.Bardella_Darmanin]
+date = 2022-04-13
+mandat_sortant_depuis = 2017-05-14
