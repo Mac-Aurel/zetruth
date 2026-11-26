@@ -72,6 +72,14 @@ La réponse de l'INSEE est gardée dans `data/cache/insee/`, les appels suivants
 
 Limite importante : l'historique de l'API ne commence que le 18 mai 2017, et pas pour toutes les séries. Pour les débats plus anciens (Hollande / Sarkozy 2012, Macron / Le Pen du 3 mai 2017), il faut retrouver à la main la publication de l'époque, par exemple la note Informations rapides correspondante dans les archives de l'INSEE, et mettre son lien dans source_url.
 
+Pour Eurostat, même principe, avec le code du dataset et un filtre par dimension :
+
+```bash
+uv run python -m zetruth.sources.eurostat une_rt_m 2022-01 2022-04-20 geo=FR age=TOTAL sex=T unit=PC_ACT s_adj=SA
+```
+
+Si un filtre manque, l'outil dit lequel préciser. Eurostat ne garde aucune version passée de ses données : on n'obtient que la valeur actuelle. Si sa date de mise à jour est postérieure au débat, l'outil le signale, et il faut le noter en commentaire (ou chercher la publication de l'époque).
+
 ## Vérifier le fichier
 
 ```bash
