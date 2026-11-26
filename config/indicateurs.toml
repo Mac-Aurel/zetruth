@@ -1,0 +1,198 @@
+# Catalogue des indicateurs les plus cités dans les débats.
+#
+# Chaque indicateur pointe vers une série d'une source de la liste blanche.
+# Tous les identifiants ont été vérifiés sur l'API de la source.
+#
+# unite      : unité dans laquelle on compare aux affirmations
+# facteur    : multiplicateur appliqué à la valeur de la source pour obtenir
+#              cette unité (milliers vers millions : 0.001 ; -1 pour exprimer
+#              un déficit en positif)
+# unite_evolution : unité d'une hausse ou d'une baisse (« points » pour un taux)
+# concurrents : autres indicateurs officiels qui mesurent la même chose avec
+#              une autre définition. Ils sont récupérés en même temps : si leur
+#              valeur diffère, le verdict est marqué à revoir.
+#
+# Manque encore : le SMIC (pas trouvé dans la BDM de l'INSEE), le chômage et
+# l'inflation en base actuelle (les séries ci-dessous couvrent les débats de
+# 2017 à 2022).
+
+# Emploi
+
+[indicateurs.chomage_bit]
+nom = "Taux de chômage au sens du BIT"
+definition = "Part des chômeurs au sens du Bureau international du travail dans la population active, mesurée par l'enquête Emploi de l'INSEE."
+source = "insee"
+serie = "001688527"
+unite = "%"
+unite_evolution = "points"
+perimetre = "France hors Mayotte"
+frequence = "trimestrielle"
+
+[indicateurs.demandeurs_emploi_a]
+nom = "Demandeurs d'emploi inscrits en catégorie A"
+definition = "Inscrits à France Travail (ex-Pôle emploi), sans emploi, tenus de rechercher un emploi. Ce n'est pas le chômage au sens du BIT."
+source = "insee"
+serie = "010598384"
+facteur = 0.001
+unite = "millions"
+unite_evolution = "millions"
+perimetre = "France métropolitaine"
+frequence = "trimestrielle"
+concurrents = ["demandeurs_emploi_abc"]
+
+[indicateurs.demandeurs_emploi_abc]
+nom = "Demandeurs d'emploi inscrits en catégories A, B et C"
+definition = "Inscrits à France Travail tenus de rechercher un emploi, y compris ceux qui ont exercé une activité réduite (catégories B et C) : une partie d'entre eux travaille."
+source = "insee"
+serie = "010598455"
+facteur = 0.001
+unite = "millions"
+unite_evolution = "millions"
+perimetre = "France métropolitaine"
+frequence = "trimestrielle"
+concurrents = ["demandeurs_emploi_a"]
+
+# Prix
+
+[indicateurs.inflation_ipc]
+nom = "Inflation (indice des prix à la consommation)"
+definition = "Glissement annuel de l'indice des prix à la consommation de l'INSEE, ensemble des ménages (base 2015, série arrêtée)."
+source = "insee"
+serie = "001761313"
+unite = "%"
+unite_evolution = "points"
+perimetre = "France"
+frequence = "mensuelle"
+concurrents = ["inflation_ipch"]
+
+[indicateurs.inflation_ipch]
+nom = "Inflation (indice des prix à la consommation harmonisé)"
+definition = "Taux de variation annuel de l'indice harmonisé, calculé selon la méthode commune européenne. Diffère de l'IPC, notamment par le traitement de la santé."
+source = "eurostat"
+dataset = "prc_hicp_manr"
+filtres = { coicop = "CP00", unit = "RCH_A", freq = "M", geo = "FR" }
+unite = "%"
+unite_evolution = "points"
+perimetre = "France"
+frequence = "mensuelle"
+concurrents = ["inflation_ipc"]
+
+# Activité
+
+[indicateurs.croissance_pib_trimestrielle]
+nom = "Croissance du PIB d'un trimestre sur l'autre"
+definition = "Évolution du produit intérieur brut en volume par rapport au trimestre précédent (base 2014)."
+source = "insee"
+serie = "010565692"
+unite = "%"
+unite_evolution = "points"
+perimetre = "France"
+frequence = "trimestrielle"
+
+[indicateurs.pouvoir_achat]
+nom = "Pouvoir d'achat du revenu disponible des ménages"
+definition = "Évolution annuelle du pouvoir d'achat de l'ensemble des ménages, sans tenir compte de l'évolution de leur nombre (base 2014)."
+source = "insee"
+serie = "010562202"
+unite = "%"
+unite_evolution = "points"
+perimetre = "France"
+frequence = "annuelle"
+concurrents = ["pouvoir_achat_par_uc", "pouvoir_achat_par_personne"]
+
+[indicateurs.pouvoir_achat_par_uc]
+nom = "Pouvoir d'achat par unité de consommation"
+definition = "Évolution annuelle du pouvoir d'achat ramenée aux unités de consommation : la mesure la plus proche de ce que perçoit un ménage (base 2014)."
+source = "insee"
+serie = "010562205"
+unite = "%"
+unite_evolution = "points"
+perimetre = "France"
+frequence = "annuelle"
+concurrents = ["pouvoir_achat", "pouvoir_achat_par_personne"]
+
+[indicateurs.pouvoir_achat_par_personne]
+nom = "Pouvoir d'achat par personne"
+definition = "Évolution annuelle du pouvoir d'achat ramenée au nombre d'habitants (base 2014)."
+source = "insee"
+serie = "010562204"
+unite = "%"
+unite_evolution = "points"
+perimetre = "France"
+frequence = "annuelle"
+concurrents = ["pouvoir_achat", "pouvoir_achat_par_uc"]
+
+# Finances publiques
+
+[indicateurs.deficit_public_pib]
+nom = "Déficit public au sens de Maastricht"
+definition = "Besoin de financement de l'ensemble des administrations publiques, en part du PIB. La source le publie en négatif, il est exprimé ici en positif (base 2014)."
+source = "insee"
+serie = "010562129"
+facteur = -1
+unite = "% du PIB"
+unite_evolution = "points"
+perimetre = "France"
+frequence = "annuelle"
+
+[indicateurs.dette_publique]
+nom = "Dette publique au sens de Maastricht"
+definition = "Dette brute de l'ensemble des administrations publiques en fin de trimestre (base 2014, série arrêtée)."
+source = "insee"
+serie = "010596744"
+unite = "milliards d'euros"
+unite_evolution = "milliards d'euros"
+perimetre = "France"
+frequence = "trimestrielle"
+
+[indicateurs.dette_publique_pib]
+nom = "Dette publique en part du PIB"
+definition = "Dette brute de l'ensemble des administrations publiques rapportée au PIB (base 2014, série arrêtée)."
+source = "insee"
+serie = "010596756"
+unite = "% du PIB"
+unite_evolution = "points"
+perimetre = "France"
+frequence = "trimestrielle"
+
+[indicateurs.dette_etat]
+nom = "Dette de l'État au sens de Maastricht"
+definition = "Part de la dette publique portée par l'État (base 2014, série arrêtée)."
+source = "insee"
+serie = "010596752"
+unite = "milliards d'euros"
+unite_evolution = "milliards d'euros"
+perimetre = "France"
+frequence = "trimestrielle"
+
+[indicateurs.dette_securite_sociale]
+nom = "Dette des administrations de sécurité sociale"
+definition = "Part de la dette publique portée par les administrations de sécurité sociale (base 2014, série arrêtée)."
+source = "insee"
+serie = "010596755"
+unite = "milliards d'euros"
+unite_evolution = "milliards d'euros"
+perimetre = "France"
+frequence = "trimestrielle"
+
+[indicateurs.dette_administrations_locales]
+nom = "Dette des administrations publiques locales"
+definition = "Part de la dette publique portée par les collectivités et autres administrations locales (base 2014, série arrêtée)."
+source = "insee"
+serie = "010596754"
+unite = "milliards d'euros"
+unite_evolution = "milliards d'euros"
+perimetre = "France"
+frequence = "trimestrielle"
+
+# Pauvreté
+
+[indicateurs.taux_pauvrete]
+nom = "Taux de pauvreté monétaire"
+definition = "Part des personnes vivant sous le seuil de pauvreté, fixé à 60 % du niveau de vie médian."
+source = "insee"
+serie = "010594446"
+unite = "%"
+unite_evolution = "points"
+# Périmètre non indiqué dans le titre de la série : à confirmer avant de le renseigner.
+frequence = "annuelle"
