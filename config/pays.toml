@@ -1,0 +1,131 @@
+# Pays reconnus dans les comparaisons internationales.
+#
+# code : code géographique Eurostat
+# mots : façons de désigner le pays dans une phrase (en minuscules)
+# zone_euro_depuis : date d'entrée dans la zone euro. Pour l'inflation, les
+#   pays de la zone euro ont une estimation rapide publiée dès le début du mois
+#   suivant (communiqué Eurostat du 1er avril 2022 par exemple) ; les autres
+#   attendent la publication complète, environ trois semaines plus tard.
+
+[pays.DE]
+nom = "Allemagne"
+mots = ["allemagne"]
+zone_euro_depuis = 1999-01-01
+
+[pays.AT]
+nom = "Autriche"
+mots = ["autriche"]
+zone_euro_depuis = 1999-01-01
+
+[pays.BE]
+nom = "Belgique"
+mots = ["belgique"]
+zone_euro_depuis = 1999-01-01
+
+[pays.ES]
+nom = "Espagne"
+mots = ["espagne"]
+zone_euro_depuis = 1999-01-01
+
+[pays.FI]
+nom = "Finlande"
+mots = ["finlande"]
+zone_euro_depuis = 1999-01-01
+
+[pays.IE]
+nom = "Irlande"
+mots = ["irlande"]
+zone_euro_depuis = 1999-01-01
+
+[pays.IT]
+nom = "Italie"
+mots = ["italie"]
+zone_euro_depuis = 1999-01-01
+
+[pays.LU]
+nom = "Luxembourg"
+mots = ["luxembourg"]
+zone_euro_depuis = 1999-01-01
+
+[pays.NL]
+nom = "Pays-Bas"
+mots = ["pays-bas", "pays bas", "hollande"]
+zone_euro_depuis = 1999-01-01
+
+[pays.PT]
+nom = "Portugal"
+mots = ["portugal"]
+zone_euro_depuis = 1999-01-01
+
+[pays.EL]
+nom = "Grèce"
+mots = ["grèce"]
+zone_euro_depuis = 2001-01-01
+
+[pays.SI]
+nom = "Slovénie"
+mots = ["slovénie"]
+zone_euro_depuis = 2007-01-01
+
+[pays.CY]
+nom = "Chypre"
+mots = ["chypre"]
+zone_euro_depuis = 2008-01-01
+
+[pays.MT]
+nom = "Malte"
+mots = ["malte"]
+zone_euro_depuis = 2008-01-01
+
+[pays.SK]
+nom = "Slovaquie"
+mots = ["slovaquie"]
+zone_euro_depuis = 2009-01-01
+
+[pays.EE]
+nom = "Estonie"
+mots = ["estonie"]
+zone_euro_depuis = 2011-01-01
+
+[pays.LV]
+nom = "Lettonie"
+mots = ["lettonie"]
+zone_euro_depuis = 2014-01-01
+
+[pays.LT]
+nom = "Lituanie"
+mots = ["lituanie"]
+zone_euro_depuis = 2015-01-01
+
+[pays.HR]
+nom = "Croatie"
+mots = ["croatie"]
+zone_euro_depuis = 2023-01-01
+
+[pays.PL]
+nom = "Pologne"
+mots = ["pologne"]
+
+[pays.HU]
+nom = "Hongrie"
+mots = ["hongrie"]
+
+[pays.CZ]
+nom = "Tchéquie"
+mots = ["tchéquie", "république tchèque"]
+
+[pays.SE]
+nom = "Suède"
+mots = ["suède"]
+
+[pays.DK]
+nom = "Danemark"
+mots = ["danemark"]
+
+[pays.RO]
+nom = "Roumanie"
+mots = ["roumanie"]
+
+[pays.BG]
+nom = "Bulgarie"
+mots = ["bulgarie"]

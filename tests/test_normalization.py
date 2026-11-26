@@ -3,10 +3,12 @@ from datetime import date
 import pytest
 
 from zetruth.indicators.catalog import load_catalog
+from zetruth.normalization.countries import find_country, load_countries
 from zetruth.normalization.mentions import Direction, find_mentions
 from zetruth.normalization.normalize import (
     Debate,
     Target,
+    clause,
     debate_for,
     load_debates,
     match_indicator,
@@ -179,7 +181,10 @@ def test_niveau_au_moment_de_l_election() -> None:
     [
         ("l'inflation de 4,4 %", "dans les prévisions de la Banque de France", "prévision"),
         ("l'inflation est de 4,5 % en mars 2022", "", "période explicite"),
-        ("deux fois moins d'inflation qu'en Espagne", "", "comparaison internationale"),
+        ("deux fois moins d'inflation qu'en Espagne", "", "comparaison relative"),
+        ("la France a 60 % de moins d'inflation que l'Allemagne", "", "comparaison relative"),
+        ("partout autour de nous l'inflation est de 8 %", "", "sans pays précis"),
+        ("l'inflation est de 4,5 % en mars", "", "période explicite"),
         ("9,8 millions de pauvres", "", "aucun indicateur"),
     ],
 )
@@ -212,3 +217,76 @@ def test_debats_du_corpus() -> None:
     )
     assert debate.title.startswith("Débat Macron / Le Pen")
     assert debate_for("Inconnu--Partie_1.txt", debates) is None
+
+
+COUNTRIES = load_countries()
+
+
+def test_pays_cite() -> None:
+    netherlands = find_country("douze pour cent aux pays-bas", COUNTRIES)
+    poland = find_country("neuf pour cent en Pologne", COUNTRIES)
+
+    assert netherlands is not None and poland is not None
+    assert (netherlands.code, poland.code) == ("NL", "PL")
+    assert netherlands.in_euro_area(date(2022, 4, 13))
+    assert not poland.in_euro_area(date(2022, 4, 13))
+    assert not COUNTRIES["HR"].in_euro_area(date(2022, 4, 13))
+    assert COUNTRIES["HR"].in_euro_area(date(2023, 6, 1))
+    assert find_country("en France", COUNTRIES) is None
+    assert find_country("en Espagne et en Italie", COUNTRIES) is None
+
+
+def test_proposition_d_une_valeur() -> None:
+    sentence = "On attend le 1er janvier prochain et parce que là on a une inflation de 4 %."
+    (mention,) = [m for m in find_mentions(sentence) if m.unit == "%"]
+
+    assert clause(mention, sentence) == " parce que là on a une inflation de 4 %."
+
+
+def targets(sentence: str, context: str = "") -> list[Target | str]:
+    mentions = find_mentions(sentence)
+    return [
+        target_for(
+            m,
+            sentence,
+            DEBAT_2022,
+            CATALOG,
+            context,
+            mentions[i - 1].end if i else 0,
+            mentions[i + 1].start if i + 1 < len(mentions) else None,
+            COUNTRIES,
+        )
+        for i, m in enumerate(mentions)
+    ]
+
+
+def test_comparaisons_par_pays() -> None:
+    sentence = "C'est douze pour cent aux pays-bas, neuf pour cent en pologne."
+
+    found = targets(sentence, context="il y a une inflation très forte en France.")
+
+    assert all(isinstance(t, Target) for t in found)
+    netherlands, poland = (t for t in found if isinstance(t, Target))
+    assert netherlands.indicator.id == poland.indicator.id == "inflation_ipch"
+    assert netherlands.country is not None and netherlands.country.code == "NL"
+    assert poland.country is not None and poland.country.code == "PL"
+    assert netherlands.note == "sujet déduit de ce qui précède la phrase"
+
+
+def test_pays_sans_serie_par_pays() -> None:
+    (target,) = targets("le chômage est de 7 % en Espagne")
+
+    assert isinstance(target, str)
+    assert "aucune série par pays" in target
+
+
+def test_une_annee_dans_une_autre_proposition_ne_bloque_pas() -> None:
+    sentence = (
+        "Des gens qui se sont présentés, en deux mille dix-sept, comme des experts, "
+        "ont rallongé la dette de six cents milliards d'euros."
+    )
+
+    (target,) = targets(sentence)
+
+    assert isinstance(target, Target)
+    assert (target.indicator.id, target.evolution) == ("dette_publique", True)

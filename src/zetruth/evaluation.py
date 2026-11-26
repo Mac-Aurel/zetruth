@@ -28,6 +28,7 @@ from zetruth.indicators.__main__ import default_clients
 from zetruth.indicators.catalog import load_catalog
 from zetruth.indicators.values import IndicatorService
 from zetruth.model import Utterance, VerdictLabel
+from zetruth.normalization.countries import Country, load_countries
 from zetruth.normalization.normalize import Debate, debate_for, load_debates
 from zetruth.pipeline import Outcome, verify_sentence
 from zetruth.reference.annotations import ANNOTATIONS_FILE, read_annotations
@@ -88,6 +89,7 @@ def evaluate(
     debates: Mapping[str, Debate],
     service: IndicatorService,
     threshold: Decimal,
+    countries: Mapping[str, Country] | None = None,
 ) -> list[Evaluated]:
     evaluated = []
     for row in annotations:
@@ -101,11 +103,13 @@ def evaluate(
         )
         if sentence is None:
             continue
-        context = " ".join(t.text for t in turns[max(0, index - CONTEXT_TURNS) : index])
+        before = turns[index].text.split(sentence, 1)[0]  # début du tour, avant la phrase
+        previous = " ".join(t.text for t in turns[max(0, index - CONTEXT_TURNS) : index])
+        context = f"{previous} {before}".strip()
         utterance = Utterance(
             source_file=row["fichier"], turn=index, speaker=row["locuteur"], quote=sentence
         )
-        outcomes = verify_sentence(utterance, debate, service, threshold, context)
+        outcomes = verify_sentence(utterance, debate, service, threshold, context, countries)
         result, detail = classify(row["verdict"], _matching(outcomes, row["valeur"]))
         evaluated.append(Evaluated(row["id"], debate.name, row["verdict"], result, detail))
     return evaluated
@@ -119,7 +123,9 @@ def main() -> int:
         print("Transcriptions absentes : uv run python -m zetruth.corpus.fredsum", file=sys.stderr)
         return 1
     service = IndicatorService(load_catalog(load_registry()), default_clients())
-    evaluated = evaluate(annotations, turns, load_debates(), service, load_threshold())
+    evaluated = evaluate(
+        annotations, turns, load_debates(), service, load_threshold(), load_countries()
+    )
 
     for e in evaluated:
         print(f"{e.annotation_id:12} attendu {e.expected:12} {e.result:17} {e.detail}")

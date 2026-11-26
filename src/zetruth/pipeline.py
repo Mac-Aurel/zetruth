@@ -8,6 +8,7 @@ Chaque valeur chiffrée d'une phrase retenue donne un résultat : un verdict,
 ou la raison pour laquelle on n'en donne pas.
 """
 
+from collections.abc import Mapping
 from dataclasses import dataclass
 from decimal import Decimal
 
@@ -22,6 +23,7 @@ from zetruth.model import (
     Verdict,
     VerdictLabel,
 )
+from zetruth.normalization.countries import Country
 from zetruth.normalization.mentions import Mention, Role, find_mentions
 from zetruth.normalization.normalize import Debate, Target, target_for
 from zetruth.verdicts.compare import compare
@@ -48,6 +50,10 @@ def _official_values(
         assert target.start is not None
         change = service.change(iid, target.start, period, debate.held_on, target.decrease)
         return [change] if change else []
+    if target.country is not None:
+        # Les définitions concurrentes du catalogue sont françaises : pas pour un autre pays.
+        value = service.value(iid, period, debate.held_on, filters={"geo": target.country.code})
+        return [value] if value else []
     return service.with_competitors(iid, period, debate.held_on)
 
 
@@ -60,13 +66,22 @@ def verify_mention(
     context: str = "",
     left_from: int = 0,
     right_to: int | None = None,
+    countries: Mapping[str, Country] | None = None,
 ) -> Outcome:
     sentence = utterance.quote
-    target = target_for(mention, sentence, debate, service.catalog, context, left_from, right_to)
+    target = target_for(
+        mention, sentence, debate, service.catalog, context, left_from, right_to, countries
+    )
     if isinstance(target, str):
         return Outcome(sentence, mention, None, target)
 
-    latest = service.latest_period(target.indicator.id, debate.held_on)
+    country = target.country
+    latest = service.latest_period(
+        target.indicator.id,
+        debate.held_on,
+        filters={"geo": country.code} if country else None,
+        euro_area=country.in_euro_area(debate.held_on) if country else False,
+    )
     if latest is None:
         return Outcome(sentence, mention, None, "période publiée le jour du débat inconnue")
     last, certain = latest
@@ -88,7 +103,7 @@ def verify_mention(
         claimed=ClaimedValue(qualifier=mention.qualifier, value=mention.value, upper=mention.upper),
         unit=unit,
         period=period,
-        scope=target.indicator.scope,
+        scope=country.name if country else target.indicator.scope,
     )
     verdict = compare(claim, values, threshold)
 
@@ -115,6 +130,7 @@ def verify_sentence(
     service: IndicatorService,
     threshold: Decimal,
     context: str = "",
+    countries: Mapping[str, Country] | None = None,
 ) -> list[Outcome]:
     """Tous les résultats d'une phrase, vide si le détecteur ne la retient pas.
 
@@ -133,7 +149,15 @@ def verify_sentence(
         right_to = mentions[i + 1].start if i + 1 < len(mentions) else None
         outcomes.append(
             verify_mention(
-                mention, utterance, debate, service, threshold, context, left_from, right_to
+                mention,
+                utterance,
+                debate,
+                service,
+                threshold,
+                context,
+                left_from,
+                right_to,
+                countries,
             )
         )
     return outcomes

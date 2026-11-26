@@ -94,7 +94,13 @@ class IndicatorService:
             return []
         return [v for v in values if v is not None]
 
-    def latest_period(self, indicator_id: str, as_of: date) -> tuple[str, bool] | None:
+    def latest_period(
+        self,
+        indicator_id: str,
+        as_of: date,
+        filters: Mapping[str, str] | None = None,
+        euro_area: bool = False,
+    ) -> tuple[str, bool] | None:
         """Dernière période publiée au plus tard le jour `as_of`, et si c'est certain.
 
         Certain quand l'historique des publications le dit. Sinon, estimé avec le
@@ -111,14 +117,16 @@ class IndicatorService:
             periods = {p for v in history.vintages for p in v.values}
         else:
             assert indicator.dataset is not None
-            series, _ = eurostat.fetch_series(
-                client, indicator.dataset, indicator.filters, self._refresh
-            )
+            merged = {**indicator.filters, **(filters or {})}
+            series, _ = eurostat.fetch_series(client, indicator.dataset, merged, self._refresh)
             periods = set(series.values)
 
-        if indicator.publication_lag_days is None:
+        lag_days = indicator.publication_lag_days
+        if euro_area and indicator.euro_area_lag_days is not None:
+            lag_days = indicator.euro_area_lag_days
+        if lag_days is None:
             return None
-        lag = timedelta(days=indicator.publication_lag_days)
+        lag = timedelta(days=lag_days)
         published = [p for p in periods if period_end(p) + lag <= as_of]
         return (max(published), False) if published else None
 
