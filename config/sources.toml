@@ -1,0 +1,197 @@
+# Liste blanche des sources officielles.
+#
+# Seules ces sources peuvent fonder un verdict. Une URL est acceptée si elle
+# commence par l'un des préfixes déclarés (le « www. » est ignoré).
+#
+# statut = "a_verifier" tant que l'accès (API, fichier, site), la
+# documentation et les conditions d'usage n'ont pas été lus dans la doc
+# officielle. Une fois fait, passer à "verifiee" et remplir acces,
+# documentation, conditions_usage et date_verification.
+#
+# Ajouter une source : la justifier dans la PR.
+
+# Statistiques économiques et sociales
+
+[sources.insee]
+nom = "Institut national de la statistique et des études économiques"
+urls = ["https://insee.fr/", "https://api.insee.fr/"]
+domaines = ["economie", "emploi", "social", "demographie"]
+statut = "a_verifier"
+
+[sources.dares]
+nom = "Direction de l'animation de la recherche, des études et des statistiques"
+urls = ["https://dares.travail-emploi.gouv.fr/"]
+domaines = ["emploi", "social"]
+statut = "a_verifier"
+
+[sources.drees]
+nom = "Direction de la recherche, des études, de l'évaluation et des statistiques"
+urls = ["https://drees.solidarites-sante.gouv.fr/"]
+domaines = ["social", "sante"]
+statut = "a_verifier"
+
+[sources.france_travail]
+nom = "France Travail"
+urls = ["https://francetravail.fr/", "https://francetravail.org/"]
+domaines = ["emploi"]
+statut = "a_verifier"
+
+# Finances publiques
+
+[sources.cour_des_comptes]
+nom = "Cour des comptes"
+urls = ["https://ccomptes.fr/"]
+domaines = ["finances_publiques"]
+statut = "a_verifier"
+
+[sources.ministere_economie]
+nom = "Ministère de l'Économie et des Finances"
+urls = ["https://economie.gouv.fr/", "https://budget.gouv.fr/"]
+domaines = ["finances_publiques", "economie"]
+statut = "a_verifier"
+
+[sources.banque_de_france]
+nom = "Banque de France"
+urls = ["https://banque-france.fr/", "https://webstat.banque-france.fr/"]
+domaines = ["finances_publiques", "economie"]
+statut = "a_verifier"
+
+[sources.hcfp]
+nom = "Haut Conseil des finances publiques"
+urls = ["https://hcfp.fr/"]
+domaines = ["finances_publiques"]
+statut = "a_verifier"
+
+# Droit et textes
+
+[sources.legifrance]
+nom = "Légifrance et Journal officiel"
+urls = ["https://legifrance.gouv.fr/", "https://piste.gouv.fr/"]
+domaines = ["droit"]
+statut = "a_verifier"
+
+[sources.conseil_constitutionnel]
+nom = "Conseil constitutionnel"
+urls = ["https://conseil-constitutionnel.fr/"]
+domaines = ["droit"]
+statut = "a_verifier"
+
+[sources.conseil_etat]
+nom = "Conseil d'État"
+urls = ["https://conseil-etat.fr/"]
+domaines = ["droit"]
+statut = "a_verifier"
+
+# Activité parlementaire
+
+[sources.assemblee_nationale]
+nom = "Assemblée nationale"
+urls = ["https://assemblee-nationale.fr/", "https://data.assemblee-nationale.fr/"]
+domaines = ["parlement"]
+statut = "a_verifier"
+
+[sources.senat]
+nom = "Sénat"
+urls = ["https://senat.fr/", "https://data.senat.fr/"]
+domaines = ["parlement"]
+statut = "a_verifier"
+
+# Données publiques ouvertes
+
+[sources.data_gouv]
+nom = "data.gouv.fr"
+urls = ["https://data.gouv.fr/"]
+domaines = ["donnees_ouvertes"]
+statut = "a_verifier"
+
+[sources.vie_publique]
+nom = "vie-publique.fr"
+urls = ["https://vie-publique.fr/"]
+domaines = ["droit", "parlement"]
+statut = "a_verifier"
+
+# Sécurité, immigration
+
+[sources.ssmsi]
+nom = "Service statistique ministériel de la sécurité intérieure"
+urls = ["https://interieur.gouv.fr/Interstats/"]
+domaines = ["securite"]
+statut = "a_verifier"
+
+[sources.dgef]
+nom = "Direction générale des étrangers en France"
+urls = ["https://immigration.interieur.gouv.fr/"]
+domaines = ["immigration"]
+statut = "a_verifier"
+
+[sources.ofpra]
+nom = "Office français de protection des réfugiés et apatrides"
+urls = ["https://ofpra.gouv.fr/"]
+domaines = ["immigration"]
+statut = "a_verifier"
+
+# Comparaisons internationales
+
+[sources.eurostat]
+nom = "Eurostat"
+urls = ["https://ec.europa.eu/eurostat/"]
+domaines = ["international", "economie", "emploi", "social"]
+statut = "a_verifier"
+
+[sources.ocde]
+nom = "Organisation de coopération et de développement économiques"
+urls = ["https://oecd.org/", "https://data-explorer.oecd.org/"]
+domaines = ["international", "economie"]
+statut = "a_verifier"
+
+[sources.fmi]
+nom = "Fonds monétaire international"
+urls = ["https://imf.org/"]
+domaines = ["international", "economie", "finances_publiques"]
+statut = "a_verifier"
+
+[sources.banque_mondiale]
+nom = "Banque mondiale"
+urls = ["https://data.worldbank.org/", "https://api.worldbank.org/"]
+domaines = ["international", "economie"]
+statut = "a_verifier"
+
+[sources.onu]
+nom = "Organisation des Nations unies (statistiques)"
+urls = ["https://data.un.org/", "https://unstats.un.org/"]
+domaines = ["international", "demographie"]
+statut = "a_verifier"
+
+# Énergie, climat
+
+[sources.rte]
+nom = "RTE"
+urls = ["https://rte-france.com/"]
+domaines = ["energie"]
+statut = "a_verifier"
+
+[sources.sdes]
+nom = "Service des données et études statistiques (Transition écologique)"
+urls = ["https://statistiques.developpement-durable.gouv.fr/"]
+domaines = ["energie", "climat"]
+statut = "a_verifier"
+
+[sources.citepa]
+nom = "CITEPA"
+urls = ["https://citepa.org/"]
+domaines = ["climat"]
+statut = "a_verifier"
+
+# Santé
+
+[sources.sante_publique_france]
+nom = "Santé publique France"
+urls = ["https://santepubliquefrance.fr/"]
+domaines = ["sante"]
+statut = "a_verifier"
+
+[sources.assurance_maladie]
+nom = "Assurance maladie"
+urls = ["https://assurance-maladie.ameli.fr/", "https://data.ameli.fr/"]
+domaines = ["sante"]
+statut = "a_verifier"
