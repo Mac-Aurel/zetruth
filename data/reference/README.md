@@ -60,6 +60,9 @@ Ce qui est obligatoire :
 - On vérifie ce que l'intervenant a dit, pas ce qu'il voulait dire. Si la phrase est ambiguë, on le note en commentaire.
 - La valeur officielle doit être celle qui était disponible à la date du débat. Si elle a été révisée depuis, on garde la version d'époque et on mentionne la révision en commentaire. Voir plus bas pour retrouver ces valeurs.
 - Les sources doivent faire partie de la liste blanche du projet. Un article de presse peut aider à trouver la source, mais ne se cite pas.
+- Point de départ d'une évolution (« depuis votre élection », « sous votre quinquennat », « en cinq ans ») : la dernière donnée entièrement antérieure à l'événement cité. Pour l'élection de mai 2017, c'est le T1 2017, le T2 contenant déjà des semaines du nouveau mandat. Point d'arrivée : la dernière donnée publiée le jour du débat.
+- Un chiffre exact présenté comme « la » valeur alors que la source en donne plusieurs (plusieurs scénarios de prévision, plusieurs définitions) sans que l'intervenant le dise est `TROMPEUR`. On se place du côté de celui qui écoute : s'il repart avec une idée fausse de ce que dit la source, le verdict n'est pas `VRAI`.
+- Ces règles s'appliquent à tous les intervenants, sans exception.
 - Dans le doute, `INVERIFIABLE`. Ce n'est pas un échec, c'est une information utile pour l'évaluation.
 - Une même phrase peut contenir plusieurs affirmations : on fait une ligne par affirmation, avec la même citation si besoin. « Le chômage est passé de 9,6 à 7,4 % » donne deux lignes.
 
