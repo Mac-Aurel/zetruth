@@ -17,6 +17,7 @@ SOURCES_FILE = Path("config/sources.toml")
 DOMAINS = frozenset(
     {
         "climat",
+        "commerce_exterieur",
         "demographie",
         "donnees_ouvertes",
         "droit",
@@ -26,6 +27,7 @@ DOMAINS = frozenset(
         "finances_publiques",
         "immigration",
         "international",
+        "opinion",
         "parlement",
         "sante",
         "securite",
@@ -33,6 +35,9 @@ DOMAINS = frozenset(
     }
 )
 STATUSES = frozenset({"a_verifier", "verifiee"})
+EVIDENCE = "preuve"
+ATTRIBUTION_ONLY = "attribution"
+SCOPES = frozenset({EVIDENCE, ATTRIBUTION_ONLY})
 REQUIRED_WHEN_VERIFIED = ("acces", "documentation", "conditions_usage", "date_verification")
 
 
@@ -51,6 +56,9 @@ class Source:
     url_prefixes: tuple[str, ...]
     domains: frozenset[str]
     status: str
+    # « preuve » : peut fonder un verdict sur un fait. « attribution » : ne
+    # vérifie que ce que la source a elle-même publié (un sondage, par exemple).
+    scope: str = EVIDENCE
     access: str | None = None
     documentation: str | None = None
     terms_of_use: str | None = None
@@ -110,6 +118,9 @@ def _parse_source(source_id: str, raw: Mapping[str, Any]) -> Source:
         errors.append(f"domaines inconnus : {sorted(unknown_domains)}")
     if raw["statut"] not in STATUSES:
         errors.append(f"statut inconnu : {raw['statut']!r}")
+    scope = raw.get("portee", EVIDENCE)
+    if scope not in SCOPES:
+        errors.append(f"portée inconnue : {scope!r}")
     if raw["statut"] == "verifiee":
         missing = [k for k in REQUIRED_WHEN_VERIFIED if not raw.get(k)]
         if missing:
@@ -133,6 +144,7 @@ def _parse_source(source_id: str, raw: Mapping[str, Any]) -> Source:
         url_prefixes=prefixes,
         domains=frozenset(raw["domaines"]),
         status=raw["statut"],
+        scope=scope,
         access=raw.get("acces"),
         documentation=raw.get("documentation"),
         terms_of_use=raw.get("conditions_usage"),

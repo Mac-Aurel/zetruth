@@ -70,9 +70,23 @@ def test_un_verdict_source_exige_la_source() -> None:
 
 
 def test_inverifiable_ne_demande_pas_de_source() -> None:
-    row = make_row(verdict="INVERIFIABLE", valeur_officielle="", source_organisme="", source_url="")
+    row = make_row(
+        verdict="INVERIFIABLE",
+        valeur_officielle="",
+        source_organisme="",
+        source_url="",
+        eclairage="Sondages comparables : 57 % (Elabe). Pistes, pas des preuves.",
+    )
 
     assert validate_rows([row]) == []
+
+
+def test_inverifiable_exige_un_eclairage() -> None:
+    row = make_row(verdict="INVERIFIABLE", valeur_officielle="", source_url="")
+
+    assert validate_rows([row]) == [
+        "ligne 2 : un verdict INVERIFIABLE doit être accompagné d'un éclairage"
+    ]
 
 
 def test_une_opinion_doit_etre_non_factuelle() -> None:
@@ -214,3 +228,47 @@ def test_le_verdict_doit_suivre_la_regle_de_comparaison() -> None:
 )
 def test_la_regle_ne_s_applique_pas_hors_comparaison_numerique(overrides: dict[str, str]) -> None:
     assert validate_rows([make_row(**overrides)], threshold=Decimal("0.02")) == []
+
+
+ODOXA_REGISTRY = parse_registry(
+    {
+        "sources": {
+            "insee": {
+                "nom": "INSEE",
+                "urls": ["https://insee.fr/"],
+                "domaines": ["economie"],
+                "statut": "a_verifier",
+            },
+            "odoxa": {
+                "nom": "Odoxa",
+                "urls": ["https://odoxa.fr/"],
+                "domaines": ["opinion"],
+                "portee": "attribution",
+                "statut": "a_verifier",
+            },
+        }
+    }
+)
+
+
+def test_un_institut_de_sondage_ne_verifie_qu_une_attribution() -> None:
+    sondage = {
+        "source_organisme": "odoxa",
+        "source_url": "https://www.odoxa.fr/sondage/x/",
+        "valeur": "75",
+        "valeur_officielle": "75",
+        "verdict": "VRAI",
+    }
+
+    assert validate_rows([make_row(attribution="oui", **sondage)], registry=ODOXA_REGISTRY) == []
+    assert validate_rows([make_row(**sondage)], registry=ODOXA_REGISTRY) == [
+        "ligne 2 : odoxa ne peut vérifier qu'une attribution (attribution=oui)"
+    ]
+
+
+def test_valeur_de_l_attribution() -> None:
+    assert validate_rows([make_row(attribution="peut-etre")]) == [
+        "ligne 2 : attribution doit valoir oui ou non"
+    ]
+    assert to_claim(make_row(attribution="oui")).attribution
+    assert not to_claim(make_row()).attribution

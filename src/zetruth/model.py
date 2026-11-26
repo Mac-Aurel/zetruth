@@ -13,7 +13,12 @@ from typing import Self
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
-from zetruth.sources.registry import Registry, UnknownSourceError, normalize_url
+from zetruth.sources.registry import (
+    ATTRIBUTION_ONLY,
+    Registry,
+    UnknownSourceError,
+    normalize_url,
+)
 
 
 class ClaimType(StrEnum):
@@ -98,6 +103,9 @@ class Claim(_Frozen):
     unit: str | None = None
     period: str | None = None
     scope: str | None = None
+    # Vrai quand l'affirmation porte sur ce qu'une publication dit (« un
+    # sondage Odoxa dit 75 % »), pas sur le fait lui-même.
+    attribution: bool = False
 
     @model_validator(mode="after")
     def _factual_claims_are_complete(self) -> Self:
@@ -134,6 +142,23 @@ class OfficialValue(_Frozen):
         return url
 
 
+class Lead(_Frozen):
+    """Piste : source non officielle (presse, sondage, rapport) citée pour éclairer.
+
+    Elle n'est jamais une preuve et ne compte pas parmi les valeurs officielles.
+    """
+
+    publisher: str = Field(min_length=1)
+    url: str
+    summary: str = Field(min_length=1)
+
+    @field_validator("url")
+    @classmethod
+    def _url_is_http(cls, url: str) -> str:
+        normalize_url(url)
+        return url
+
+
 class Verdict(_Frozen):
     claim: Claim
     label: VerdictLabel
@@ -147,6 +172,8 @@ class Verdict(_Frozen):
     # Vrai quand un humain doit trancher, par exemple si la source donne
     # plusieurs valeurs et que l'intervenant n'en cite qu'une (TROMPEUR ?).
     needs_review: bool = False
+    # Éclairage : ce que disent d'autres sources, sans valeur de preuve.
+    leads: tuple[Lead, ...] = ()
 
     @model_validator(mode="after")
     def _follows_the_verdict_grid(self) -> Self:
@@ -179,4 +206,6 @@ def check_sources(verdict: Verdict, registry: Registry) -> list[str]:
             continue
         if not source.covers(official.url):
             errors.append(f"{official.url} n'appartient pas à la source {official.source_id}")
+        if source.scope == ATTRIBUTION_ONLY and not verdict.claim.attribution:
+            errors.append(f"{official.source_id} ne peut vérifier qu'une attribution, pas un fait")
     return errors

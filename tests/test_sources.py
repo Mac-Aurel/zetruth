@@ -153,3 +153,23 @@ def test_le_referentiel_du_projet_est_valide() -> None:
     for domain in DOMAINS:
         assert registry.for_domain(domain), f"aucune source pour le domaine {domain}"
     assert registry.for_url("https://www.insee.fr/fr/statistiques").id == "insee"
+
+
+def test_portee_des_sources() -> None:
+    registry = registry_of(
+        insee=raw_source(),
+        odoxa=raw_source(urls=["https://odoxa.fr/"], domaines=["opinion"], portee="attribution"),
+    )
+
+    assert registry.get("insee").scope == "preuve"
+    assert registry.get("odoxa").scope == "attribution"
+    with pytest.raises(InvalidRegistryError, match="portée inconnue"):
+        registry_of(x=raw_source(portee="rumeur"))
+
+
+def test_les_instituts_de_sondage_du_projet_ne_servent_qu_a_l_attribution() -> None:
+    registry = load_registry()
+
+    for source_id in ("odoxa", "elabe", "ipsos", "opinionway"):
+        assert registry.get(source_id).scope == "attribution"
+    assert registry.get("douanes").scope == "preuve"
