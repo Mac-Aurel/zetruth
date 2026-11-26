@@ -35,6 +35,8 @@ Ce qui est affirmé : baisse du taux de chômage au sens du BIT, France hors May
 
 Ce que disent les sources : 2,2 (9,6 au T1 2017, 7,4 au T4 2021).
 
+Écart : la valeur officielle (2,2) est bien au-dessus de 2.
+
 Source : Institut national de la statistique et des études économiques, série 001688527, publié le 18 février 2022, consulté le 26 novembre 2026.
 Lien : https://api.insee.fr/series/BDM/V1/data/SERIES_BDM/001688527?includeHistory=true
 
@@ -49,6 +51,8 @@ Emmanuel Macron, sur le thème : inflation.
 Ce qui est affirmé : glissement annuel de l'indice des prix à la consommation (IPC), ensemble des ménages, plus de 4 %, période mars 2022, périmètre France.
 
 Ce que disent les sources : 4,5.
+
+Écart : la valeur officielle (4,5) est bien au-dessus de 4.
 
 Source : Institut national de la statistique et des études économiques, série 001761313, publié le 15 avril 2022, consulté le 26 novembre 2026.
 Lien : https://api.insee.fr/series/BDM/V1/data/SERIES_BDM/001761313?includeHistory=true
@@ -133,6 +137,8 @@ Ce qui est affirmé : taux de variation annuel de l'IPCH, environ 2 rapport Espa
 
 Ce que disent les sources : 1,9 (France 5,1, Espagne 9,8).
 
+Écart : conforme à l'arrondi près (valeur exacte 1,9).
+
 Source : Eurostat, prc_hicp_manr, CP00, RCH_A, consulté le 26 novembre 2026.
 Lien : https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/prc_hicp_manr?format=JSON&lang=FR&coicop=CP00&freq=M&geo=FR&unit=RCH_A
 Autres liens : https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/prc_hicp_manr?format=JSON&lang=FR&coicop=CP00&freq=M&geo=ES&unit=RCH_A
@@ -150,6 +156,8 @@ Emmanuel Macron, sur le thème : inflation.
 Ce qui est affirmé : écart d'inflation entre la France et l'Allemagne (IPCH), 60 % de moins, période mars 2022, périmètre France, Allemagne.
 
 Ce que disent les sources : 33 (France 5,1, Allemagne 7,6).
+
+Écart : la valeur annoncée est 81,8 % au-dessus de la valeur officielle.
 
 Source : Eurostat, prc_hicp_manr, CP00, RCH_A, consulté le 26 novembre 2026.
 Lien : https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/prc_hicp_manr?format=JSON&lang=FR&coicop=CP00&freq=M&geo=FR&unit=RCH_A
@@ -169,6 +177,8 @@ Ce qui est affirmé : hausse de la dette des administrations publiques au sens d
 
 Ce que disent les sources : 571 (2252,3 au T1 2017, 2823,7 au T4 2021).
 
+Écart : la valeur annoncée est 5,1 % au-dessus de la valeur officielle.
+
 Source : Institut national de la statistique et des études économiques, série 010596744 (base 2014), publié le 25 mars 2024, consulté le 26 novembre 2026.
 Lien : https://api.insee.fr/series/BDM/V1/data/SERIES_BDM/010596744?includeHistory=true
 
@@ -185,6 +195,8 @@ Emmanuel Macron, sur le thème : dette publique.
 Ce qui est affirmé : hausse de la dette de l'État au sens de Maastricht, 200 milliards d'euros, période T1 2017 - T4 2021, périmètre France.
 
 Ce que disent les sources : +475 pour l'État (1752,5 au T1 2017, 2227,6 au T4 2021), +35 pour la sécurité sociale, +46 pour les administrations locales, +16 pour les autres organismes centraux.
+
+Écart : la valeur annoncée est 57,9 % en dessous de la valeur officielle.
 
 Source : Institut national de la statistique et des études économiques, séries 010596752, 010596755, 010596754 (base 2014), publié le 25 mars 2024, consulté le 26 novembre 2026.
 Lien : https://api.insee.fr/series/BDM/V1/data/SERIES_BDM/010596752?includeHistory=true
@@ -204,6 +216,8 @@ Ce qui est affirmé : demandeurs d'emploi inscrits en catégories A, B et C, moy
 
 Ce que disent les sources : 5,51.
 
+Écart : conforme à l'arrondi près (valeur exacte 5,51).
+
 Source : Institut national de la statistique et des études économiques, série 010598455 (données DARES), publié le 28 octobre 2026, consulté le 26 novembre 2026.
 Lien : https://api.insee.fr/series/BDM/V1/data/SERIES_BDM/010598455?includeHistory=true
 
@@ -220,6 +234,8 @@ Marine Le Pen, sur le thème : chômage.
 Ce qui est affirmé : demandeurs d'emploi inscrits en catégories A, B et C, moyenne trimestrielle, CVS-CJO, 5,4 millions, période T4 2021, périmètre France métropolitaine.
 
 Ce que disent les sources : 5,38.
+
+Écart : conforme à l'arrondi près (valeur exacte 5,38).
 
 Source : Institut national de la statistique et des études économiques, série 010598455 (données DARES), publié le 28 octobre 2026, consulté le 26 novembre 2026.
 Lien : https://api.insee.fr/series/BDM/V1/data/SERIES_BDM/010598455?includeHistory=true
@@ -238,6 +254,8 @@ Ce qui est affirmé : personnes sous le seuil de pauvreté monétaire (60 % du n
 
 Ce que disent les sources : 9,2.
 
+Écart : la valeur annoncée est 6,5 % au-dessus de la valeur officielle.
+
 Source : Institut national de la statistique et des études économiques, Insee Première n° 1875, octobre 2021, consulté le 26 novembre 2026.
 Lien : https://www.insee.fr/fr/statistiques/5431993
 
@@ -252,6 +270,8 @@ Marine Le Pen, sur le thème : commerce extérieur.
 Ce qui est affirmé : déficit commercial des biens, 85 milliards d'euros, période 2021, périmètre France.
 
 Ce que disent les sources : 84,7.
+
+Écart : conforme à l'arrondi près (valeur exacte 84,7).
 
 Source : Direction générale du Trésor, Rapport 2022 sur le commerce extérieur de la France (données des Douanes), publié le 11 février 2022, consulté le 26 novembre 2026.
 Lien : https://www.tresor.economie.gouv.fr/Articles/2022/02/11/publication-du-rapport-2022-sur-le-commerce-exterieur-de-la-france
@@ -268,6 +288,8 @@ Ce qui est affirmé : taux de chômage au sens du BIT, France hors Mayotte, CVS,
 
 Ce que disent les sources : 9,6.
 
+Écart : conforme à l'arrondi près (valeur exacte 9,6).
+
 Source : Institut national de la statistique et des études économiques, série 001688527, publié le 18 février 2022, consulté le 26 novembre 2026.
 Lien : https://api.insee.fr/series/BDM/V1/data/SERIES_BDM/001688527?includeHistory=true
 
@@ -282,6 +304,8 @@ Emmanuel Macron, sur le thème : chômage.
 Ce qui est affirmé : taux de chômage au sens du BIT, France hors Mayotte, CVS, 7,4 %, période T4 2021, périmètre France hors Mayotte.
 
 Ce que disent les sources : 7,4.
+
+Écart : conforme à l'arrondi près (valeur exacte 7,4).
 
 Source : Institut national de la statistique et des études économiques, série 001688527, publié le 18 février 2022, consulté le 26 novembre 2026.
 Lien : https://api.insee.fr/series/BDM/V1/data/SERIES_BDM/001688527?includeHistory=true

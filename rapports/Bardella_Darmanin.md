@@ -23,6 +23,8 @@ Ce qui est affirmé : jeunes quittant la France chaque année, 160 000 personnes
 
 Ce que disent les sources : 110 000 (non-immigrés de 18 à 29 ans, moyenne 2006-2017).
 
+Écart : la valeur annoncée est 45,5 % au-dessus de la valeur officielle.
+
 Source : Institut national de la statistique et des études économiques, Insee Première n° 1849, publié le 7 avril 2021, consulté le 26 novembre 2026.
 Lien : https://www.insee.fr/fr/statistiques/5351267
 
@@ -38,6 +40,8 @@ Ce qui est affirmé : glissement annuel de l'IPC, ensemble des ménages, entre 4
 
 Ce que disent les sources : 4,5.
 
+Écart : la valeur officielle (4,5) est dans la fourchette annoncée.
+
 Source : Institut national de la statistique et des études économiques, série 001761313, publié le 31 mars 2022, consulté le 26 novembre 2026.
 Lien : https://api.insee.fr/series/BDM/V1/data/SERIES_BDM/001761313?includeHistory=true
 
@@ -52,6 +56,8 @@ Gérald Darmanin, sur le thème : inflation.
 Ce qui est affirmé : taux de variation annuel de l'IPCH, 12 %, période mars 2022, périmètre Pays-Bas.
 
 Ce que disent les sources : 11,7.
+
+Écart : conforme à l'arrondi près (valeur exacte 11,7).
 
 Source : Eurostat, prc_hicp_manr, CP00, RCH_A, consulté le 26 novembre 2026.
 Lien : https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/prc_hicp_manr?format=JSON&lang=FR&coicop=CP00&freq=M&geo=NL&unit=RCH_A
@@ -70,6 +76,8 @@ Ce qui est affirmé : taux de variation annuel de l'IPCH, 10 %, période mars 20
 
 Ce que disent les sources : 9,8.
 
+Écart : conforme à l'arrondi près (valeur exacte 9,8).
+
 Source : Eurostat, prc_hicp_manr, CP00, RCH_A, consulté le 26 novembre 2026.
 Lien : https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/prc_hicp_manr?format=JSON&lang=FR&coicop=CP00&freq=M&geo=ES&unit=RCH_A
 
@@ -87,6 +95,8 @@ Ce qui est affirmé : taux de variation annuel de l'IPCH, 9 %, période février
 
 Ce que disent les sources : 8,1.
 
+Écart : la valeur annoncée est 11,1 % au-dessus de la valeur officielle.
+
 Source : Eurostat, prc_hicp_manr, CP00, RCH_A, consulté le 26 novembre 2026.
 Lien : https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/prc_hicp_manr?format=JSON&lang=FR&coicop=CP00&freq=M&geo=PL&unit=RCH_A
 
@@ -103,6 +113,8 @@ Gérald Darmanin, sur le thème : inflation.
 Ce qui est affirmé : taux de variation annuel de l'IPCH, 8 %, période février 2022, périmètre Hongrie.
 
 Ce que disent les sources : 8,4.
+
+Écart : conforme à l'arrondi près (valeur exacte 8,4).
 
 Source : Eurostat, prc_hicp_manr, CP00, RCH_A, consulté le 26 novembre 2026.
 Lien : https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/prc_hicp_manr?format=JSON&lang=FR&coicop=CP00&freq=M&geo=HU&unit=RCH_A
@@ -136,6 +148,8 @@ Ce qui est affirmé : part des foyers ayant souffert du froid au moins 24 heures
 
 Ce que disent les sources : 20.
 
+Écart : conforme à l'arrondi près (valeur exacte 20).
+
 Source : Médiateur national de l'énergie (autorité publique indépendante), Baromètre énergie-info 2021, publié le 12 octobre 2021, consulté le 26 novembre 2026.
 Lien : https://www.energie-mediateur.fr/selon-le-dernier-barometre-energie-info-les-francais-sont-de-plus-en-plus-preoccupes-par-lenergie/
 
@@ -151,6 +165,8 @@ Ce qui est affirmé : ancienneté du dernier taux de chômage BIT aussi bas, 15 
 
 Ce que disent les sources : 14 (7,4 au T4 2021 ; dernier taux plus bas : 7,2 au T1 2008, hors 7,2 au T2 2020).
 
+Écart : la valeur annoncée est 7,1 % au-dessus de la valeur officielle.
+
 Source : Institut national de la statistique et des études économiques, série 001688527, publié le 18 février 2022, consulté le 26 novembre 2026.
 Lien : https://api.insee.fr/series/BDM/V1/data/SERIES_BDM/001688527?includeHistory=true
 
@@ -165,6 +181,8 @@ Jordan Bardella, sur le thème : dette publique.
 Ce qui est affirmé : hausse de la dette des administrations publiques au sens de Maastricht, 600 milliards d'euros, période T1 2017 - T4 2021, périmètre France.
 
 Ce que disent les sources : 571 (2252,3 au T1 2017, 2823,7 au T4 2021).
+
+Écart : la valeur annoncée est 5,1 % au-dessus de la valeur officielle.
 
 Source : Institut national de la statistique et des études économiques, série 010596744 (base 2014), publié le 25 mars 2024, consulté le 26 novembre 2026.
 Lien : https://api.insee.fr/series/BDM/V1/data/SERIES_BDM/010596744?includeHistory=true
@@ -183,6 +201,8 @@ Ce qui est affirmé : hausse de la dette des administrations publiques au sens d
 
 Ce que disent les sources : 25,4 (571,4 sur 2252,3).
 
+Écart : conforme à l'arrondi près (valeur exacte 25,4).
+
 Source : Institut national de la statistique et des études économiques, série 010596744 (base 2014), publié le 25 mars 2024, consulté le 26 novembre 2026.
 Lien : https://api.insee.fr/series/BDM/V1/data/SERIES_BDM/010596744?includeHistory=true
 
@@ -200,6 +220,8 @@ Ce qui est affirmé : part des familles monoparentales parmi les familles avec e
 
 Ce que disent les sources : 24,7.
 
+Écart : conforme à l'arrondi près (valeur exacte 24,7).
+
 Source : Institut national de la statistique et des études économiques, Insee Focus n° 249, publié le 13 septembre 2021, consulté le 26 novembre 2026.
 Lien : https://www.insee.fr/fr/statistiques/5422681
 
@@ -214,6 +236,8 @@ Jordan Bardella, sur le thème : pouvoir d'achat.
 Ce qui est affirmé : part des Français estimant que leur pouvoir d'achat se dégrade, selon le sondage Odoxa, 75 %, période octobre 2021, périmètre France.
 
 Ce que disent les sources : 75.
+
+Écart : conforme à l'arrondi près (valeur exacte 75).
 
 Source : Odoxa, Sondage Odoxa pour France Bleu et Groupama, publié le 21 octobre 2021, consulté le 26 novembre 2026.
 Lien : https://www.odoxa.fr/sondage/75-des-francais-estiment-que-leur-pouvoir-dachat-diminue/

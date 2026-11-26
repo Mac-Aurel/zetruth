@@ -136,6 +136,17 @@ uv run python -m zetruth.evaluation
 
 Le pipeline tourne sur chaque affirmation factuelle d'un débat décrit dans `debats.toml`, et son verdict est comparé à l'annotation. Les résultats sont donnés par débat. Les affirmations de Bardella / Darmanin n'ont pas servi à écrire la normalisation : c'est le contrôle.
 
+## Relecture à l'aveugle
+
+Les verdicts de `affirmations.csv` ont été établis par une seule personne. Pour mesurer leur fiabilité, un second relecteur juge un échantillon sans voir les verdicts ni les commentaires.
+
+```bash
+uv run python -m zetruth.reference.blind exporter   # tire 10 affirmations au hasard (graine fixe)
+uv run python -m zetruth.reference.blind mesurer    # compare les verdicts du relecteur à la référence
+```
+
+Le relecteur remplit `verdict_relecteur` (VRAI, FAUX, TROMPEUR, IMPRECIS ou INVERIFIABLE) et, s'il le souhaite, `commentaire_relecteur` dans `relecture.csv`, en appliquant les règles de ce guide. La mesure donne le taux d'accord et le kappa de Cohen (1 : accord parfait, 0 : pas mieux que le hasard). Chaque désaccord est discuté, tranché, et la règle précisée si besoin.
+
 ## Vérifier le fichier
 
 ```bash
