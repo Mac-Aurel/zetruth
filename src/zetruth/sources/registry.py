@@ -99,6 +99,13 @@ class Registry:
                 return source
         raise UnknownSourceError(f"URL hors liste blanche : {url!r}")
 
+    def hosts(self) -> list[str]:
+        """Les noms d'hôte de la liste blanche, sans chemin, pour filtrer une recherche web."""
+        return sorted(
+            {urlsplit(p).hostname or "" for s in self._sources.values() for p in s.url_prefixes}
+            - {""}
+        )
+
     def for_domain(self, domain: str) -> list[Source]:
         if domain not in DOMAINS:
             raise ValueError(f"domaine inconnu : {domain!r}")
