@@ -4,9 +4,11 @@ Le format est décrit dans data/reference/README.md.
 """
 
 import csv
+import re
 import sys
 from collections.abc import Mapping, Sequence
 from datetime import date
+from decimal import Decimal
 from pathlib import Path
 
 from pydantic import ValidationError
@@ -22,6 +24,7 @@ from zetruth.model import (
     VerdictLabel,
 )
 from zetruth.sources.registry import Registry, UnknownSourceError, load_registry
+from zetruth.verdicts.tolerance import load_threshold, numeric_verdict
 
 ANNOTATIONS_FILE = Path("data/reference/affirmations.csv")
 
@@ -66,6 +69,9 @@ REQUIRED_IF_SOURCED = [
 ]
 DATE_COLUMNS = ["date_publication", "date_consultation"]
 YES_NO = {"oui", "non"}
+# Verdicts que la règle de comparaison numérique sait produire.
+NUMERIC_VERDICTS = {VerdictLabel.VRAI, VerdictLabel.IMPRECIS, VerdictLabel.FAUX}
+_LEADING_NUMBER = re.compile(r"^[+-]?\d+(?:\.\d+)?")
 
 Row = Mapping[str, str]
 TurnsByFile = Mapping[str, Sequence[Turn]]
@@ -148,6 +154,33 @@ def _check_claim(row: Row) -> list[str]:
     return errors
 
 
+def _check_numeric_rule(row: Row, threshold: Decimal) -> list[str]:
+    """Le verdict annoté doit être celui que donne la règle de config/tolerances.toml.
+
+    Ne s'applique qu'aux verdicts VRAI, IMPRECIS et FAUX dont la valeur
+    officielle commence par un nombre.
+    """
+    if _get(row, "type") != ClaimType.FACTUELLE or _get(row, "verdict") not in NUMERIC_VERDICTS:
+        return []
+    match = _LEADING_NUMBER.match(_get(row, "valeur_officielle"))
+    if match is None:
+        return []
+    try:
+        claimed = to_claim(row).claimed
+    except (ValidationError, ValueError):
+        return []  # déjà signalé par _check_claim
+    if claimed is None:
+        return []
+    official = Decimal(match.group())
+    expected = numeric_verdict(claimed, official, threshold)
+    if expected != _get(row, "verdict"):
+        return [
+            f"verdict incohérent avec la règle de comparaison : {expected} attendu "
+            f"pour {claimed.qualifier} {claimed.value} face à {official}"
+        ]
+    return []
+
+
 def _check_dates(row: Row) -> list[str]:
     errors = []
     for column in DATE_COLUMNS:
@@ -199,6 +232,7 @@ def validate_row(
     row: Row,
     turns_by_file: TurnsByFile | None = None,
     registry: Registry | None = None,
+    threshold: Decimal | None = None,
 ) -> list[str]:
     missing = _missing(row, ALWAYS_REQUIRED)
     if missing:
@@ -211,6 +245,8 @@ def validate_row(
         errors += _check_against_transcript(row, turns_by_file)
     if registry is not None:
         errors += _check_source(row, registry)
+    if threshold is not None:
+        errors += _check_numeric_rule(row, threshold)
     return errors
 
 
@@ -218,6 +254,7 @@ def validate_rows(
     rows: Sequence[Row],
     turns_by_file: TurnsByFile | None = None,
     registry: Registry | None = None,
+    threshold: Decimal | None = None,
 ) -> list[str]:
     """Renvoie la liste des erreurs, vide si le fichier est valide."""
     errors = []
@@ -227,7 +264,8 @@ def validate_rows(
         if row_id in seen_ids:
             errors.append(f"ligne {line} : id {row_id!r} en double")
         seen_ids.add(row_id)
-        errors += [f"ligne {line} : {e}" for e in validate_row(row, turns_by_file, registry)]
+        row_errors = validate_row(row, turns_by_file, registry, threshold)
+        errors += [f"ligne {line} : {e}" for e in row_errors]
     return errors
 
 
@@ -258,7 +296,7 @@ def main() -> int:
     else:
         print("Transcriptions absentes, les citations ne sont pas vérifiées.")
 
-    errors = validate_rows(rows, turns, load_registry())
+    errors = validate_rows(rows, turns, load_registry(), load_threshold())
     for error in errors:
         print(error)
     print(f"{len(rows)} affirmations, {len(errors)} erreurs")
