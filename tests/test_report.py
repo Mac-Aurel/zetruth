@@ -168,3 +168,17 @@ def test_les_rapports_versionnes_sont_a_jour(name: str) -> None:
 )
 def test_ecart_reel(overrides: dict[str, str], expected: str | None) -> None:
     assert gap_sentence(row(**overrides)) == expected
+
+
+def test_inverifiable_dit_que_l_affirmation_n_est_pas_etablie() -> None:
+    debate = Debate("Debat", date(2022, 4, 20), title="Débat test")
+    sans_source = row(
+        verdict="INVERIFIABLE", source_url="", valeur_officielle="", eclairage="Rien trouvé."
+    )
+    avec_source = row(id="x2", source_citee="Les Échos")
+
+    report = render(debate, [sans_source, avec_source], load_registry())
+
+    assert "En l'état, elle n'est pas établie et ne doit pas être tenue pour un fait." in report
+    assert "L'intervenant ne cite aucune source." in report
+    assert "L'intervenant cite : Les Échos." in report

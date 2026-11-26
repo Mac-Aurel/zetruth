@@ -1,6 +1,6 @@
 # Débat Macron / Le Pen, second tour de la présidentielle, 20 avril 2022
 
-32 affirmations factuelles vérifiées. Chaque verdict s'appuie sur une source officielle et sur la valeur connue le jour du débat. Une affirmation est vraie si la valeur officielle, arrondie à la précision avec laquelle elle a été énoncée, tombe juste ; imprécise jusqu'à 2 % d'écart ; fausse au-delà. Un chiffre exact présenté comme le seul alors que la source en donne plusieurs est trompeur.
+32 affirmations factuelles vérifiées. Chaque verdict s'appuie sur une source officielle et sur la valeur connue le jour du débat. Une affirmation est vraie si la valeur officielle, arrondie à la précision avec laquelle elle a été énoncée, tombe juste ; imprécise jusqu'à 2 % d'écart ; fausse au-delà. Un chiffre exact présenté comme le seul alors que la source en donne plusieurs est trompeur. Une affirmation invérifiable n'est pas établie : aucune source officielle ne permet de la confirmer.
 
 ## En résumé
 
@@ -21,6 +21,10 @@ Marine Le Pen, sur le thème : pouvoir d'achat.
 
 Ce qui est affirmé : part des Français estimant avoir perdu du pouvoir d'achat depuis cinq ans (sondage), 70 %, période 2017-2022, périmètre France.
 
+Aucune source officielle sur ce sujet ne permet de vérifier cette affirmation. En l'état, elle n'est pas établie et ne doit pas être tenue pour un fait.
+
+L'intervenant ne cite aucune source.
+
 Contexte : Sondage non cité. Aucune source de la liste blanche ne mesure cette opinion.
 
 Éclairage (pistes, pas des preuves) : Aucun sondage trouvé avec « 7 sur 10 » sur cinq ans. Sondages comparables : Elabe, octobre 2021, 57 % depuis 2017 (https://elabe.fr/wp-content/uploads/2021/10/pouvoir-dachat.pdf) ; Odoxa, octobre 2021, 75 % sans période précisée (https://www.odoxa.fr/sondage/75-des-francais-estiment-que-leur-pouvoir-dachat-diminue/) ; Harris Interactive, mars 2022, 44 % sur cinq ans. Pistes, pas des preuves.
@@ -32,6 +36,8 @@ Emmanuel Macron, sur le thème : chômage.
 **Verdict : Vrai**
 
 Ce qui est affirmé : baisse du taux de chômage au sens du BIT, France hors Mayotte, CVS, plus de 2 points, période T1 2017 - T4 2021, périmètre France hors Mayotte.
+
+L'intervenant ne cite aucune source.
 
 Ce que disent les sources : 2,2 (9,6 au T1 2017, 7,4 au T4 2021).
 
@@ -50,6 +56,8 @@ Emmanuel Macron, sur le thème : inflation.
 
 Ce qui est affirmé : glissement annuel de l'indice des prix à la consommation (IPC), ensemble des ménages, plus de 4 %, période mars 2022, périmètre France.
 
+L'intervenant ne cite aucune source.
+
 Ce que disent les sources : 4,5.
 
 Écart : la valeur officielle (4,5) est bien au-dessus de 4.
@@ -67,6 +75,10 @@ Emmanuel Macron, sur le thème : déplacements.
 
 Ce qui est affirmé : déplacements du président sur le terrain pendant le quinquennat, plus de 600 déplacements, période 2017-2022, périmètre France.
 
+Aucune source officielle sur ce sujet ne permet de vérifier cette affirmation. En l'état, elle n'est pas établie et ne doit pas être tenue pour un fait.
+
+L'intervenant ne cite aucune source.
+
 Éclairage (pistes, pas des preuves) : Aucune source officielle ne tient le compte des déplacements présidentiels ; l'agenda de l'Élysée les publie un par un sans total. Pas de recherche concluante.
 
 ### « C'est deux fois plus efficace que la baisse de la tva. »
@@ -77,6 +89,10 @@ Emmanuel Macron, sur le thème : énergie.
 
 Ce qui est affirmé : efficacité du bouclier tarifaire comparée à une baisse de la TVA sur l'énergie, environ 2 fois, période 2022, périmètre France.
 
+Aucune source officielle sur ce sujet ne permet de vérifier cette affirmation. En l'état, elle n'est pas établie et ne doit pas être tenue pour un fait.
+
+L'intervenant ne cite aucune source.
+
 Éclairage (pistes, pas des preuves) : Pas d'évaluation officielle publiée comparant les deux mesures. Ordre de grandeur calculé à partir de la CRE : le bouclier a évité une hausse d'environ 35 % TTC de l'électricité, ramenée à 4 %, soit un prix environ 23 % plus bas ; passer la TVA de 20 à 5,5 % baisse le prix d'environ 12 %. Rapport proche de 2, mais c'est un calcul, pas une source (https://www.cre.fr/content/download/24917/file/220118_2022-08_Proposition_tarifaire.pdf).
 
 ### « quand on bloque une augmentation qui est de 40, 60, 100 pour cent pour certaines énergies »
@@ -86,6 +102,8 @@ Emmanuel Macron, sur le thème : énergie.
 **Verdict : Vrai**
 
 Ce qui est affirmé : hausse des tarifs réglementés évitée par le bouclier tarifaire, entre 40 et 100 %, période 2022, périmètre France.
+
+L'intervenant ne cite aucune source.
 
 Ce que disent les sources : 44,5 (électricité, hausse HT proposée par la CRE pour février 2022, ramenée à 4 %).
 
@@ -103,6 +121,8 @@ Emmanuel Macron, sur le thème : emploi.
 **Verdict : Faux**
 
 Ce qui est affirmé : hausse de l'emploi salarié, 1,2 millions, période T1 2017 - T4 2021, périmètre France hors Mayotte.
+
+L'intervenant ne cite aucune source.
 
 Ce que disent les sources : 1,49 (25 069 900 au T1 2017, 26 564 200 au T4 2021).
 
@@ -123,6 +143,8 @@ Emmanuel Macron, sur le thème : emploi.
 
 Ce qui est affirmé : hausse de l'emploi salarié, 1,2 millions, période T1 2017 - T4 2021, périmètre France hors Mayotte.
 
+L'intervenant ne cite aucune source.
+
 Ce que disent les sources : 1,49 (25 069 900 au T1 2017, 26 564 200 au T4 2021).
 
 Écart : la valeur annoncée est 19,5 % en dessous de la valeur officielle.
@@ -142,6 +164,8 @@ Emmanuel Macron, sur le thème : salaires.
 
 Ce qui est affirmé : hausse mensuelle nette du SMIC au 1er mai 2022, 34 euros par mois, période mai 2022, périmètre France métropolitaine.
 
+L'intervenant ne cite aucune source.
+
 Ce que disent les sources : 33,61 en net (42,46 en brut, SMIC mensuel porté à 1645,58 brut).
 
 Écart : conforme à l'arrondi près (valeur exacte 33,61).
@@ -158,6 +182,8 @@ Emmanuel Macron, sur le thème : salaires.
 **Verdict : Vrai**
 
 Ce qui est affirmé : plafond d'exonération de la prime exceptionnelle de pouvoir d'achat à sa création, 1000 euros, période 2018-2019, périmètre France.
+
+L'intervenant ne cite aucune source.
 
 Ce que disent les sources : 1000.
 
@@ -176,6 +202,8 @@ Emmanuel Macron, sur le thème : handicap.
 
 Ce qui est affirmé : revalorisation de l'allocation aux adultes handicapés pendant le quinquennat, 90 euros par mois, période mai 2017 - novembre 2019, périmètre France.
 
+L'intervenant ne cite aucune source.
+
 Ce que disent les sources : 89,11 (de 810,89 à 900).
 
 Écart : la valeur annoncée est 1,0 % au-dessus de la valeur officielle.
@@ -193,6 +221,10 @@ Emmanuel Macron, sur le thème : programme.
 
 Ce qui est affirmé : présence du mot « chômage » dans les 22 mesures du programme de Marine Le Pen, 22 mesures, période 2022, périmètre France.
 
+Aucune source officielle sur ce sujet ne permet de vérifier cette affirmation. En l'état, elle n'est pas établie et ne doit pas être tenue pour un fait.
+
+L'intervenant cite : le programme de Marine Le Pen.
+
 Éclairage (pistes, pas des preuves) : Affirmation sur le programme de l'adversaire : elle se vérifie dans le programme publié, qui n'est pas une source officielle. Pas encore recherché.
 
 ### « contrairement à vous qui les laissez à 1000 euros »
@@ -202,6 +234,10 @@ Emmanuel Macron, sur le thème : programme.
 **Verdict : Invérifiable**
 
 Ce qui est affirmé : minimum de pension prévu par le programme de Marine Le Pen, 1000 euros, période 2022, périmètre France.
+
+Aucune source officielle sur ce sujet ne permet de vérifier cette affirmation. En l'état, elle n'est pas établie et ne doit pas être tenue pour un fait.
+
+L'intervenant ne cite aucune source.
 
 Éclairage (pistes, pas des preuves) : Affirmation sur le programme de l'adversaire : elle se vérifie dans le programme publié, qui n'est pas une source officielle. Pas encore recherché.
 
@@ -213,6 +249,10 @@ Emmanuel Macron, sur le thème : programme.
 
 Ce qui est affirmé : hausse des salaires prévue par le programme de Marine Le Pen, 10 %, période 2022, périmètre France.
 
+Aucune source officielle sur ce sujet ne permet de vérifier cette affirmation. En l'état, elle n'est pas établie et ne doit pas être tenue pour un fait.
+
+L'intervenant ne cite aucune source.
+
 Éclairage (pistes, pas des preuves) : Affirmation sur le programme de l'adversaire : elle se vérifie dans le programme publié, qui n'est pas une source officielle. Pas encore recherché.
 
 ### « La croissance est de 2,8 % »
@@ -222,6 +262,8 @@ Marine Le Pen, sur le thème : croissance.
 **Verdict : Trompeur**
 
 Ce qui est affirmé : prévision de croissance du PIB en moyenne annuelle, Banque de France, 2,8 %, période 2022 (projection de mars 2022), périmètre France.
+
+L'intervenant cite : les prévisions de la Banque de France (au tour précédent).
 
 Ce que disent les sources : 2,8 (scénario dégradé), 3,4 (scénario conventionnel).
 
@@ -240,6 +282,8 @@ Marine Le Pen, sur le thème : inflation.
 
 Ce qui est affirmé : prévision d'inflation (IPCH) en moyenne annuelle, Banque de France, 4,4 %, période 2022 (projection de mars 2022), périmètre France.
 
+L'intervenant cite : les prévisions de la Banque de France (au tour précédent).
+
 Ce que disent les sources : 4,4 (scénario dégradé), 3,7 (scénario conventionnel).
 
 Source : Banque de France, Projections macroéconomiques, mars 2022, publié le 13 mars 2022, consulté le 26 novembre 2026.
@@ -256,6 +300,8 @@ Emmanuel Macron, sur le thème : inflation.
 **Verdict : Trompeur**
 
 Ce qui est affirmé : prévision d'inflation (IPCH) en moyenne annuelle, Banque de France, 3,7 %, période 2022 (projection de mars 2022), périmètre France.
+
+L'intervenant cite : les chiffres de la Banque de France.
 
 Ce que disent les sources : 3,7 (scénario conventionnel), 4,4 (scénario dégradé).
 
@@ -274,6 +320,8 @@ Emmanuel Macron, sur le thème : croissance.
 
 Ce qui est affirmé : prévision de croissance du PIB en moyenne annuelle, Banque de France, 3,4 %, période 2022 (projection de mars 2022), périmètre France.
 
+L'intervenant cite : les chiffres de la Banque de France.
+
 Ce que disent les sources : 3,4 (scénario conventionnel), 2,8 (scénario dégradé).
 
 Source : Banque de France, Projections macroéconomiques, mars 2022, publié le 13 mars 2022, consulté le 26 novembre 2026.
@@ -291,6 +339,10 @@ Emmanuel Macron, sur le thème : pouvoir d'achat.
 
 Ce qui est affirmé : gain annuel par ménage d'une TVA à 0 % sur 100 produits de première nécessité, selon des instituts, 13 euros par an, période 2022, périmètre France.
 
+Aucune source officielle sur ce sujet ne permet de vérifier cette affirmation. En l'état, elle n'est pas établie et ne doit pas être tenue pour un fait.
+
+L'intervenant cite : « plusieurs instituts indépendants », sans les nommer.
+
 Le verdict porte sur ce que dit cette publication, pas sur le fait lui-même : un sondage mesure une opinion.
 
 Éclairage (pistes, pas des preuves) : Les « instituts indépendants » ne sont pas nommés et aucune étude donnant 13 euros par an n'a été trouvée. Le cabinet Astérès a chiffré en 2022 le coût de la mesure pour l'État (environ 4 milliards d'euros sur un périmètre restreint), pas le gain par ménage, d'après l'Institut Montaigne (https://www.institutmontaigne.org/legislatives-2024/rassemblement-national/supprimer-la-tva-sur-les-produits-de-premiere-necessite). Pistes, pas des preuves.
@@ -302,6 +354,8 @@ Emmanuel Macron, sur le thème : croissance.
 **Verdict : Vrai**
 
 Ce qui est affirmé : croissance du PIB en volume sur un an au T4 2021, 5,4 %, période T4 2021, périmètre France.
+
+L'intervenant ne cite aucune source.
 
 Ce que disent les sources : 5,41 (PIB du T4 2021 rapporté au T4 2020).
 
@@ -319,6 +373,8 @@ Emmanuel Macron, sur le thème : croissance.
 **Verdict : Vrai**
 
 Ce qui est affirmé : écart entre la croissance sur un an et l'inflation, 0,9 points, période T4 2021 et mars 2022, périmètre France.
+
+L'intervenant ne cite aucune source.
 
 Ce que disent les sources : 0,9 (croissance de 5,41 sur un an, inflation de 4,5).
 
@@ -338,6 +394,10 @@ Marine Le Pen, sur le thème : pouvoir d'achat.
 
 Ce qui est affirmé : versement de l'indemnité inflation de 100 euros à des détenus, 100 euros, période décembre 2021 - février 2022, périmètre France.
 
+Aucune source officielle sur ce sujet ne permet de vérifier cette affirmation. En l'état, elle n'est pas établie et ne doit pas être tenue pour un fait.
+
+L'intervenant ne cite aucune source.
+
 Éclairage (pistes, pas des preuves) : Des questions écrites de députés publiées en 2022 rapportent que certains détenus, notamment en formation professionnelle, ont perçu l'indemnité (https://www.assemblee-nationale.fr/dyn/15/questions/QANR5L15QE44934.pdf). Ce sont des signalements, sans réponse officielle trouvée ; la règle excluait en principe les personnes écrouées sans aménagement de peine (https://www.moneyvox.fr/actu/87809/prime-inflation-les-detenus-ne-pourront-pas-reclamer-les-100-euros). Plausible pour certains cas, pas établi. Pistes, pas des preuves.
 
 ### « la France a deux fois moins d'inflation que l'Espagne »
@@ -347,6 +407,8 @@ Emmanuel Macron, sur le thème : inflation.
 **Verdict : Vrai**
 
 Ce qui est affirmé : taux de variation annuel de l'IPCH, environ 2 rapport Espagne / France, période mars 2022, périmètre France, Espagne.
+
+L'intervenant ne cite aucune source.
 
 Ce que disent les sources : 1,9 (France 5,1, Espagne 9,8).
 
@@ -368,6 +430,8 @@ Emmanuel Macron, sur le thème : inflation.
 
 Ce qui est affirmé : écart d'inflation entre la France et l'Allemagne (IPCH), 60 % de moins, période mars 2022, périmètre France, Allemagne.
 
+L'intervenant ne cite aucune source.
+
 Ce que disent les sources : 33 (France 5,1, Allemagne 7,6).
 
 Écart : la valeur annoncée est 81,8 % au-dessus de la valeur officielle.
@@ -388,6 +452,8 @@ Marine Le Pen, sur le thème : dette publique.
 
 Ce qui est affirmé : hausse de la dette des administrations publiques au sens de Maastricht, 600 milliards d'euros, période T1 2017 - T4 2021, périmètre France.
 
+L'intervenant ne cite aucune source.
+
 Ce que disent les sources : 571 (2252,3 au T1 2017, 2823,7 au T4 2021).
 
 Écart : la valeur annoncée est 5,1 % au-dessus de la valeur officielle.
@@ -406,6 +472,8 @@ Emmanuel Macron, sur le thème : dette publique.
 **Verdict : Faux**
 
 Ce qui est affirmé : hausse de la dette de l'État au sens de Maastricht, 200 milliards d'euros, période T1 2017 - T4 2021, périmètre France.
+
+L'intervenant ne cite aucune source.
 
 Ce que disent les sources : +475 pour l'État (1752,5 au T1 2017, 2227,6 au T4 2021), +35 pour la sécurité sociale, +46 pour les administrations locales, +16 pour les autres organismes centraux.
 
@@ -427,6 +495,8 @@ Marine Le Pen, sur le thème : chômage.
 
 Ce qui est affirmé : demandeurs d'emploi inscrits en catégories A, B et C, moyenne trimestrielle, CVS-CJO, 5,5 millions, période T1 2017, périmètre France métropolitaine.
 
+L'intervenant ne cite aucune source.
+
 Ce que disent les sources : 5,51.
 
 Écart : conforme à l'arrondi près (valeur exacte 5,51).
@@ -445,6 +515,8 @@ Marine Le Pen, sur le thème : chômage.
 **Verdict : Vrai**
 
 Ce qui est affirmé : demandeurs d'emploi inscrits en catégories A, B et C, moyenne trimestrielle, CVS-CJO, 5,4 millions, période T4 2021, périmètre France métropolitaine.
+
+L'intervenant ne cite aucune source.
 
 Ce que disent les sources : 5,38.
 
@@ -465,6 +537,8 @@ Marine Le Pen, sur le thème : pauvreté.
 
 Ce qui est affirmé : personnes sous le seuil de pauvreté monétaire (60 % du niveau de vie médian), 9,8 millions, période 2019 (dernière année publiée au moment du débat), périmètre France métropolitaine.
 
+L'intervenant ne cite aucune source.
+
 Ce que disent les sources : 9,2.
 
 Écart : la valeur annoncée est 6,5 % au-dessus de la valeur officielle.
@@ -481,6 +555,8 @@ Marine Le Pen, sur le thème : commerce extérieur.
 **Verdict : Vrai**
 
 Ce qui est affirmé : déficit commercial des biens, 85 milliards d'euros, période 2021, périmètre France.
+
+L'intervenant ne cite aucune source.
 
 Ce que disent les sources : 84,7.
 
@@ -499,6 +575,8 @@ Emmanuel Macron, sur le thème : chômage.
 
 Ce qui est affirmé : taux de chômage au sens du BIT, France hors Mayotte, CVS, 9,6 %, période T1 2017, périmètre France hors Mayotte.
 
+L'intervenant ne cite aucune source.
+
 Ce que disent les sources : 9,6.
 
 Écart : conforme à l'arrondi près (valeur exacte 9,6).
@@ -515,6 +593,8 @@ Emmanuel Macron, sur le thème : chômage.
 **Verdict : Vrai**
 
 Ce qui est affirmé : taux de chômage au sens du BIT, France hors Mayotte, CVS, 7,4 %, période T4 2021, périmètre France hors Mayotte.
+
+L'intervenant ne cite aucune source.
 
 Ce que disent les sources : 7,4.
 

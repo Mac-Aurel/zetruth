@@ -36,6 +36,7 @@ COLUMNS = [
     "citation",
     "type",
     "attribution",
+    "source_citee",
     "sujet",
     "indicateur",
     "qualificatif",

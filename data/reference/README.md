@@ -37,6 +37,7 @@ Une ligne par affirmation, encodage UTF-8, séparateur virgule.
 | citation | Extrait copié mot pour mot du tour |
 | type | `factuelle`, `opinion`, `promesse` ou `prediction` |
 | attribution | `oui` si l'affirmation porte sur ce qu'une publication dit (« un sondage Odoxa dit 75 % ») et non sur le fait lui-même. Vide sinon |
+| source_citee | Ce que l'intervenant donne lui-même comme source, dans la phrase ou juste après (« selon Les Échos », « un sondage Odoxa »). Vide s'il n'en cite aucune : le rapport dit alors qu'il ne cite aucune source |
 | sujet | Thème libre : chômage, dette, inflation... |
 | indicateur | Ce qui est mesuré, le plus précisément possible (« taux de chômage au sens du BIT », pas « chômage »). Pour une hausse ou une baisse, le dire dans l'indicateur (« baisse du taux de chômage ») et mettre une valeur positive |
 | qualificatif | Comment la valeur est énoncée : `egal`, `environ`, `plus_de`, `moins_de` ou `entre` |
@@ -77,6 +78,7 @@ Ce qui est obligatoire :
 - Ces règles s'appliquent à tous les intervenants, sans exception.
 - Avant de conclure `INVERIFIABLE`, chercher : le web, la presse, y compris indépendante, servent à remonter jusqu'à la source primaire. Si elle est officielle, elle fonde le verdict. Sinon le verdict reste `INVERIFIABLE`, et ce qu'on a trouvé va dans `eclairage`, chaque élément avec son lien.
 - Un institut de sondage (portée `attribution` dans `config/sources.toml`) ne prouve que ce qu'il a lui-même publié : il peut confirmer « le sondage dit 75 % », jamais « le pouvoir d'achat a baissé ».
+- Un verdict `INVERIFIABLE` veut dire que l'affirmation n'est pas établie : le rapport le dit en ces termes, et précise si l'intervenant a cité une source. Ce n'est pas pour autant une opinion ou une promesse : une affirmation de fait reste une affirmation de fait, même invérifiable.
 - Dans le doute, `INVERIFIABLE`. Ce n'est pas un échec, c'est une information utile pour l'évaluation.
 - Une même phrase peut contenir plusieurs affirmations : on fait une ligne par affirmation, avec la même citation si besoin. « Le chômage est passé de 9,6 à 7,4 % » donne deux lignes.
 
