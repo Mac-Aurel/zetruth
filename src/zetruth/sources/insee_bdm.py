@@ -18,45 +18,24 @@ Usage pour l'annotation :
 
 import argparse
 import sys
-import time
-import urllib.error
-import urllib.request
 import xml.etree.ElementTree as ET
-from collections.abc import Callable
-from datetime import UTC, date, datetime
+from datetime import date
 from decimal import Decimal, InvalidOperation
 from pathlib import Path
 
 from zetruth.series.history import SeriesHistory, Vintage
+from zetruth.sources.client import SourceClient, SourceUnavailableError
 from zetruth.sources.registry import Registry, load_registry
 from zetruth.sources.store import FetchRecord, ResponseStore
 
 SOURCE_ID = "insee"
 BASE_URL = "https://api.insee.fr/series/BDM/V1/data/SERIES_BDM"
 CACHE_DIR = Path("data/cache/insee")
-TIMEOUT_SECONDS = 60
 MIN_SECONDS_BETWEEN_CALLS = 2.0  # 30 appels par minute
-
-Fetcher = Callable[[str], bytes]
 
 
 class InseeResponseError(ValueError):
     pass
-
-
-class InseeUnavailableError(RuntimeError):
-    pass
-
-
-def http_fetch(url: str) -> bytes:
-    try:
-        with urllib.request.urlopen(url, timeout=TIMEOUT_SECONDS) as response:
-            content: bytes = response.read()
-            return content
-    except urllib.error.HTTPError as e:
-        raise InseeUnavailableError(f"INSEE a répondu {e.code} pour {url}") from e
-    except (urllib.error.URLError, TimeoutError) as e:
-        raise InseeUnavailableError(f"INSEE injoignable pour {url} : {e}") from e
 
 
 def history_url(series_id: str) -> str:
@@ -108,49 +87,20 @@ def parse_history(xml_content: bytes, series_id: str) -> SeriesHistory:
     )
 
 
-class InseeBdmClient:
-    def __init__(
-        self,
-        store: ResponseStore,
-        registry: Registry,
-        fetch: Fetcher = http_fetch,
-        now: Callable[[], datetime] = lambda: datetime.now(UTC),
-        monotonic: Callable[[], float] = time.monotonic,
-        sleep: Callable[[float], None] = time.sleep,
-    ) -> None:
-        self._store = store
-        self._registry = registry
-        self._fetch = fetch
-        self._now = now
-        self._monotonic = monotonic
-        self._sleep = sleep
-        self._last_call: float | None = None
+def insee_client(store: ResponseStore, registry: Registry) -> SourceClient:
+    return SourceClient(SOURCE_ID, store, registry, MIN_SECONDS_BETWEEN_CALLS)
 
-    def history(self, series_id: str, refresh: bool = False) -> tuple[SeriesHistory, FetchRecord]:
-        """Historique d'une série et l'appel dont il provient (pour la traçabilité)."""
-        url = history_url(series_id)
-        cached = None if refresh else self._store.latest(series_id)
-        if cached is not None:
-            content, record = cached
-            return parse_history(content, series_id), record
 
-        content = self._call(url)
-        history = parse_history(content, series_id)  # on ne garde pas une réponse illisible
-        record = self._store.save(series_id, url, content, self._now())
-        return history, record
-
-    def _call(self, url: str) -> bytes:
-        source = self._registry.for_url(url)  # lève si l'URL sort de la liste blanche
-        if source.id != SOURCE_ID:
-            raise ValueError(f"{url} appartient à {source.id}, pas à {SOURCE_ID}")
-        if self._last_call is not None:
-            wait = MIN_SECONDS_BETWEEN_CALLS - (self._monotonic() - self._last_call)
-            if wait > 0:
-                self._sleep(wait)
-        try:
-            return self._fetch(url)
-        finally:
-            self._last_call = self._monotonic()
+def fetch_history(
+    client: SourceClient, series_id: str, refresh: bool = False
+) -> tuple[SeriesHistory, FetchRecord]:
+    """Historique d'une série et l'appel dont il provient (pour la traçabilité)."""
+    return client.get(
+        series_id,
+        history_url(series_id),
+        lambda content: parse_history(content, series_id),
+        refresh=refresh,
+    )
 
 
 def describe(history: SeriesHistory, record: FetchRecord, period: str, as_of: date) -> list[str]:
@@ -182,10 +132,10 @@ def main(argv: list[str] | None = None) -> int:
     )
     args = parser.parse_args(argv)
 
-    client = InseeBdmClient(ResponseStore(CACHE_DIR), load_registry())
+    client = insee_client(ResponseStore(CACHE_DIR), load_registry())
     try:
-        history, record = client.history(args.serie, refresh=args.rafraichir)
-    except (InseeUnavailableError, InseeResponseError) as e:
+        history, record = fetch_history(client, args.serie, refresh=args.rafraichir)
+    except (SourceUnavailableError, InseeResponseError) as e:
         print(e, file=sys.stderr)
         return 1
     print("\n".join(describe(history, record, args.periode, args.date)))

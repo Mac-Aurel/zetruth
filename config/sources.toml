@@ -136,7 +136,11 @@ statut = "a_verifier"
 nom = "Eurostat"
 urls = ["https://ec.europa.eu/eurostat/"]
 domaines = ["international", "economie", "emploi", "social"]
-statut = "a_verifier"
+statut = "verifiee"
+acces = "api (Statistics API 1.0, JSON-stat 2.0), sans authentification"
+documentation = "https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-faq"
+conditions_usage = "Réutilisation libre, y compris commerciale, en citant la source (décision 2011/833/UE). Exceptions : données de tiers et logos. https://ec.europa.eu/eurostat/help/copyright-notice"
+date_verification = 2026-11-26
 
 [sources.ocde]
 nom = "Organisation de coopération et de développement économiques"
