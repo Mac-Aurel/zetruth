@@ -1,0 +1,17 @@
+# Règle de comparaison entre une valeur annoncée et la valeur officielle.
+#
+# VRAI : la valeur officielle, arrondie à la précision avec laquelle
+# l'intervenant a parlé, retombe exactement sur son chiffre (« égal » et
+# « environ »), ou respecte strictement l'inégalité (« plus de », « moins
+# de »), ou tombe dans la fourchette (« entre »). « Environ » n'accorde
+# aucune marge supplémentaire.
+#
+# Sinon : IMPRECIS si l'écart relatif ne dépasse pas le seuil ci-dessous,
+# FAUX au-delà. Le seuil est volontairement bas : on se place du côté de
+# celui qui écoute, un chiffre qui l'induit en erreur n'est pas imprécis.
+#
+# Ce seuil est un choix de méthode, pas une donnée. Le modifier change des
+# verdicts : le faire dans une PR dédiée, avec ses effets sur le jeu de
+# référence.
+
+seuil_imprecis = 0.02

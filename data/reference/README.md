@@ -66,6 +66,17 @@ Ce qui est obligatoire :
 - Dans le doute, `INVERIFIABLE`. Ce n'est pas un échec, c'est une information utile pour l'évaluation.
 - Une même phrase peut contenir plusieurs affirmations : on fait une ligne par affirmation, avec la même citation si besoin. « Le chômage est passé de 9,6 à 7,4 % » donne deux lignes.
 
+## VRAI, IMPRECIS ou FAUX
+
+Pour une comparaison de chiffres, le verdict suit une règle fixe, décrite dans `config/tolerances.toml` :
+
+- `egal` ou `environ` : VRAI si la valeur officielle, arrondie à la précision avec laquelle l'intervenant a parlé, retombe exactement sur son chiffre. « 5,5 millions » pour 5,51 est VRAI, « 600 milliards » pour 571 ne l'est pas. « Environ » ne donne aucune marge de plus.
+- `plus_de`, `moins_de` : VRAI si l'inégalité est strictement respectée.
+- `entre` : VRAI si la valeur officielle est dans la fourchette.
+- Sinon : IMPRECIS si l'écart relatif ne dépasse pas 2 %, FAUX au-delà.
+
+Le validateur vérifie que chaque verdict VRAI, IMPRECIS ou FAUX respecte cette règle, à partir du premier nombre de `valeur_officielle`. TROMPEUR et INVERIFIABLE restent des jugements d'annotation.
+
 ## Retrouver la valeur publiée à la date du débat
 
 Pour une série de la BDM de l'INSEE, l'outil suivant donne la valeur telle qu'elle était publiée à une date, et toutes ses révisions :

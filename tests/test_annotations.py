@@ -189,3 +189,28 @@ def test_une_promesse_n_a_pas_besoin_de_valeur() -> None:
 
     assert validate_rows([row]) == []
     assert to_claim(row).claimed is None
+
+
+def test_le_verdict_doit_suivre_la_regle_de_comparaison() -> None:
+    seuil = Decimal("0.02")
+    juste = make_row(qualificatif="egal", valeur="5.5", valeur_officielle="5.51", verdict="VRAI")
+    trop_gentil = make_row(
+        qualificatif="egal", valeur="600", valeur_officielle="571", verdict="IMPRECIS"
+    )
+
+    assert validate_rows([juste], threshold=seuil) == []
+    assert validate_rows([trop_gentil], threshold=seuil) == [
+        "ligne 2 : verdict incohérent avec la règle de comparaison : "
+        "FAUX attendu pour egal 600 face à 571"
+    ]
+
+
+@pytest.mark.parametrize(
+    "overrides",
+    [
+        {"verdict": "TROMPEUR", "valeur_officielle": "5.51", "valeur": "5.5"},
+        {"verdict": "FAUX", "valeur_officielle": "voir commentaire"},
+    ],
+)
+def test_la_regle_ne_s_applique_pas_hors_comparaison_numerique(overrides: dict[str, str]) -> None:
+    assert validate_rows([make_row(**overrides)], threshold=Decimal("0.02")) == []
