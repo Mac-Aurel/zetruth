@@ -36,9 +36,9 @@ Une ligne par affirmation, encodage UTF-8, séparateur virgule.
 | perimetre | France entière, métropole, zone euro... |
 | verdict | `VRAI`, `FAUX`, `TROMPEUR`, `IMPRECIS`, `INVERIFIABLE` ou `NON_FACTUEL` |
 | valeur_officielle | Valeur trouvée dans la source |
-| source_organisme | INSEE, Eurostat, DARES... |
+| source_organisme | Identifiant de la source dans `config/sources.toml` : `insee`, `eurostat`, `dares`... |
 | source_reference | Identifiant de série, nom de la publication ou du texte |
-| source_url | Lien vers la donnée elle-même, pas vers une page d'accueil |
+| source_url | Lien vers la donnée elle-même, pas vers une page d'accueil. Doit appartenir à la source indiquée |
 | date_publication | Date de publication de la donnée utilisée (AAAA-MM-JJ) |
 | date_consultation | Date à laquelle on l'a consultée (AAAA-MM-JJ) |
 | commentaire | Tout ce qui aide à comprendre le verdict : définition retenue, révision, contexte |
@@ -64,4 +64,4 @@ Ce qui est obligatoire :
 uv run python -m zetruth.reference.annotations
 ```
 
-Le script contrôle le format, les champs obligatoires, les dates et, si les transcriptions ont été téléchargées, que chaque citation figure bien mot pour mot dans le tour indiqué avec le bon locuteur.
+Le script contrôle le format, les champs obligatoires, les dates, que la source fait partie de la liste blanche et que son URL lui appartient, et, si les transcriptions ont été téléchargées, que chaque citation figure bien mot pour mot dans le tour indiqué avec le bon locuteur.

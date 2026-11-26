@@ -10,6 +10,7 @@ from datetime import date
 from pathlib import Path
 
 from zetruth.corpus.fredsum import TRANSCRIPTS_DIR, Turn, load_turns
+from zetruth.sources.registry import Registry, UnknownSourceError, load_registry
 
 ANNOTATIONS_FILE = Path("data/reference/affirmations.csv")
 
@@ -108,7 +109,24 @@ def _check_against_transcript(row: Row, turns_by_file: TurnsByFile) -> list[str]
     return errors
 
 
-def validate_row(row: Row, turns_by_file: TurnsByFile | None = None) -> list[str]:
+def _check_source(row: Row, registry: Registry) -> list[str]:
+    source_id, url = row.get("source_organisme", "").strip(), row.get("source_url", "").strip()
+    if not source_id:
+        return []
+    try:
+        source = registry.get(source_id)
+        if url and not source.covers(url):
+            return [f"source_url n'appartient pas à la source {source_id}"]
+    except (UnknownSourceError, ValueError) as e:
+        return [str(e)]
+    return []
+
+
+def validate_row(
+    row: Row,
+    turns_by_file: TurnsByFile | None = None,
+    registry: Registry | None = None,
+) -> list[str]:
     missing = _missing(row, ALWAYS_REQUIRED)
     if missing:
         return [f"champ obligatoire vide : {c}" for c in missing]
@@ -118,10 +136,16 @@ def validate_row(row: Row, turns_by_file: TurnsByFile | None = None) -> list[str
     errors = _check_verdict(row) + _check_dates(row)
     if turns_by_file is not None:
         errors += _check_against_transcript(row, turns_by_file)
+    if registry is not None:
+        errors += _check_source(row, registry)
     return errors
 
 
-def validate_rows(rows: Sequence[Row], turns_by_file: TurnsByFile | None = None) -> list[str]:
+def validate_rows(
+    rows: Sequence[Row],
+    turns_by_file: TurnsByFile | None = None,
+    registry: Registry | None = None,
+) -> list[str]:
     """Renvoie la liste des erreurs, vide si le fichier est valide."""
     errors = []
     seen_ids: set[str] = set()
@@ -130,7 +154,7 @@ def validate_rows(rows: Sequence[Row], turns_by_file: TurnsByFile | None = None)
         if row_id in seen_ids:
             errors.append(f"ligne {line} : id {row_id!r} en double")
         seen_ids.add(row_id)
-        errors += [f"ligne {line} : {e}" for e in validate_row(row, turns_by_file)]
+        errors += [f"ligne {line} : {e}" for e in validate_row(row, turns_by_file, registry)]
     return errors
 
 
@@ -161,7 +185,7 @@ def main() -> int:
     else:
         print("Transcriptions absentes, les citations ne sont pas vérifiées.")
 
-    errors = validate_rows(rows, turns)
+    errors = validate_rows(rows, turns, load_registry())
     for error in errors:
         print(error)
     print(f"{len(rows)} affirmations, {len(errors)} erreurs")
