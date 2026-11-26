@@ -84,6 +84,8 @@ Le projet en est au cadrage, il n'y a pas encore de code.
 | V2 | Ajout des textes de loi, des votes parlementaires, de la sécurité, de l'immigration et des comparaisons internationales. |
 | V3 | Ouverture au public, seulement après évaluation chiffrée, audit de neutralité et validation juridique. |
 
+Les premiers rapports de vérification, établis à la main avec les outils du projet, sont dans [rapports/](rapports/) : le débat Macron / Le Pen du 20 avril 2022 et le débat Bardella / Darmanin du 13 avril 2022.
+
 Le détail du travail est dans les [issues](https://github.com/Mac-Aurel/zetruth/issues), regroupées par version dans les [milestones](https://github.com/Mac-Aurel/zetruth/milestones).
 
 ## Évaluation
@@ -119,6 +121,7 @@ uv run python -m zetruth.corpus.fredsum        # télécharge les transcriptions
 uv run python -m zetruth.indicators            # télécharge à l'avance les séries du catalogue
 uv run python -m zetruth.detection.evaluate    # mesure la détection des affirmations
 uv run python -m zetruth.evaluation            # fait tourner le pipeline sur le jeu de référence
+uv run python -m zetruth.report                # génère le rapport de chaque débat dans rapports/
 ```
 
 Le jeu de référence (transcriptions de débats et affirmations annotées) est décrit dans [data/reference/README.md](data/reference/README.md).

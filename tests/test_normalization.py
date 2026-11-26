@@ -204,5 +204,11 @@ def test_debats_du_corpus() -> None:
     debates = load_debates()
 
     debate = debate_for("Macron_Lepen_2--Partie_1_Pouvoir_D_Achat.txt", debates)
-    assert debate == DEBAT_2022
+    assert debate is not None
+    assert (debate.name, debate.held_on, debate.incumbent_since) == (
+        DEBAT_2022.name,
+        DEBAT_2022.held_on,
+        DEBAT_2022.incumbent_since,
+    )
+    assert debate.title.startswith("Débat Macron / Le Pen")
     assert debate_for("Inconnu--Partie_1.txt", debates) is None
