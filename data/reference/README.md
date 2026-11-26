@@ -53,10 +53,22 @@ Ce qui est obligatoire :
 ## Règles d'annotation
 
 - On vérifie ce que l'intervenant a dit, pas ce qu'il voulait dire. Si la phrase est ambiguë, on le note en commentaire.
-- La valeur officielle doit être celle qui était disponible à la date du débat. Si elle a été révisée depuis, on garde la version d'époque et on mentionne la révision en commentaire. Les archives de l'INSEE permettent de retrouver les anciennes publications.
+- La valeur officielle doit être celle qui était disponible à la date du débat. Si elle a été révisée depuis, on garde la version d'époque et on mentionne la révision en commentaire. Voir plus bas pour retrouver ces valeurs.
 - Les sources doivent faire partie de la liste blanche du projet. Un article de presse peut aider à trouver la source, mais ne se cite pas.
 - Dans le doute, `INVERIFIABLE`. Ce n'est pas un échec, c'est une information utile pour l'évaluation.
 - Une même phrase peut contenir plusieurs affirmations : on fait une ligne par affirmation, avec la même citation si besoin.
+
+## Retrouver la valeur publiée à la date du débat
+
+Pour une série de la BDM de l'INSEE, l'outil suivant donne la valeur telle qu'elle était publiée à une date, et toutes ses révisions :
+
+```bash
+uv run python -m zetruth.sources.insee_bdm 001688527 2021-Q4 2022-04-20
+```
+
+Les arguments sont l'identifiant de la série (idbank, visible sur la page de la série sur insee.fr), la période et la date du débat.
+
+Limite importante : l'historique de l'API ne commence que le 18 mai 2017, et pas pour toutes les séries. Pour les débats plus anciens (Hollande / Sarkozy 2012, Macron / Le Pen du 3 mai 2017), il faut retrouver à la main la publication de l'époque, par exemple la note Informations rapides correspondante dans les archives de l'INSEE, et mettre son lien dans source_url.
 
 ## Vérifier le fichier
 
