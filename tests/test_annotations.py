@@ -4,6 +4,7 @@ import pytest
 
 from zetruth.corpus.fredsum import Turn
 from zetruth.reference.annotations import COLUMNS, read_annotations, validate_rows
+from zetruth.sources.registry import parse_registry
 
 TURNS = {
     "debat.txt": [
@@ -11,6 +12,19 @@ TURNS = {
         Turn(1, "Nicolas Sarkozy", "Le chômage a baissé de 5 % depuis 2007, c'est un fait."),
     ]
 }
+
+REGISTRY = parse_registry(
+    {
+        "sources": {
+            "insee": {
+                "nom": "INSEE",
+                "urls": ["https://insee.fr/"],
+                "domaines": ["economie"],
+                "statut": "a_verifier",
+            }
+        }
+    }
+)
 
 
 def make_row(**overrides: str) -> dict[str, str]:
@@ -27,7 +41,7 @@ def make_row(**overrides: str) -> dict[str, str]:
         periode="2007-2012",
         verdict="FAUX",
         valeur_officielle="+2,3 points",
-        source_organisme="INSEE",
+        source_organisme="insee",
         source_reference="série 001688526",
         source_url="https://www.insee.fr/",
         date_consultation="2026-11-26",
@@ -37,7 +51,7 @@ def make_row(**overrides: str) -> dict[str, str]:
 
 
 def test_une_affirmation_complete_est_valide() -> None:
-    assert validate_rows([make_row()], TURNS) == []
+    assert validate_rows([make_row()], TURNS, REGISTRY) == []
 
 
 def test_un_verdict_source_exige_la_source() -> None:
@@ -114,3 +128,23 @@ def test_un_fichier_avec_de_mauvaises_colonnes_est_refuse(tmp_path: Path) -> Non
 
 def test_le_fichier_du_depot_a_les_bonnes_colonnes() -> None:
     read_annotations(Path("data/reference/affirmations.csv"))
+
+
+@pytest.mark.parametrize(
+    ("overrides", "expected"),
+    [
+        ({"source_organisme": "le_monde"}, "source hors liste blanche : 'le_monde'"),
+        (
+            {"source_url": "https://www.lemonde.fr/les-decodeurs/"},
+            "source_url n'appartient pas à la source insee",
+        ),
+        ({"source_url": "insee.fr/statistiques"}, "URL invalide"),
+    ],
+)
+def test_la_source_doit_appartenir_a_la_liste_blanche(
+    overrides: dict[str, str], expected: str
+) -> None:
+    errors = validate_rows([make_row(**overrides)], registry=REGISTRY)
+
+    assert len(errors) == 1
+    assert expected in errors[0]
