@@ -99,6 +99,28 @@ uv run python -m zetruth.sources.eurostat une_rt_m 2022-01 2022-04-20 geo=FR age
 
 Si un filtre manque, l'outil dit lequel préciser. Eurostat ne garde aucune version passée de ses données : on n'obtient que la valeur actuelle. Si sa date de mise à jour est postérieure au débat, l'outil le signale, et il faut le noter en commentaire (ou chercher la publication de l'époque).
 
+## Jeu de détection (`detection.csv`)
+
+`affirmations.csv` ne contient que des affirmations choisies. Pour mesurer la détection, il faut aussi les phrases qui n'en contiennent pas : `detection.csv` étiquette donc chaque phrase de quelques extraits, sans exception (pour l'instant Bardella / Darmanin, impôts et inflation, 151 phrases).
+
+| Colonne | Contenu |
+|---|---|
+| fichier, tour | Comme dans `affirmations.csv` |
+| phrase | Numéro de la phrase dans le tour, selon le découpage de `zetruth.detection.sentences` |
+| locuteur, texte | La phrase telle que découpée |
+| verifiable | `oui` si la phrase affirme au moins un fait qu'une source pourrait confirmer ou contredire, chiffré ou non |
+| chiffree | Pour une phrase vérifiable : `oui` si le fait repose sur un chiffre (périmètre de la V0) |
+| type | `factuelle`, `opinion`, `promesse`, `prediction`, `question` ou `autre` |
+| commentaire | Par exemple quand le fait porte sur le programme d'un candidat, vérifiable mais pas auprès d'une source officielle |
+
+Une phrase qui mêle une promesse et un fait constaté (« nous doublerons les aides, parce qu'il y a un quart des familles monoparentales ») est vérifiable.
+
+Pour évaluer le détecteur :
+
+```bash
+uv run python -m zetruth.detection.evaluate
+```
+
 ## Vérifier le fichier
 
 ```bash
