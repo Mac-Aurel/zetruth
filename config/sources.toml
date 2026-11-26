@@ -185,6 +185,12 @@ statut = "a_verifier"
 
 # Énergie, climat
 
+[sources.cre]
+nom = "Commission de régulation de l'énergie"
+urls = ["https://cre.fr/"]
+domaines = ["energie"]
+statut = "a_verifier"
+
 [sources.mediateur_energie]
 nom = "Médiateur national de l'énergie (autorité publique indépendante)"
 urls = ["https://energie-mediateur.fr/"]

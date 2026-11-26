@@ -16,6 +16,14 @@ Les présentateurs apparaissent souvent sous la forme `P1`, `P2`.
 
 Si on publie un jour ce jeu de référence, il devra rester sous CC BY-SA 4.0 et citer l'article : Rennard et al., *FREDSum: A Dialogue Summarization Corpus for French Political Debates*, Findings of EMNLP 2023.
 
+## Extraits annotés de façon exhaustive
+
+Pour que le choix des affirmations ne biaise pas les résultats par intervenant, certains extraits sont annotés sans sélection : toutes les affirmations factuelles chiffrées des intervenants y figurent.
+
+- `Macron_Lepen_2--Partie_1_Pouvoir_D_Achat` (débat du 20 avril 2022). Hors périmètre : les promesses (non vérifiables), et la phrase du tour 47 sur les « chiffres du 2ème trimestre », dont l'auteur est incertain dans la transcription. Les affirmations sur le programme de l'adversaire sont incluses en INVERIFIABLE, faute de source officielle.
+
+Les autres extraits ne contiennent que des affirmations choisies : leurs résultats par intervenant ne sont pas représentatifs.
+
 ## Format de `affirmations.csv`
 
 Une ligne par affirmation, encodage UTF-8, séparateur virgule.
