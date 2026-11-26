@@ -61,6 +61,8 @@ class SourceClient:
         self._monotonic = monotonic
         self._sleep = sleep
         self._last_call: float | None = None
+        # Réponses utilisées depuis le dernier drain_used(), pour le journal d'audit.
+        self._used: list[FetchRecord] = []
 
     def get(
         self, key: str, url: str, parse: Callable[[bytes], T], refresh: bool = False
@@ -72,11 +74,18 @@ class SourceClient:
         cached = None if refresh else self._store.latest(key)
         if cached is not None:
             content, record = cached
-            return parse(content), record
+            parsed = parse(content)
+        else:
+            content = self._call(url)
+            parsed = parse(content)
+            record = self._store.save(key, url, content, self._now())
+        self._used.append(record)
+        return parsed, record
 
-        content = self._call(url)
-        parsed = parse(content)
-        return parsed, self._store.save(key, url, content, self._now())
+    def drain_used(self) -> list[FetchRecord]:
+        """Les réponses utilisées depuis le dernier appel, et remise à zéro."""
+        used, self._used = self._used, []
+        return used
 
     def _call(self, url: str) -> bytes:
         source = self._registry.for_url(url)  # lève si l'URL sort de la liste blanche

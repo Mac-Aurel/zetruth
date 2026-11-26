@@ -1,6 +1,9 @@
 """Évaluation de bout en bout du pipeline sur le jeu de référence.
 
-    uv run python -m zetruth.evaluation
+    uv run python -m zetruth.evaluation [--journal]
+
+Avec --journal, chaque phrase vérifiée est enregistrée dans le journal d'audit
+(data/audit/journal.jsonl) et peut être rejouée : python -m zetruth.audit rejouer
 
 Pour chaque affirmation factuelle annotée d'un débat décrit dans
 data/reference/debats.toml, on fait tourner le pipeline sur la phrase et on
@@ -22,6 +25,7 @@ from dataclasses import dataclass
 from decimal import Decimal, InvalidOperation
 from enum import StrEnum
 
+from zetruth.audit import AuditLog, verify_and_record
 from zetruth.corpus.fredsum import TRANSCRIPTS_DIR, Turn, load_turns
 from zetruth.detection.sentences import split_sentences
 from zetruth.indicators.__main__ import default_clients
@@ -32,6 +36,7 @@ from zetruth.normalization.countries import Country, load_countries
 from zetruth.normalization.normalize import Debate, debate_for, load_debates
 from zetruth.pipeline import Outcome, verify_sentence
 from zetruth.reference.annotations import ANNOTATIONS_FILE, read_annotations
+from zetruth.sources.client import SourceClient
 from zetruth.sources.registry import load_registry
 from zetruth.verdicts.tolerance import load_threshold
 
@@ -90,7 +95,10 @@ def evaluate(
     service: IndicatorService,
     threshold: Decimal,
     countries: Mapping[str, Country] | None = None,
+    journal: AuditLog | None = None,
+    clients: Mapping[str, SourceClient] | None = None,
 ) -> list[Evaluated]:
+    """Avec un journal, chaque phrase vérifiée y est enregistrée pour pouvoir la rejouer."""
     evaluated = []
     for row in annotations:
         debate = debate_for(row["fichier"], debates)
@@ -109,7 +117,13 @@ def evaluate(
         utterance = Utterance(
             source_file=row["fichier"], turn=index, speaker=row["locuteur"], quote=sentence
         )
-        outcomes = verify_sentence(utterance, debate, service, threshold, context, countries)
+        if journal is not None and clients is not None:
+            outcomes, record = verify_and_record(
+                utterance, debate, service, clients, threshold, context, countries
+            )
+            journal.append(record)
+        else:
+            outcomes = verify_sentence(utterance, debate, service, threshold, context, countries)
         result, detail = classify(row["verdict"], _matching(outcomes, row["valeur"]))
         evaluated.append(Evaluated(row["id"], debate.name, row["verdict"], result, detail))
     return evaluated
@@ -122,10 +136,21 @@ def main() -> int:
     if not turns:
         print("Transcriptions absentes : uv run python -m zetruth.corpus.fredsum", file=sys.stderr)
         return 1
-    service = IndicatorService(load_catalog(load_registry()), default_clients())
+    clients = default_clients()
+    service = IndicatorService(load_catalog(load_registry()), clients)
+    journal = AuditLog() if "--journal" in sys.argv[1:] else None
     evaluated = evaluate(
-        annotations, turns, load_debates(), service, load_threshold(), load_countries()
+        annotations,
+        turns,
+        load_debates(),
+        service,
+        load_threshold(),
+        load_countries(),
+        journal,
+        clients,
     )
+    if journal is not None:
+        print(f"verdicts enregistrés dans {journal.path}")
 
     for e in evaluated:
         print(f"{e.annotation_id:12} attendu {e.expected:12} {e.result:17} {e.detail}")
