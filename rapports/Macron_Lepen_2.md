@@ -1,13 +1,13 @@
 # Débat Macron / Le Pen, second tour de la présidentielle, 20 avril 2022
 
-32 affirmations factuelles vérifiées. Chaque verdict s'appuie sur une source officielle et sur la valeur connue le jour du débat. Une affirmation est vraie si la valeur officielle, arrondie à la précision avec laquelle elle a été énoncée, tombe juste ; imprécise jusqu'à 2 % d'écart ; fausse au-delà. Un chiffre exact présenté comme le seul alors que la source en donne plusieurs est trompeur. Une affirmation invérifiable n'est pas établie : aucune source officielle ne permet de la confirmer.
+54 affirmations factuelles vérifiées. Chaque verdict s'appuie sur une source officielle et sur la valeur connue le jour du débat. Une affirmation est vraie si la valeur officielle, arrondie à la précision avec laquelle elle a été énoncée, tombe juste ; imprécise jusqu'à 2 % d'écart ; fausse au-delà. Un chiffre exact présenté comme le seul alors que la source en donne plusieurs est trompeur. Une affirmation invérifiable n'est pas établie : aucune source officielle ne permet de la confirmer.
 
 ## En résumé
 
 | Intervenant | Vrai | Faux | Trompeur | Imprécis | Invérifiable |
 |---|---|---|---|---|---|
-| Emmanuel Macron | 10 | 4 | 2 | 1 | 6 |
-| Marine Le Pen | 3 | 2 | 2 | 0 | 2 |
+| Emmanuel Macron | 12 | 6 | 2 | 1 | 11 |
+| Marine Le Pen | 6 | 4 | 2 | 0 | 10 |
 
 Ce tableau ne mesure pas l'honnêteté des intervenants : il ne porte que sur les affirmations retenues, qui ne sont pas un échantillon représentatif de tout le débat.
 
@@ -444,6 +444,167 @@ Attention : la valeur citée est la dernière publiée aujourd'hui. Celle connue
 
 Contexte : Même dans l'autre sens l'écart ne fait pas 60 % (Allemagne 49 % au-dessus de la France). Valeurs actuelles d'Eurostat, mise à jour postérieure au débat.
 
+### « à 62,8 mois ils sont déjà la moitié à être en inactivité et au moment où ils prennent leur retraite »
+
+Marine Le Pen, sur le thème : retraites.
+
+**Verdict : Faux**
+
+Ce qui est affirmé : part des nouveaux retraités qui n'étaient pas en emploi l'année précédant leur départ, 50 %, période génération 1946, périmètre France.
+
+L'intervenant ne cite aucune source.
+
+Ce que disent les sources : 42 (58 % des retraités nés en 1946 étaient en emploi l'année précédant leur départ).
+
+Écart : la valeur annoncée est 19,0 % au-dessus de la valeur officielle.
+
+Source : Direction de la recherche, des études, de l'évaluation et des statistiques, Les retraités et les retraites, édition 2021, fiche 20, consulté le 26 novembre 2026.
+Lien : https://drees.solidarites-sante.gouv.fr/sites/default/files/2021-05/Fiche%2020%20-%20La%20situation%20des%20assur%C3%A9s%20en%20fin%20de%20carri%C3%A8re.pdf
+
+Contexte : « Inactivité » est pris au sens large (pas en emploi, y compris chômage et maladie). Au sens strict, la part serait plus faible encore. Publication de mai 2021, avant le débat.
+
+### « Darmanin a dit 40. »
+
+Marine Le Pen, sur le thème : retraites.
+
+**Verdict : Invérifiable**
+
+Ce qui est affirmé : propos prêtés à Gérald Darmanin sur la réforme des retraites, 40 non précisé, période 2022, périmètre France.
+
+Aucune source officielle sur ce sujet ne permet de vérifier cette affirmation. En l'état, elle n'est pas établie et ne doit pas être tenue pour un fait.
+
+L'intervenant ne cite aucune source.
+
+Le verdict porte sur ce que dit cette publication, pas sur le fait lui-même : un sondage mesure une opinion.
+
+Éclairage (pistes, pas des preuves) : On ne sait pas ce que mesure ce chiffre (âge, annuités ?) et la déclaration n'a pas été retrouvée.
+
+### « C'est évidemment fort différent du projet de Emmanuel Macron qui veut faire travailler tout le monde jusqu'à 65 ans. »
+
+Marine Le Pen, sur le thème : programme.
+
+**Verdict : Invérifiable**
+
+Ce qui est affirmé : âge de départ prévu par le programme d'Emmanuel Macron pour tous, 65 ans, période 2022, périmètre France.
+
+Aucune source officielle sur ce sujet ne permet de vérifier cette affirmation. En l'état, elle n'est pas établie et ne doit pas être tenue pour un fait.
+
+L'intervenant ne cite aucune source.
+
+Éclairage (pistes, pas des preuves) : Affirmation sur le programme de l'adversaire : elle se vérifie dans le programme publié, qui n'est pas une source officielle. Pas encore recherché. Dans le même débat, Emmanuel Macron évoque des exceptions (carrières longues, pénibilité).
+
+### « Monsieur Attal a dit 42 ou 43. »
+
+Marine Le Pen, sur le thème : retraites.
+
+**Verdict : Invérifiable**
+
+Ce qui est affirmé : propos prêtés à Gabriel Attal sur la réforme des retraites, entre 42 et 43 non précisé, période 2022, périmètre France.
+
+Aucune source officielle sur ce sujet ne permet de vérifier cette affirmation. En l'état, elle n'est pas établie et ne doit pas être tenue pour un fait.
+
+L'intervenant ne cite aucune source.
+
+Le verdict porte sur ce que dit cette publication, pas sur le fait lui-même : un sondage mesure une opinion.
+
+Éclairage (pistes, pas des preuves) : On ne sait pas ce que mesure ce chiffre (âge, annuités ?) et la déclaration n'a pas été retrouvée.
+
+### « Dans les deux cas vous leur proposez 1 000 euros. »
+
+Emmanuel Macron, sur le thème : programme.
+
+**Verdict : Invérifiable**
+
+Ce qui est affirmé : pension minimale prévue par le programme de Marine Le Pen, 1000 euros, période 2022, périmètre France.
+
+Aucune source officielle sur ce sujet ne permet de vérifier cette affirmation. En l'état, elle n'est pas établie et ne doit pas être tenue pour un fait.
+
+L'intervenant ne cite aucune source.
+
+Éclairage (pistes, pas des preuves) : Affirmation sur le programme de l'adversaire : elle se vérifie dans le programme publié, qui n'est pas une source officielle. Pas encore recherché.
+
+### « le minimum contributif qui est aujourd'hui de 980 euros »
+
+Emmanuel Macron, sur le thème : retraites.
+
+**Verdict : Faux**
+
+Ce qui est affirmé : minimum contributif majoré du régime général, carrière complète, 980 euros par mois, période janvier 2022, périmètre France.
+
+L'intervenant ne cite aucune source.
+
+Ce que disent les sources : 713,11 (652,60 sans la majoration).
+
+Écart : la valeur annoncée est 37,4 % au-dessus de la valeur officielle.
+
+Source : Direction de la recherche, des études, de l'évaluation et des statistiques, Les retraités et les retraites, édition 2022, fiche 8, consulté le 26 novembre 2026.
+Lien : https://www.drees.solidarites-sante.gouv.fr/sites/default/files/2022-05/08-Les_beneficiaires_d-un_minimum_de_pension.pdf
+
+Contexte : Montant fixé au 1er janvier 2022. Les 980 euros correspondraient au minimum contributif avec la retraite complémentaire, mais ce n'est pas ce qui est nommé.
+
+### « Et il l'est jusqu'au milieu des années 2030, nous dit l'organisme indépendant qui est en charge, qui s'appelle le COR. »
+
+Emmanuel Macron, sur le thème : retraites.
+
+**Verdict : Invérifiable**
+
+Ce qui est affirmé : durée du déficit du système de retraite selon le Conseil d'orientation des retraites, environ 2035 année, période 2021-2035, périmètre France.
+
+Aucune source officielle sur ce sujet ne permet de vérifier cette affirmation. En l'état, elle n'est pas établie et ne doit pas être tenue pour un fait.
+
+L'intervenant ne cite aucune source.
+
+Le verdict porte sur ce que dit cette publication, pas sur le fait lui-même : un sondage mesure une opinion.
+
+Éclairage (pistes, pas des preuves) : Le rapport du COR de juin 2021 donne un déficit de 0,6 à 0,8 % du PIB en 2020 et d'environ 0,4 % en 2021, puis un solde qui dépend de la convention retenue (« l'approche par le solde donne des résultats contrastés »). Aucune date unique de retour à l'équilibre n'a été trouvée dans la synthèse (https://www.cor-retraites.fr/sites/default/files/2021-06/Synth%C3%A8se%20V2.pdf). Le rapport complet n'a pas été lu.
+
+### « Je les ai baissés pendant le quinquennat qui vient de s'achever de 50 milliards d'euros donc 25 milliards pour les ménages. »
+
+Emmanuel Macron, sur le thème : fiscalité.
+
+**Verdict : Invérifiable**
+
+Ce qui est affirmé : baisse des prélèvements obligatoires pendant le quinquennat, 50 milliards d'euros, période 2018-2022, périmètre France.
+
+Aucune source officielle sur ce sujet ne permet de vérifier cette affirmation. En l'état, elle n'est pas établie et ne doit pas être tenue pour un fait.
+
+L'intervenant ne cite aucune source.
+
+Éclairage (pistes, pas des preuves) : Le chiffre vient du gouvernement sortant (Bruno Le Maire : 50 milliards entre 2018 et 2022, moitié ménages, moitié entreprises). L'Institut des politiques publiques, indépendant, chiffre la baisse pour les ménages à 24,4 milliards (https://halshs.archives-ouvertes.fr/halshs-03693385v1/file/n81_note_IPP_81_mar2022.pdf). Aucun bilan officiel indépendant trouvé. Pistes, pas des preuves.
+
+### « l'âge légal qui est de 62 aujourd'hui »
+
+Emmanuel Macron, sur le thème : retraites.
+
+**Verdict : Vrai**
+
+Ce qui est affirmé : âge légal d'ouverture des droits à la retraite, 62 ans, période 2022, périmètre France.
+
+L'intervenant ne cite aucune source.
+
+Ce que disent les sources : 62.
+
+Écart : conforme à l'arrondi près (valeur exacte 62).
+
+Source : Légifrance et Journal officiel, Article L161-17-2 du code de la sécurité sociale, version en vigueur en 2021, consulté le 26 novembre 2026.
+Lien : https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000025014605/2021-01-01
+
+Contexte : Pour les assurés nés à partir de 1956.
+
+### « Chez vous, un professionnel qui commencerait un métier pénible à 25 ans, il va jusqu'à 67 ans dans votre système. »
+
+Emmanuel Macron, sur le thème : programme.
+
+**Verdict : Invérifiable**
+
+Ce qui est affirmé : âge de départ d'un salarié commençant à 25 ans dans le programme de Marine Le Pen, 67 ans, période 2022, périmètre France.
+
+Aucune source officielle sur ce sujet ne permet de vérifier cette affirmation. En l'état, elle n'est pas établie et ne doit pas être tenue pour un fait.
+
+L'intervenant ne cite aucune source.
+
+Éclairage (pistes, pas des preuves) : Affirmation sur le programme de l'adversaire : elle se vérifie dans le programme publié, qui n'est pas une source officielle. Pas encore recherché.
+
 ### « vous êtes le président qui a créé 600 milliards d'euros de dette supplémentaire en cinq ans »
 
 Marine Le Pen, sur le thème : dette publique.
@@ -464,6 +625,36 @@ Lien : https://api.insee.fr/series/BDM/V1/data/SERIES_BDM/010596744?includeHisto
 Attention : la valeur citée est la dernière publiée aujourd'hui. Celle connue le jour du débat a pu être légèrement différente.
 
 Contexte : Départ : T1 2017, dernière donnée entièrement antérieure à l'élection. Macron reprend lui-même le chiffre de 600 au tour 27. L'historique de l'API ne remonte pas jusqu'au débat pour cette série (changement d'identifiant) : valeur de la dernière publication, révisée depuis le débat.
+
+### « dont deux tiers n'ont rien à voir avec le covid »
+
+Marine Le Pen, sur le thème : dette publique.
+
+**Verdict : Invérifiable**
+
+Ce qui est affirmé : part de la hausse de la dette sans rapport avec le covid, environ 67 %, période 2017-2021, périmètre France.
+
+Aucune source officielle sur ce sujet ne permet de vérifier cette affirmation. En l'état, elle n'est pas établie et ne doit pas être tenue pour un fait.
+
+L'intervenant ne cite aucune source.
+
+Éclairage (pistes, pas des preuves) : Aucun chiffre officiel ne dit quelle part de la hausse de la dette est due au covid, et les estimations n'ont pas le même périmètre : 165 milliards de surcroît de dette de l'État lié à la crise sanitaire selon une réponse ministérielle (https://www.assemblee-nationale.fr/dyn/15/questions/QANR5L15QE44698.pdf), environ 140 milliards de « facture du covid » selon le ministère des Finances cité par l'AFP, et 560 milliards de hausse de toute la dette publique entre fin 2019 et fin 2022 selon la Cour des comptes, période de crise mais pas uniquement de covid. Selon le périmètre choisi, l'un ou l'autre des candidats a raison. Pistes, pas des preuves.
+
+### « Ce sont les chiffres de vos propres ministères qui évoquent 145 milliards pour le covid. »
+
+Marine Le Pen, sur le thème : dette publique.
+
+**Verdict : Invérifiable**
+
+Ce qui est affirmé : dette liée au covid selon les ministères, 145 milliards d'euros, période 2020-2021, périmètre France.
+
+Aucune source officielle sur ce sujet ne permet de vérifier cette affirmation. En l'état, elle n'est pas établie et ne doit pas être tenue pour un fait.
+
+L'intervenant ne cite aucune source.
+
+Le verdict porte sur ce que dit cette publication, pas sur le fait lui-même : un sondage mesure une opinion.
+
+Éclairage (pistes, pas des preuves) : Aucun chiffre ministériel de 145 milliards retrouvé pour le covid : le ministère des Finances parlait d'environ 140 milliards (cité par l'AFP), une réponse ministérielle de 165 milliards de surcroît de dette de l'État. 145 milliards est aussi le total de la dette sociale cité à l'époque, qui n'est pas la dette covid. Pistes, pas des preuves.
 
 ### « Les 600 milliards d'euros de dettes, c'est 200 milliards de la partie de l'État, le reste c'est la sécurité sociale et les collectivités locales. »
 
@@ -486,6 +677,27 @@ Autres liens : https://api.insee.fr/series/BDM/V1/data/SERIES_BDM/010596755?incl
 Attention : la valeur citée est la dernière publiée aujourd'hui. Celle connue le jour du débat a pu être légèrement différente.
 
 Contexte : L'État porte 83 % de la hausse, pas un tiers. Départ : T1 2017, dernière donnée entièrement antérieure à l'élection. L'historique de l'API ne remonte pas jusqu'au débat pour cette série (changement d'identifiant) : valeur de la dernière publication, révisée depuis le débat.
+
+### « On a 600 milliards d'euros de dette. »
+
+Emmanuel Macron, sur le thème : dette publique.
+
+**Verdict : Faux**
+
+Ce qui est affirmé : hausse de la dette des administrations publiques au sens de Maastricht, 600 milliards d'euros, période T1 2017 - T4 2021, périmètre France.
+
+L'intervenant ne cite aucune source.
+
+Ce que disent les sources : 571 (2252,3 au T1 2017, 2823,7 au T4 2021).
+
+Écart : la valeur annoncée est 5,1 % au-dessus de la valeur officielle.
+
+Source : Institut national de la statistique et des études économiques, série 010596744 (base 2014), publié le 25 mars 2024, consulté le 26 novembre 2026.
+Lien : https://api.insee.fr/series/BDM/V1/data/SERIES_BDM/010596744?includeHistory=true
+
+Attention : la valeur citée est la dernière publiée aujourd'hui. Celle connue le jour du débat a pu être légèrement différente.
+
+Contexte : Macron reprend le chiffre de Marine Le Pen : même verdict que ml22-re-002. L'historique de l'API ne remonte pas jusqu'au débat pour cette série.
 
 ### « les chômeurs A, B, C étaient 5,5 millions quand vous avez été élus »
 
@@ -567,6 +779,103 @@ Lien : https://www.tresor.economie.gouv.fr/Articles/2022/02/11/publication-du-ra
 
 Contexte : Solde des échanges de biens. Avec la méthode de la balance des paiements (Banque de France), le déficit des biens est plus faible.
 
+### « des gens qui cherchent activement un emploi il y en avait 5 millions 500 000 quand vous vous avez été élu »
+
+Marine Le Pen, sur le thème : chômage.
+
+**Verdict : Vrai**
+
+Ce qui est affirmé : demandeurs d'emploi inscrits en catégories A, B et C (tenus de rechercher un emploi), moyenne trimestrielle, CVS-CJO, 5,5 millions, période T1 2017, périmètre France métropolitaine.
+
+L'intervenant ne cite aucune source.
+
+Ce que disent les sources : 5,51.
+
+Écart : conforme à l'arrondi près (valeur exacte 5,51).
+
+Source : Institut national de la statistique et des études économiques, série 010598455 (données DARES), publié le 28 octobre 2026, consulté le 26 novembre 2026.
+Lien : https://api.insee.fr/series/BDM/V1/data/SERIES_BDM/010598455?includeHistory=true
+
+Attention : la valeur citée est la dernière publiée aujourd'hui. Celle connue le jour du débat a pu être légèrement différente.
+
+Contexte : Les catégories A, B et C regroupent bien les inscrits tenus de rechercher un emploi. Même chiffre que ml22-re-004. La série n'a pas d'historique avant 2026 : valeur de la dernière publication, révisée depuis le débat.
+
+### « Il y en a 5 millions 400 000 aujourd'hui. »
+
+Marine Le Pen, sur le thème : chômage.
+
+**Verdict : Vrai**
+
+Ce qui est affirmé : demandeurs d'emploi inscrits en catégories A, B et C (tenus de rechercher un emploi), moyenne trimestrielle, CVS-CJO, 5,4 millions, période T4 2021, périmètre France métropolitaine.
+
+L'intervenant ne cite aucune source.
+
+Ce que disent les sources : 5,38.
+
+Écart : conforme à l'arrondi près (valeur exacte 5,38).
+
+Source : Institut national de la statistique et des études économiques, série 010598455 (données DARES), publié le 28 octobre 2026, consulté le 26 novembre 2026.
+Lien : https://api.insee.fr/series/BDM/V1/data/SERIES_BDM/010598455?includeHistory=true
+
+Attention : la valeur citée est la dernière publiée aujourd'hui. Celle connue le jour du débat a pu être légèrement différente.
+
+Contexte : Même chiffre que ml22-re-005. La série n'a pas d'historique avant 2026 : valeur de la dernière publication, révisée depuis le débat.
+
+### « il y a 400 milles pauvres supplémentaires sous votre quinquennat »
+
+Marine Le Pen, sur le thème : pauvreté.
+
+**Verdict : Vrai**
+
+Ce qui est affirmé : hausse du nombre de personnes sous le seuil de pauvreté monétaire (60 % du niveau de vie médian), 400 000 personnes, période 2016 - 2019, périmètre France métropolitaine.
+
+L'intervenant ne cite aucune source.
+
+Ce que disent les sources : 400 000 (8,8 millions en 2016, 9,2 millions en 2019).
+
+Écart : conforme à l'arrondi près (valeur exacte 400 000).
+
+Source : Institut national de la statistique et des études économiques, Insee Première n° 1710 (2016) et n° 1875 (2019), consulté le 26 novembre 2026.
+Lien : https://www.insee.fr/fr/statistiques/3610277
+Autres liens : https://www.insee.fr/fr/statistiques/5431993
+
+Contexte : 2016 : dernière année complète avant l'élection ; 2019 : dernière année publiée avant le débat. Nombres arrondis à 0,1 million par l'INSEE. Chiffre de 2019 publié en octobre 2021.
+
+### « Et l'augmentation de la productivité est de 0,1 % alors qu'elle est environ de 1,8 % dans l'ensemble des pays de l'OCDE. »
+
+Marine Le Pen, sur le thème : productivité.
+
+**Verdict : Invérifiable**
+
+Ce qui est affirmé : hausse annuelle de la productivité en France, 0,1 %, période 2022, périmètre France.
+
+Aucune source officielle sur ce sujet ne permet de vérifier cette affirmation. En l'état, elle n'est pas établie et ne doit pas être tenue pour un fait.
+
+L'intervenant ne cite aucune source.
+
+Éclairage (pistes, pas des preuves) : Période et mesure de la productivité non précisées. Pas encore recherché.
+
+### « J'ai oublié les 17 000 ou 15 000, 14 500, pardon, emplois industriels perdus sous votre quinquennat »
+
+Marine Le Pen, sur le thème : emploi.
+
+**Verdict : Faux**
+
+Ce qui est affirmé : baisse de l'emploi salarié dans l'industrie, 14 500 emplois, période T1 2017 - T4 2021, périmètre France hors Mayotte.
+
+L'intervenant ne cite aucune source.
+
+Ce que disent les sources : -48 400 (l'emploi industriel a augmenté : 3 147 800 au T1 2017, 3 196 200 au T4 2021).
+
+Écart : la valeur annoncée est 130,0 % au-dessus de la valeur officielle.
+
+Source : Institut national de la statistique et des études économiques, série 001577235, emplois salariés de l'industrie (sections B à E), CVS, publié le 30 octobre 2026, consulté le 26 novembre 2026.
+Lien : https://api.insee.fr/series/BDM/V1/data/SERIES_BDM/001577235?includeHistory=true
+
+Attention : la valeur citée est la dernière publiée aujourd'hui. Celle connue le jour du débat a pu être légèrement différente.
+
+Contexte : L'intervenante hésite sur le chiffre. La série n'a pas d'historique avant 2026 : valeur de la dernière publication, révisée depuis le débat.
+
 ### « baissé le chômage qui est passé de 9,6 à 7,4 % »
 
 Emmanuel Macron, sur le thème : chômage.
@@ -604,6 +913,67 @@ Source : Institut national de la statistique et des études économiques, série
 Lien : https://api.insee.fr/series/BDM/V1/data/SERIES_BDM/001688527?includeHistory=true
 
 Contexte : Valeur connue le jour du débat. La même phrase donne la valeur de départ, voir ml22-re-001.
+
+### « La dette covid c'est 600 milliards de dettes. »
+
+Emmanuel Macron, sur le thème : dette publique.
+
+**Verdict : Invérifiable**
+
+Ce qui est affirmé : part de la hausse de la dette due au covid, 600 milliards d'euros, période 2017-2021, périmètre France.
+
+Aucune source officielle sur ce sujet ne permet de vérifier cette affirmation. En l'état, elle n'est pas établie et ne doit pas être tenue pour un fait.
+
+L'intervenant ne cite aucune source.
+
+Éclairage (pistes, pas des preuves) : Aucun chiffre officiel ne dit quelle part de la hausse de la dette est due au covid, et les estimations n'ont pas le même périmètre : 165 milliards de surcroît de dette de l'État lié à la crise sanitaire selon une réponse ministérielle (https://www.assemblee-nationale.fr/dyn/15/questions/QANR5L15QE44698.pdf), environ 140 milliards de « facture du covid » selon le ministère des Finances cité par l'AFP, et 560 milliards de hausse de toute la dette publique entre fin 2019 et fin 2022 selon la Cour des comptes, période de crise mais pas uniquement de covid. Selon le périmètre choisi, l'un ou l'autre des candidats a raison. Pistes, pas des preuves.
+
+### « on a eu une récession trois fois plus lourde que pendant la crise financière »
+
+Emmanuel Macron, sur le thème : croissance.
+
+**Verdict : Vrai**
+
+Ce qui est affirmé : recul du PIB en 2020 rapporté à celui de 2009, environ 3 fois, période 2020 et 2009, périmètre France.
+
+L'intervenant ne cite aucune source.
+
+Ce que disent les sources : 2,87 (PIB en volume : -7,99 % en 2020, -2,78 % en 2009).
+
+Écart : conforme à l'arrondi près (valeur exacte 2,87).
+
+Source : Institut national de la statistique et des études économiques, série 010565708, PIB en volume, moyenne des trimestres, publié le 7 avril 2022, consulté le 26 novembre 2026.
+Lien : https://api.insee.fr/series/BDM/V1/data/SERIES_BDM/010565708?includeHistory=true
+
+Contexte : Calcul à partir des comptes trimestriels connus le jour du débat. Avec les comptes annuels (-7,9 % et -2,9 %), le rapport est de 2,7, toujours proche de 3.
+
+### « J'avais proposé 1 500 euros par entreprise, 1 000 euros par salarié. »
+
+Marine Le Pen, sur le thème : programme.
+
+**Verdict : Invérifiable**
+
+Ce qui est affirmé : propositions faites par Marine Le Pen lors du premier confinement, 1500 euros par entreprise, période 2020, périmètre France.
+
+Aucune source officielle sur ce sujet ne permet de vérifier cette affirmation. En l'état, elle n'est pas établie et ne doit pas être tenue pour un fait.
+
+L'intervenant ne cite aucune source.
+
+Éclairage (pistes, pas des preuves) : Porte sur les propositions passées de l'intervenante elle-même. Pas encore recherché.
+
+### « Il en avait commandé 500 000 »
+
+Marine Le Pen, sur le thème : santé.
+
+**Verdict : Invérifiable**
+
+Ce qui est affirmé : doses de vaccin Spoutnik V commandées par Renaud Muselier, 500 000 doses, période 2021, périmètre France.
+
+Aucune source officielle sur ce sujet ne permet de vérifier cette affirmation. En l'état, elle n'est pas établie et ne doit pas être tenue pour un fait.
+
+L'intervenant ne cite aucune source.
+
+Éclairage (pistes, pas des preuves) : Renaud Muselier, président de la région Provence-Alpes-Côte d'Azur, a annoncé en avril 2021 une « précommande » de 500 000 doses, sous réserve d'autorisation par les autorités sanitaires (https://www.publicsenat.fr/actualites/politique/sophie-cluzel-la-precommande-de-500-000-doses-du-vaccin-spoutnik-v-par-renaud). Aucune commande ferme trouvée, et la région n'a pas de compétence en matière de vaccins. Pistes, pas des preuves.
 
 ## Promesses et opinions repérées
 
