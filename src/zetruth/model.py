@@ -119,6 +119,7 @@ class OfficialValue(_Frozen):
     value: Decimal
     unit: str = Field(min_length=1)
     period: str = Field(min_length=1)
+    scope: str | None = None
     nature: ValueNature
     published_on: date | None = None
     consulted_on: date
@@ -143,6 +144,9 @@ class Verdict(_Frozen):
     context: str | None = None
     confidence: Confidence
     limits: str | None = None
+    # Vrai quand un humain doit trancher, par exemple si la source donne
+    # plusieurs valeurs et que l'intervenant n'en cite qu'une (TROMPEUR ?).
+    needs_review: bool = False
 
     @model_validator(mode="after")
     def _follows_the_verdict_grid(self) -> Self:
