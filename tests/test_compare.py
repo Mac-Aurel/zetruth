@@ -154,8 +154,12 @@ def test_scenarios_concurrents_a_revoir() -> None:
 
     assert v.label is VerdictLabel.VRAI
     assert v.needs_review
+    assert [(r.reference, r.label) for r in v.readings] == [
+        ("scénario conventionnel", VerdictLabel.VRAI),
+        ("scénario dégradé", VerdictLabel.FAUX),
+    ]
     assert v.limits is not None
-    assert "4.4 (scénario dégradé)" in v.limits
+    assert "FAUX avec scénario dégradé (4.4)" in v.limits
 
 
 def test_une_valeur_complementaire_d_une_autre_periode_n_est_pas_concurrente() -> None:
@@ -168,3 +172,38 @@ def test_le_verdict_produit_respecte_le_modele() -> None:
     v = run(claim(), official())
 
     assert Verdict.model_validate_json(v.model_dump_json()) == v
+
+
+def test_definitions_qui_concordent_verdict_net() -> None:
+    """« Plus de 4 % » : vrai avec l'IPC (4,5) comme avec l'IPCH (5,1), rien à revoir."""
+    plus_de_4 = claim("plus_de", "4", unit="%", period="2022-03", scope="France")
+    ipc = official("4.5", reference="IPC", unit="%", period="2022-03", scope="France")
+    ipch = official("5.1", reference="IPCH", unit="%", period="2022-03", scope="France")
+
+    v = run(plus_de_4, ipc, ipch)
+
+    assert v.label is VerdictLabel.VRAI
+    assert not v.needs_review
+    assert [r.label for r in v.readings] == [VerdictLabel.VRAI, VerdictLabel.VRAI]
+    assert v.limits is not None
+    assert "même verdict avec les autres définitions officielles : IPCH (5.1)" in v.limits
+
+
+def test_definitions_qui_divergent() -> None:
+    """« 4,5 % » : vrai avec l'IPC, faux avec l'IPCH : le verdict le dit."""
+    egal = claim("egal", "4.5", unit="%", period="2022-03", scope="France")
+    ipc = official("4.5", reference="IPC", unit="%", period="2022-03", scope="France")
+    ipch = official("5.1", reference="IPCH", unit="%", period="2022-03", scope="France")
+
+    v = run(egal, ipc, ipch)
+
+    assert v.label is VerdictLabel.VRAI
+    assert v.needs_review
+    assert "VRAI avec IPC (4.5), FAUX avec IPCH (5.1)" in (v.limits or "")
+
+
+def test_une_seule_lecture() -> None:
+    v = run(claim(), official())
+
+    assert len(v.readings) == 1
+    assert v.limits is None

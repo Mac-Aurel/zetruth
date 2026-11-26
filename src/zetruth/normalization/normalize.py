@@ -68,6 +68,9 @@ class Target:
     start: str | None  # pour une évolution, ou pour un niveau de départ
     note: str | None = None
     country: Country | None = None  # valeur d'un autre pays que la France
+    # Définitions concurrentes que les mots employés désignent aussi bien que
+    # l'indicateur retenu : chacune sera une lecture possible.
+    alternatives: tuple[str, ...] = ()
 
 
 def load_debates(path: Path = DEBATES_FILE) -> dict[str, Debate]:
@@ -107,6 +110,19 @@ def _best(mention: Mention, text: str, catalog: Mapping[str, Indicator]) -> Indi
         if score > best_score:
             best, best_score = indicator, score
     return best
+
+
+def _designates_over(chosen: Indicator, competitor: Indicator, words: str) -> bool:
+    """Vrai si les mots désignent l'indicateur retenu plutôt que son concurrent.
+
+    C'est le cas quand ils contiennent un mot-clé du retenu qu'aucun mot-clé du
+    concurrent ne contient : « A, B, C » écarte la catégorie A seule, « par
+    unité de consommation » écarte le pouvoir d'achat global. Un terme général
+    (« inflation », « pouvoir d'achat ») convient aux deux.
+    """
+    return any(
+        k in words and not any(k in other for other in competitor.keywords) for k in chosen.keywords
+    )
 
 
 _CLAUSE_END = re.compile(r",|;|\bet\b|\bmais\b|\bdonc\b", re.IGNORECASE)
@@ -204,7 +220,19 @@ def target_for(
 
     at_start = mention.role is Role.SEUL and _AT_START.search(sentence) is not None
     if mention.role is Role.SEUL and mention.direction is Direction.NIVEAU and not at_start:
-        return Target(indicator, evolution=False, decrease=False, start=None, note=topic_note)
+        if topic_note:
+            words = context[-CONTEXT_FOR_TOPIC:].lower()
+        else:
+            words = (sentence[left_from : mention.start] + sentence[mention.end : right_to]).lower()
+        alternatives = tuple(
+            c
+            for c in indicator.competitors
+            if c in catalog and not _designates_over(indicator, catalog[c], words)
+        )
+        return Target(
+            indicator, evolution=False, decrease=False, start=None, note=topic_note,
+            alternatives=alternatives,
+        )  # fmt: skip
     if debate.incumbent_since is None:
         return "évolution ou point de départ sans mandat de référence pour ce débat"
 
