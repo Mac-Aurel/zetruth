@@ -159,7 +159,8 @@ def _claim_section(row: Row, registry: Registry) -> list[str]:
             "Aucune source officielle sur ce sujet ne permet de vérifier cette affirmation. "
             "En l'état, elle n'est pas établie et ne doit pas être tenue pour un fait.",
         ]
-    lines += ["", f"L'intervenant cite : {cited}." if cited else "L'intervenant ne cite aucune source."]
+    citation = f"L'intervenant cite : {cited}." if cited else "L'intervenant ne cite aucune source."
+    lines += ["", citation]
     if row["source_url"]:
         published = (
             f", publié le {french_date(row['date_publication'])}" if row["date_publication"] else ""
