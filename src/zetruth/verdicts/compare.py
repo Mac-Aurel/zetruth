@@ -97,8 +97,8 @@ def compare(claim: Claim, official_values: Sequence[OfficialValue], threshold: D
     if competing:
         listed = ", ".join(f"{v.value} ({v.reference})" for v in competing)
         limits.append(
-            f"la source donne aussi {listed} : vérifier si l'intervenant présente "
-            "une seule valeur comme la seule (TROMPEUR)"
+            f"autre valeur officielle pour la même période : {listed}. Vérifier si "
+            "l'intervenant présente la sienne comme la seule (TROMPEUR)"
         )
 
     return Verdict(
