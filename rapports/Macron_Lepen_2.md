@@ -1,13 +1,13 @@
 # Débat Macron / Le Pen, second tour de la présidentielle, 20 avril 2022
 
-17 affirmations factuelles vérifiées. Chaque verdict s'appuie sur une source officielle et sur la valeur connue le jour du débat. Une affirmation est vraie si la valeur officielle, arrondie à la précision avec laquelle elle a été énoncée, tombe juste ; imprécise jusqu'à 2 % d'écart ; fausse au-delà. Un chiffre exact présenté comme le seul alors que la source en donne plusieurs est trompeur.
+32 affirmations factuelles vérifiées. Chaque verdict s'appuie sur une source officielle et sur la valeur connue le jour du débat. Une affirmation est vraie si la valeur officielle, arrondie à la précision avec laquelle elle a été énoncée, tombe juste ; imprécise jusqu'à 2 % d'écart ; fausse au-delà. Un chiffre exact présenté comme le seul alors que la source en donne plusieurs est trompeur.
 
 ## En résumé
 
 | Intervenant | Vrai | Faux | Trompeur | Imprécis | Invérifiable |
 |---|---|---|---|---|---|
-| Emmanuel Macron | 5 | 2 | 2 | 0 | 0 |
-| Marine Le Pen | 3 | 2 | 2 | 0 | 1 |
+| Emmanuel Macron | 10 | 4 | 2 | 1 | 6 |
+| Marine Le Pen | 3 | 2 | 2 | 0 | 2 |
 
 Ce tableau ne mesure pas l'honnêteté des intervenants : il ne porte que sur les affirmations retenues, qui ne sont pas un échantillon représentatif de tout le débat.
 
@@ -58,6 +58,162 @@ Source : Institut national de la statistique et des études économiques, série
 Lien : https://api.insee.fr/series/BDM/V1/data/SERIES_BDM/001761313?includeHistory=true
 
 Contexte : Dernier mois publié avant le débat. Avec l'indice harmonisé (IPCH, Eurostat) le chiffre serait 5,1 : deux indicateurs officiels différents.
+
+### « J'en ai fait plus de 600 durant les cinq années qui viennent de s'écouler »
+
+Emmanuel Macron, sur le thème : déplacements.
+
+**Verdict : Invérifiable**
+
+Ce qui est affirmé : déplacements du président sur le terrain pendant le quinquennat, plus de 600 déplacements, période 2017-2022, périmètre France.
+
+Éclairage (pistes, pas des preuves) : Aucune source officielle ne tient le compte des déplacements présidentiels ; l'agenda de l'Élysée les publie un par un sans total. Pas de recherche concluante.
+
+### « C'est deux fois plus efficace que la baisse de la tva. »
+
+Emmanuel Macron, sur le thème : énergie.
+
+**Verdict : Invérifiable**
+
+Ce qui est affirmé : efficacité du bouclier tarifaire comparée à une baisse de la TVA sur l'énergie, environ 2 fois, période 2022, périmètre France.
+
+Éclairage (pistes, pas des preuves) : Pas d'évaluation officielle publiée comparant les deux mesures. Ordre de grandeur calculé à partir de la CRE : le bouclier a évité une hausse d'environ 35 % TTC de l'électricité, ramenée à 4 %, soit un prix environ 23 % plus bas ; passer la TVA de 20 à 5,5 % baisse le prix d'environ 12 %. Rapport proche de 2, mais c'est un calcul, pas une source (https://www.cre.fr/content/download/24917/file/220118_2022-08_Proposition_tarifaire.pdf).
+
+### « quand on bloque une augmentation qui est de 40, 60, 100 pour cent pour certaines énergies »
+
+Emmanuel Macron, sur le thème : énergie.
+
+**Verdict : Vrai**
+
+Ce qui est affirmé : hausse des tarifs réglementés évitée par le bouclier tarifaire, entre 40 et 100 %, période 2022, périmètre France.
+
+Ce que disent les sources : 44,5 (électricité, hausse HT proposée par la CRE pour février 2022, ramenée à 4 %).
+
+Écart : la valeur officielle (44,5) est dans la fourchette annoncée.
+
+Source : Commission de régulation de l'énergie, Délibération de la CRE du 18 janvier 2022 portant proposition des tarifs réglementés d'électricité, publié le 18 janvier 2022, consulté le 26 novembre 2026.
+Lien : https://www.cre.fr/content/download/24917/file/220118_2022-08_Proposition_tarifaire.pdf
+
+Contexte : Fourchette large. Pour le gaz, une hausse d'environ 78 % TTC est citée d'après la CRE, non vérifiée sur un document officiel.
+
+### « nous ayons permis de créer 1,2 million de feuilles de paye »
+
+Emmanuel Macron, sur le thème : emploi.
+
+**Verdict : Faux**
+
+Ce qui est affirmé : hausse de l'emploi salarié, 1,2 millions, période T1 2017 - T4 2021, périmètre France hors Mayotte.
+
+Ce que disent les sources : 1,49 (25 069 900 au T1 2017, 26 564 200 au T4 2021).
+
+Écart : la valeur annoncée est 19,5 % en dessous de la valeur officielle.
+
+Source : Institut national de la statistique et des études économiques, série 001796852, emplois salariés, CVS, publié le 30 octobre 2026, consulté le 26 novembre 2026.
+Lien : https://api.insee.fr/series/BDM/V1/data/SERIES_BDM/001796852?includeHistory=true
+
+Attention : la valeur citée est la dernière publiée aujourd'hui. Celle connue le jour du débat a pu être légèrement différente.
+
+Contexte : L'intervenant sous-estime son propre bilan. Les estimations d'emploi sont fortement révisées et la série n'a pas d'historique avant 2026 : le chiffre publié au moment du débat pouvait être plus proche de 1,2 million.
+
+### « c'est 1 million 200 000 Françaises et Français qui ont retrouvé un travail »
+
+Emmanuel Macron, sur le thème : emploi.
+
+**Verdict : Faux**
+
+Ce qui est affirmé : hausse de l'emploi salarié, 1,2 millions, période T1 2017 - T4 2021, périmètre France hors Mayotte.
+
+Ce que disent les sources : 1,49 (25 069 900 au T1 2017, 26 564 200 au T4 2021).
+
+Écart : la valeur annoncée est 19,5 % en dessous de la valeur officielle.
+
+Source : Institut national de la statistique et des études économiques, série 001796852, emplois salariés, CVS, publié le 30 octobre 2026, consulté le 26 novembre 2026.
+Lien : https://api.insee.fr/series/BDM/V1/data/SERIES_BDM/001796852?includeHistory=true
+
+Attention : la valeur citée est la dernière publiée aujourd'hui. Celle connue le jour du débat a pu être légèrement différente.
+
+Contexte : L'intervenant sous-estime son propre bilan. Les estimations d'emploi sont fortement révisées et la série n'a pas d'historique avant 2026 : le chiffre publié au moment du débat pouvait être plus proche de 1,2 million.
+
+### « Le smic sera augmenté de 34 euros par mois »
+
+Emmanuel Macron, sur le thème : salaires.
+
+**Verdict : Vrai**
+
+Ce qui est affirmé : hausse mensuelle nette du SMIC au 1er mai 2022, 34 euros par mois, période mai 2022, périmètre France métropolitaine.
+
+Ce que disent les sources : 33,61 en net (42,46 en brut, SMIC mensuel porté à 1645,58 brut).
+
+Écart : conforme à l'arrondi près (valeur exacte 33,61).
+
+Source : Légifrance et Journal officiel, Arrêté du 19 avril 2022 relatif au relèvement du salaire minimum de croissance, publié le 20 avril 2022, consulté le 26 novembre 2026.
+Lien : https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000045602317
+
+Contexte : Hausse décidée et publiée au Journal officiel le jour du débat. L'arrêté donne le brut ; le net est calculé (source secondaire). En brut la hausse serait de 42 euros : le chiffre annoncé est celui qui compte pour le salarié.
+
+### « C'est une prime que nous avons créé il y a trois ans, elle était plafonnée à 1000 »
+
+Emmanuel Macron, sur le thème : salaires.
+
+**Verdict : Vrai**
+
+Ce qui est affirmé : plafond d'exonération de la prime exceptionnelle de pouvoir d'achat à sa création, 1000 euros, période 2018-2019, périmètre France.
+
+Ce que disent les sources : 1000.
+
+Écart : conforme à l'arrondi près (valeur exacte 1000).
+
+Source : Légifrance et Journal officiel, Loi n° 2018-1213 du 24 décembre 2018 portant mesures d'urgence économiques et sociales, article 1, publié le 26 décembre 2018, consulté le 26 novembre 2026.
+Lien : https://www.legifrance.gouv.fr/loda/id/JORFTEXT000037851899
+
+Contexte : Créée en décembre 2018, soit un peu plus de trois ans avant le débat. Le plafond est ensuite passé à 2 000 euros sous condition d'accord d'intéressement.
+
+### « revalorisée pendant ce quinquennat, de 90 euros par mois »
+
+Emmanuel Macron, sur le thème : handicap.
+
+**Verdict : Imprécis**
+
+Ce qui est affirmé : revalorisation de l'allocation aux adultes handicapés pendant le quinquennat, 90 euros par mois, période mai 2017 - novembre 2019, périmètre France.
+
+Ce que disent les sources : 89,11 (de 810,89 à 900).
+
+Écart : la valeur annoncée est 1,0 % au-dessus de la valeur officielle.
+
+Source : Légifrance et Journal officiel, Décret n° 2019-1047 du 11 octobre 2019 relatif à la revalorisation de l'allocation aux adultes handicapés, publié le 13 octobre 2019, consulté le 26 novembre 2026.
+Lien : https://legifrance.gouv.fr/eli/decret/2019/10/11/SSAA1926793D/jo/texte
+
+Contexte : 900 euros fixés par le décret de 2019. Le montant de départ (810,89 au 1er avril 2017) vient de listes historiques, à confirmer sur Légifrance. Avec les revalorisations annuelles jusqu'en avril 2022, la hausse totale est plus forte : l'intervenant cite la revalorisation exceptionnelle promise.
+
+### « vos 22 mesures, il n'y a même pas le mot chômage dedans »
+
+Emmanuel Macron, sur le thème : programme.
+
+**Verdict : Invérifiable**
+
+Ce qui est affirmé : présence du mot « chômage » dans les 22 mesures du programme de Marine Le Pen, 22 mesures, période 2022, périmètre France.
+
+Éclairage (pistes, pas des preuves) : Affirmation sur le programme de l'adversaire : elle se vérifie dans le programme publié, qui n'est pas une source officielle. Pas encore recherché.
+
+### « contrairement à vous qui les laissez à 1000 euros »
+
+Emmanuel Macron, sur le thème : programme.
+
+**Verdict : Invérifiable**
+
+Ce qui est affirmé : minimum de pension prévu par le programme de Marine Le Pen, 1000 euros, période 2022, périmètre France.
+
+Éclairage (pistes, pas des preuves) : Affirmation sur le programme de l'adversaire : elle se vérifie dans le programme publié, qui n'est pas une source officielle. Pas encore recherché.
+
+### « Mais vous n'augmentez pas de 10 % les salaires. »
+
+Emmanuel Macron, sur le thème : programme.
+
+**Verdict : Invérifiable**
+
+Ce qui est affirmé : hausse des salaires prévue par le programme de Marine Le Pen, 10 %, période 2022, périmètre France.
+
+Éclairage (pistes, pas des preuves) : Affirmation sur le programme de l'adversaire : elle se vérifie dans le programme publié, qui n'est pas une source officielle. Pas encore recherché.
 
 ### « La croissance est de 2,8 % »
 
@@ -126,6 +282,63 @@ Lien : https://www.banque-france.fr/fr/publications-et-statistiques/publications
 La valeur officielle est une prévision, pas une donnée constatée.
 
 Contexte : Chiffre exact, mais un seul des deux scénarios de la Banque de France est présenté comme la prévision, l'autre est passé sous silence. Même traitement que ml22-pa-007 et 008.
+
+### « Ça fera 13 euros par an. »
+
+Emmanuel Macron, sur le thème : pouvoir d'achat.
+
+**Verdict : Invérifiable**
+
+Ce qui est affirmé : gain annuel par ménage d'une TVA à 0 % sur 100 produits de première nécessité, selon des instituts, 13 euros par an, période 2022, périmètre France.
+
+Le verdict porte sur ce que dit cette publication, pas sur le fait lui-même : un sondage mesure une opinion.
+
+Éclairage (pistes, pas des preuves) : Les « instituts indépendants » ne sont pas nommés et aucune étude donnant 13 euros par an n'a été trouvée. Le cabinet Astérès a chiffré en 2022 le coût de la mesure pour l'État (environ 4 milliards d'euros sur un périmètre restreint), pas le gain par ménage, d'après l'Institut Montaigne (https://www.institutmontaigne.org/legislatives-2024/rassemblement-national/supprimer-la-tva-sur-les-produits-de-premiere-necessite). Pistes, pas des preuves.
+
+### « pour prendre les chiffres trimestriels de croissance ils sont de 5,4 »
+
+Emmanuel Macron, sur le thème : croissance.
+
+**Verdict : Vrai**
+
+Ce qui est affirmé : croissance du PIB en volume sur un an au T4 2021, 5,4 %, période T4 2021, périmètre France.
+
+Ce que disent les sources : 5,41 (PIB du T4 2021 rapporté au T4 2020).
+
+Écart : conforme à l'arrondi près (valeur exacte 5,41).
+
+Source : Institut national de la statistique et des études économiques, série 010565708, PIB en volume, CVS-CJO, publié le 7 avril 2022, consulté le 26 novembre 2026.
+Lien : https://api.insee.fr/series/BDM/V1/data/SERIES_BDM/010565708?includeHistory=true
+
+Contexte : Calcul à partir des comptes trimestriels publiés le 7 avril 2022, avant le débat.
+
+### « Non il y a 0,9 % dans l'autre sens. »
+
+Emmanuel Macron, sur le thème : croissance.
+
+**Verdict : Vrai**
+
+Ce qui est affirmé : écart entre la croissance sur un an et l'inflation, 0,9 points, période T4 2021 et mars 2022, périmètre France.
+
+Ce que disent les sources : 0,9 (croissance de 5,41 sur un an, inflation de 4,5).
+
+Écart : conforme à l'arrondi près (valeur exacte 0,9).
+
+Source : Institut national de la statistique et des études économiques, séries 010565708 et 001761313, publié le 7 avril 2022, consulté le 26 novembre 2026.
+Lien : https://api.insee.fr/series/BDM/V1/data/SERIES_BDM/010565708?includeHistory=true
+Autres liens : https://api.insee.fr/series/BDM/V1/data/SERIES_BDM/001761313?includeHistory=true
+
+Contexte : Répond à la condition posée par la mesure de Marine Le Pen (inflation supérieure d'un point à la croissance) : la croissance dépasse l'inflation.
+
+### « J'ai vu que le chèque de 100 euros que vous aviez adressé, même des détenus dans les prisons les avaient touchés »
+
+Marine Le Pen, sur le thème : pouvoir d'achat.
+
+**Verdict : Invérifiable**
+
+Ce qui est affirmé : versement de l'indemnité inflation de 100 euros à des détenus, 100 euros, période décembre 2021 - février 2022, périmètre France.
+
+Éclairage (pistes, pas des preuves) : Des questions écrites de députés publiées en 2022 rapportent que certains détenus, notamment en formation professionnelle, ont perçu l'indemnité (https://www.assemblee-nationale.fr/dyn/15/questions/QANR5L15QE44934.pdf). Ce sont des signalements, sans réponse officielle trouvée ; la règle excluait en principe les personnes écrouées sans aménagement de peine (https://www.moneyvox.fr/actu/87809/prime-inflation-les-detenus-ne-pourront-pas-reclamer-les-100-euros). Plausible pour certains cas, pas établi. Pistes, pas des preuves.
 
 ### « la France a deux fois moins d'inflation que l'Espagne »
 
