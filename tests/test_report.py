@@ -11,6 +11,7 @@ from zetruth.report import (
     french_date,
     french_number,
     french_text,
+    gap_sentence,
     render,
     report_for,
 )
@@ -128,3 +129,42 @@ def test_les_rapports_versionnes_sont_a_jour(name: str) -> None:
         assert not path.exists()
     else:
         assert Path(path).read_text(encoding="utf-8") == expected
+
+
+@pytest.mark.parametrize(
+    ("overrides", "expected"),
+    [
+        ({}, "Écart : la valeur annoncée est 5,0 % au-dessus de la valeur officielle."),
+        (
+            {"valeur": "5.5", "valeur_officielle": "5.51", "verdict": "VRAI"},
+            "Écart : conforme à l'arrondi près (valeur exacte 5,51).",
+        ),
+        (
+            {
+                "qualificatif": "plus_de",
+                "valeur": "2",
+                "valeur_officielle": "2.2",
+                "verdict": "VRAI",
+            },
+            "Écart : la valeur officielle (2,2) est bien au-dessus de 2.",
+        ),
+        (
+            {"qualificatif": "plus_de", "valeur": "2", "valeur_officielle": "1.5"},
+            "Écart : la valeur officielle (1,5) est en dessous de 2.",
+        ),
+        (
+            {
+                "qualificatif": "entre",
+                "valeur": "4",
+                "valeur_max": "4.5",
+                "valeur_officielle": "4.5",
+                "verdict": "VRAI",
+            },
+            "Écart : la valeur officielle (4,5) est dans la fourchette annoncée.",
+        ),
+        ({"verdict": "TROMPEUR"}, None),
+        ({"valeur_officielle": "versement unique"}, None),
+    ],
+)
+def test_ecart_reel(overrides: dict[str, str], expected: str | None) -> None:
+    assert gap_sentence(row(**overrides)) == expected

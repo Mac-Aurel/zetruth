@@ -13,6 +13,7 @@ import sys
 from collections import Counter
 from collections.abc import Mapping, Sequence
 from datetime import date
+from decimal import Decimal
 from pathlib import Path
 
 from zetruth.normalization.normalize import Debate, debate_for, load_debates
@@ -78,6 +79,49 @@ def claimed_value(row: Row) -> str:
     return f"{amount} {row['unite']}".strip()
 
 
+GAP_VERDICTS = {"VRAI", "IMPRECIS", "FAUX"}
+
+
+def _number(text: str) -> Decimal | None:
+    match = _LEADING_NUMBER.match(text.strip())
+    return Decimal(match.group(0)) if match else None
+
+
+def gap_sentence(row: Row) -> str | None:
+    """L'écart réel, pour distinguer une approximation d'une invention.
+
+    Le verdict suit la règle de tolérance ; cette phrase donne la mesure.
+    """
+    official = _number(row["valeur_officielle"])
+    claimed = _number(row["valeur"])
+    if row["verdict"] not in GAP_VERDICTS or official is None or claimed is None:
+        return None
+    shown = french_number(str(official))
+    qualifier = row["qualificatif"]
+    if qualifier in ("plus_de", "moins_de"):
+        satisfied = official > claimed if qualifier == "plus_de" else official < claimed
+        if official == claimed:
+            side = "égale à"
+        else:
+            side = "au-dessus de" if official > claimed else "en dessous de"
+        verb = "est bien" if satisfied else "est"
+        bound = french_number(row["valeur"])
+        return f"Écart : la valeur officielle ({shown}) {verb} {side} {bound}."
+    if qualifier == "entre":
+        upper = _number(row["valeur_max"])
+        inside = upper is not None and claimed <= official <= upper
+        where = "dans" if inside else "hors de"
+        return f"Écart : la valeur officielle ({shown}) est {where} la fourchette annoncée."
+    if official == 0:
+        return None
+    relative = (claimed - official) / abs(official) * 100
+    if row["verdict"] == "VRAI":
+        return f"Écart : conforme à l'arrondi près (valeur exacte {shown})."
+    side = "au-dessus de" if relative > 0 else "en dessous de"
+    amount = french_number(f"{abs(relative):.1f}")
+    return f"Écart : la valeur annoncée est {amount} % {side} la valeur officielle."
+
+
 def source_name(row: Row, registry: Registry) -> str:
     try:
         return registry.get(row["source_organisme"]).name
@@ -115,6 +159,10 @@ def _claim_section(row: Row, registry: Registry) -> list[str]:
         lines += [
             "",
             f"Ce que disent les sources : {french_text(french_number(row['valeur_officielle']))}.",
+        ]
+        if gap := gap_sentence(row):
+            lines += ["", gap]
+        lines += [
             "",
             f"Source : {source_name(row, registry)}, {row['source_reference']}{published}, "
             f"consulté le {french_date(row['date_consultation'])}.",
