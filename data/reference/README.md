@@ -28,6 +28,7 @@ Une ligne par affirmation, encodage UTF-8, séparateur virgule.
 | locuteur | Nom tel qu'il apparaît dans la transcription |
 | citation | Extrait copié mot pour mot du tour |
 | type | `factuelle`, `opinion`, `promesse` ou `prediction` |
+| attribution | `oui` si l'affirmation porte sur ce qu'une publication dit (« un sondage Odoxa dit 75 % ») et non sur le fait lui-même. Vide sinon |
 | sujet | Thème libre : chômage, dette, inflation... |
 | indicateur | Ce qui est mesuré, le plus précisément possible (« taux de chômage au sens du BIT », pas « chômage »). Pour une hausse ou une baisse, le dire dans l'indicateur (« baisse du taux de chômage ») et mettre une valeur positive |
 | qualificatif | Comment la valeur est énoncée : `egal`, `environ`, `plus_de`, `moins_de` ou `entre` |
@@ -46,6 +47,7 @@ Une ligne par affirmation, encodage UTF-8, séparateur virgule.
 | date_publication | Date de publication de la donnée utilisée (AAAA-MM-JJ) |
 | date_consultation | Date à laquelle on l'a consultée (AAAA-MM-JJ) |
 | valeur_du_debat | `oui` si la valeur officielle est celle connue le jour du débat, `non` si elle a pu être révisée depuis (Eurostat, série INSEE sans historique suffisant) |
+| eclairage | Obligatoire pour un verdict `INVERIFIABLE` : ce que disent les autres sources (presse, sondages, rapports), chacune avec son lien, présenté comme des pistes et jamais comme une preuve |
 | commentaire | Tout ce qui aide à comprendre le verdict : définition retenue, révision, contexte |
 
 Ce qui est obligatoire :
@@ -54,6 +56,7 @@ Ce qui est obligatoire :
 - pour une affirmation factuelle : indicateur, qualificatif, valeur, periode
 - pour un verdict autre que `INVERIFIABLE` : nature_valeur, valeur_officielle, source_organisme, source_reference, source_url, date_consultation, valeur_du_debat
 - une opinion, une promesse ou une prédiction a toujours le verdict `NON_FACTUEL`
+- un verdict `INVERIFIABLE` : eclairage
 
 ## Règles d'annotation
 
@@ -63,6 +66,8 @@ Ce qui est obligatoire :
 - Point de départ d'une évolution (« depuis votre élection », « sous votre quinquennat », « en cinq ans ») : la dernière donnée entièrement antérieure à l'événement cité. Pour l'élection de mai 2017, c'est le T1 2017, le T2 contenant déjà des semaines du nouveau mandat. Point d'arrivée : la dernière donnée publiée le jour du débat.
 - Un chiffre exact présenté comme « la » valeur alors que la source en donne plusieurs (plusieurs scénarios de prévision, plusieurs définitions) sans que l'intervenant le dise est `TROMPEUR`. On se place du côté de celui qui écoute : s'il repart avec une idée fausse de ce que dit la source, le verdict n'est pas `VRAI`.
 - Ces règles s'appliquent à tous les intervenants, sans exception.
+- Avant de conclure `INVERIFIABLE`, chercher : le web, la presse, y compris indépendante, servent à remonter jusqu'à la source primaire. Si elle est officielle, elle fonde le verdict. Sinon le verdict reste `INVERIFIABLE`, et ce qu'on a trouvé va dans `eclairage`, chaque élément avec son lien.
+- Un institut de sondage (portée `attribution` dans `config/sources.toml`) ne prouve que ce qu'il a lui-même publié : il peut confirmer « le sondage dit 75 % », jamais « le pouvoir d'achat a baissé ».
 - Dans le doute, `INVERIFIABLE`. Ce n'est pas un échec, c'est une information utile pour l'évaluation.
 - Une même phrase peut contenir plusieurs affirmations : on fait une ligne par affirmation, avec la même citation si besoin. « Le chômage est passé de 9,6 à 7,4 % » donne deux lignes.
 

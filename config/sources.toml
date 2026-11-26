@@ -3,6 +3,11 @@
 # Seules ces sources peuvent fonder un verdict. Une URL est acceptée si elle
 # commence par l'un des préfixes déclarés (le « www. » est ignoré).
 #
+# portee = "preuve" (par défaut) : la source peut fonder un verdict sur un fait.
+# portee = "attribution" : la source ne peut servir qu'à vérifier ce qu'elle a
+# elle-même publié (« un sondage Odoxa dit 75 % »), jamais le fait lui-même.
+# Un sondage mesure une opinion, pas une réalité.
+#
 # statut = "a_verifier" tant que l'accès (API, fichier, site), la
 # documentation et les conditions d'usage n'ont pas été lus dans la doc
 # officielle. Une fois fait, passer à "verifiee" et remplir acces,
@@ -42,6 +47,18 @@ statut = "a_verifier"
 nom = "Cour des comptes"
 urls = ["https://ccomptes.fr/"]
 domaines = ["finances_publiques"]
+statut = "a_verifier"
+
+[sources.douanes]
+nom = "Direction générale des douanes et droits indirects (statistiques du commerce extérieur)"
+urls = ["https://douane.gouv.fr/", "https://lekiosque.finances.gouv.fr/"]
+domaines = ["commerce_exterieur", "economie"]
+statut = "a_verifier"
+
+[sources.dg_tresor]
+nom = "Direction générale du Trésor"
+urls = ["https://tresor.economie.gouv.fr/"]
+domaines = ["economie", "commerce_exterieur", "finances_publiques"]
 statut = "a_verifier"
 
 [sources.ministere_economie]
@@ -168,6 +185,12 @@ statut = "a_verifier"
 
 # Énergie, climat
 
+[sources.mediateur_energie]
+nom = "Médiateur national de l'énergie (autorité publique indépendante)"
+urls = ["https://energie-mediateur.fr/"]
+domaines = ["energie"]
+statut = "a_verifier"
+
 [sources.rte]
 nom = "RTE"
 urls = ["https://rte-france.com/"]
@@ -184,6 +207,44 @@ statut = "a_verifier"
 nom = "CITEPA"
 urls = ["https://citepa.org/"]
 domaines = ["climat"]
+statut = "a_verifier"
+
+# Retraites
+
+[sources.cor]
+nom = "Conseil d'orientation des retraites"
+urls = ["https://cor-retraites.fr/"]
+domaines = ["social", "finances_publiques"]
+statut = "a_verifier"
+
+# Instituts de sondage : vérification d'attribution seulement
+
+[sources.odoxa]
+nom = "Odoxa"
+urls = ["https://odoxa.fr/"]
+domaines = ["opinion"]
+portee = "attribution"
+statut = "a_verifier"
+
+[sources.elabe]
+nom = "Elabe"
+urls = ["https://elabe.fr/"]
+domaines = ["opinion"]
+portee = "attribution"
+statut = "a_verifier"
+
+[sources.ipsos]
+nom = "Ipsos"
+urls = ["https://ipsos.com/fr-fr/"]
+domaines = ["opinion"]
+portee = "attribution"
+statut = "a_verifier"
+
+[sources.opinionway]
+nom = "OpinionWay"
+urls = ["https://opinion-way.com/"]
+domaines = ["opinion"]
+portee = "attribution"
 statut = "a_verifier"
 
 # Santé

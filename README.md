@@ -14,7 +14,7 @@ On ne vérifie que des faits. « Il faut baisser les impôts » est une opinion,
 
 On ne s'appuie que sur des sources officielles, listées à l'avance. Un article de presse ou une cellule de fact-checking peut aider à trouver la bonne source, mais ne sert jamais de preuve.
 
-Si on ne peut pas trancher, on le dit. Un verdict faux est bien pire qu'une absence de verdict.
+Si on ne peut pas trancher, on le dit. Un verdict faux est bien pire qu'une absence de verdict. Mais on ne s'arrête pas là : quand aucune source officielle ne tranche, le verdict reste INVERIFIABLE et il est accompagné d'un éclairage, c'est-à-dire ce que disent les autres sources (presse, sondages, rapports), chacune citée, sans valeur de preuve.
 
 La même méthode s'applique à tous les intervenants, quel que soit leur bord.
 
@@ -55,7 +55,7 @@ Quelques pièges qu'il faut gérer explicitement :
 
 Les API officielles sont préférées au scraping. Chaque appel est tracé.
 
-La liste fait foi dans [config/sources.toml](config/sources.toml) : toute URL qui n'appartient pas à une source de ce fichier est refusée. Les conditions d'usage de chaque source restent à vérifier dans sa documentation officielle avant d'écrire le connecteur correspondant.
+La liste fait foi dans [config/sources.toml](config/sources.toml) : toute URL qui n'appartient pas à une source de ce fichier est refusée. Les Douanes, la DG Trésor, le Médiateur national de l'énergie et le Conseil d'orientation des retraites y figurent aussi. Les instituts de sondage y sont, mais seulement pour vérifier ce qu'ils ont eux-mêmes publié : un sondage mesure une opinion, pas un fait. Les conditions d'usage de chaque source restent à vérifier dans sa documentation officielle avant d'écrire le connecteur correspondant.
 
 ## Comment ça fonctionne
 

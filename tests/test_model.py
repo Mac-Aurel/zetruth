@@ -10,6 +10,7 @@ from zetruth.model import (
     ClaimedValue,
     ClaimType,
     Confidence,
+    Lead,
     OfficialValue,
     Qualifier,
     Utterance,
@@ -202,3 +203,29 @@ def test_les_sources_doivent_etre_dans_la_liste_blanche() -> None:
     assert check_sources(verdict(official_values=(wrong_url,)), registry) == [
         "https://ec.europa.eu/eurostat/api/x n'appartient pas à la source insee"
     ]
+
+
+def test_une_piste_n_est_pas_une_valeur_officielle() -> None:
+    lead = Lead(publisher="Reporterre", url="https://reporterre.net/x", summary="Relaie.")
+
+    v = verdict(label="INVERIFIABLE", official_values=(), confidence="faible", leads=(lead,))
+
+    assert v.leads == (lead,)
+    assert v.official_values == ()
+    with pytest.raises(ValidationError, match="au moins une valeur officielle"):
+        verdict(label="VRAI", official_values=(), leads=(lead,))
+
+
+def test_une_source_d_attribution_ne_prouve_pas_un_fait() -> None:
+    registry = load_registry()
+    sondage = official(
+        source_id="odoxa", url="https://www.odoxa.fr/sondage/x/", value=Decimal("75")
+    )
+
+    fait = verdict(official_values=(sondage,))
+    attribution = verdict(claim=claim(attribution=True), official_values=(sondage,))
+
+    assert check_sources(fait, registry) == [
+        "odoxa ne peut vérifier qu'une attribution, pas un fait"
+    ]
+    assert check_sources(attribution, registry) == []

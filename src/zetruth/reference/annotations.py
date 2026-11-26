@@ -23,7 +23,7 @@ from zetruth.model import (
     ValueNature,
     VerdictLabel,
 )
-from zetruth.sources.registry import Registry, UnknownSourceError, load_registry
+from zetruth.sources.registry import ATTRIBUTION_ONLY, Registry, UnknownSourceError, load_registry
 from zetruth.verdicts.tolerance import load_threshold, numeric_verdict
 
 ANNOTATIONS_FILE = Path("data/reference/affirmations.csv")
@@ -35,6 +35,7 @@ COLUMNS = [
     "locuteur",
     "citation",
     "type",
+    "attribution",
     "sujet",
     "indicateur",
     "qualificatif",
@@ -53,6 +54,7 @@ COLUMNS = [
     "date_publication",
     "date_consultation",
     "valeur_du_debat",
+    "eclairage",
     "commentaire",
 ]
 
@@ -114,6 +116,7 @@ def to_claim(row: Row) -> Claim:
         unit=_get(row, "unite") or None,
         period=_get(row, "periode") or None,
         scope=_get(row, "perimetre") or None,
+        attribution=_get(row, "attribution") == "oui",
     )
 
 
@@ -129,6 +132,10 @@ def _check_claim(row: Row) -> list[str]:
         return []
     if verdict == VerdictLabel.NON_FACTUEL:
         return ["une affirmation factuelle ne peut pas être NON_FACTUEL"]
+    if _get(row, "attribution") not in {"", *YES_NO}:
+        return ["attribution doit valoir oui ou non"]
+    if verdict == VerdictLabel.INVERIFIABLE and not _get(row, "eclairage"):
+        return ["un verdict INVERIFIABLE doit être accompagné d'un éclairage"]
 
     errors = [f"champ obligatoire vide : {c}" for c in _missing(row, REQUIRED_IF_FACTUAL)]
     if verdict != VerdictLabel.INVERIFIABLE:
@@ -218,6 +225,8 @@ def _check_source(row: Row, registry: Registry) -> list[str]:
             source = registry.get(source_id)
             if url and not source.covers(url):
                 errors.append(f"source_url n'appartient pas à la source {source_id}")
+            if source.scope == ATTRIBUTION_ONLY and _get(row, "attribution") != "oui":
+                errors.append(f"{source_id} ne peut vérifier qu'une attribution (attribution=oui)")
         except (UnknownSourceError, ValueError) as e:
             errors.append(str(e))
     for extra_url in _get(row, "sources_complementaires").split():
