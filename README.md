@@ -112,4 +112,13 @@ uv run mypy
 uv run pytest
 ```
 
+Commandes utiles :
+
+```bash
+uv run python -m zetruth.corpus.fredsum        # télécharge les transcriptions
+uv run python -m zetruth.indicators            # télécharge à l'avance les séries du catalogue
+uv run python -m zetruth.detection.evaluate    # mesure la détection des affirmations
+uv run python -m zetruth.evaluation            # fait tourner le pipeline sur le jeu de référence
+```
+
 Le jeu de référence (transcriptions de débats et affirmations annotées) est décrit dans [data/reference/README.md](data/reference/README.md).
