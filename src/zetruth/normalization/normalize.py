@@ -121,8 +121,7 @@ def _designates_over(chosen: Indicator, competitor: Indicator, words: str) -> bo
     (« inflation », « pouvoir d'achat ») convient aux deux.
     """
     return any(
-        k in words and not any(k in other for other in competitor.keywords)
-        for k in chosen.keywords
+        k in words and not any(k in other for other in competitor.keywords) for k in chosen.keywords
     )
 
 
