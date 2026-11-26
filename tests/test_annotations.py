@@ -1,9 +1,11 @@
+from decimal import Decimal
 from pathlib import Path
 
 import pytest
 
 from zetruth.corpus.fredsum import Turn
-from zetruth.reference.annotations import COLUMNS, read_annotations, validate_rows
+from zetruth.model import ClaimType, Qualifier
+from zetruth.reference.annotations import COLUMNS, read_annotations, to_claim, validate_rows
 from zetruth.sources.registry import parse_registry
 
 TURNS = {
@@ -36,9 +38,13 @@ def make_row(**overrides: str) -> dict[str, str]:
         locuteur="Nicolas Sarkozy",
         citation="Le chômage a baissé de 5 % depuis 2007",
         type="factuelle",
-        indicateur="taux de chômage BIT",
-        valeur="-5",
+        indicateur="baisse du taux de chômage BIT",
+        qualificatif="egal",
+        valeur="5",
+        unite="%",
         periode="2007-2012",
+        nature_valeur="constatee",
+        valeur_du_debat="oui",
         verdict="FAUX",
         valeur_officielle="+2,3 points",
         source_organisme="insee",
@@ -80,7 +86,15 @@ def test_une_opinion_doit_etre_non_factuelle() -> None:
     ("overrides", "expected"),
     [
         ({"type": "rumeur"}, "type inconnu"),
-        ({"verdict": "PLUTOT_VRAI"}, "verdict 'PLUTOT_VRAI' invalide"),
+        ({"verdict": "PLUTOT_VRAI"}, "verdict inconnu 'PLUTOT_VRAI'"),
+        ({"verdict": "NON_FACTUEL"}, "factuelle ne peut pas être NON_FACTUEL"),
+        ({"qualificatif": "a_peu_pres"}, "qualificatif inconnu"),
+        ({"qualificatif": ""}, "champ obligatoire vide : qualificatif"),
+        ({"valeur": "beaucoup"}, "valeur annoncée invalide"),
+        ({"qualificatif": "entre", "valeur": "60"}, "valeur annoncée invalide"),
+        ({"nature_valeur": "rumeur"}, "nature_valeur inconnue"),
+        ({"nature_valeur": ""}, "champ obligatoire vide (verdict sourcé) : nature_valeur"),
+        ({"valeur_du_debat": "peut-etre"}, "valeur_du_debat doit valoir oui ou non"),
         ({"tour": "-1"}, "tour doit être un entier positif"),
         ({"citation": ""}, "champ obligatoire vide : citation"),
         ({"date_consultation": "26/11/2026"}, "date_consultation doit être au format AAAA-MM-JJ"),
@@ -148,3 +162,30 @@ def test_la_source_doit_appartenir_a_la_liste_blanche(
 
     assert len(errors) == 1
     assert expected in errors[0]
+
+
+def test_les_sources_complementaires_doivent_etre_dans_la_liste_blanche() -> None:
+    ok = make_row(sources_complementaires="https://www.insee.fr/a https://insee.fr/b")
+    ko = make_row(sources_complementaires="https://www.insee.fr/a https://www.lemonde.fr/x")
+
+    assert validate_rows([ok], registry=REGISTRY) == []
+    errors = validate_rows([ko], registry=REGISTRY)
+    assert len(errors) == 1
+    assert "sources_complementaires : URL hors liste blanche" in errors[0]
+
+
+def test_conversion_en_affirmation_normalisee() -> None:
+    claim = to_claim(make_row(qualificatif="entre", valeur="4", valeur_max="5"))
+
+    assert claim.type is ClaimType.FACTUELLE
+    assert claim.utterance.turn == 1
+    assert claim.claimed is not None
+    assert claim.claimed.qualifier is Qualifier.ENTRE
+    assert (claim.claimed.value, claim.claimed.upper) == (Decimal(4), Decimal(5))
+
+
+def test_une_promesse_n_a_pas_besoin_de_valeur() -> None:
+    row = make_row(type="promesse", verdict="NON_FACTUEL", qualificatif="", valeur="")
+
+    assert validate_rows([row]) == []
+    assert to_claim(row).claimed is None
