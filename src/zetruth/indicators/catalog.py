@@ -33,6 +33,9 @@ class Indicator:
     filters: Mapping[str, str] = field(default_factory=dict)  # Eurostat
     factor: Decimal = Decimal(1)
     competitors: tuple[str, ...] = ()
+    keywords: tuple[str, ...] = ()
+    exclusions: tuple[str, ...] = ()
+    publication_lag_days: int | None = None
 
 
 def _parse(indicator_id: str, raw: Mapping[str, Any]) -> Indicator:
@@ -52,6 +55,12 @@ def _parse(indicator_id: str, raw: Mapping[str, Any]) -> Indicator:
     factor = Decimal(str(raw.get("facteur", 1)))
     if factor == 0:
         raise InvalidCatalogError(f"{indicator_id} : facteur nul")
+    lag = raw.get("delai_publication_jours")
+    if lag is not None and (not isinstance(lag, int) or isinstance(lag, bool) or lag < 0):
+        raise InvalidCatalogError(f"{indicator_id} : délai de publication invalide {lag!r}")
+    keywords = tuple(raw.get("mots_cles", ()))
+    if any(k != k.lower() for k in keywords):
+        raise InvalidCatalogError(f"{indicator_id} : mots-clés à écrire en minuscules")
 
     return Indicator(
         id=indicator_id,
@@ -67,6 +76,9 @@ def _parse(indicator_id: str, raw: Mapping[str, Any]) -> Indicator:
         filters=dict(raw.get("filtres", {})),
         factor=factor,
         competitors=tuple(raw.get("concurrents", ())),
+        keywords=keywords,
+        exclusions=tuple(raw.get("exclusions", ())),
+        publication_lag_days=lag,
     )
 
 

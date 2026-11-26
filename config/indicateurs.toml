@@ -12,6 +12,14 @@
 #              une autre définition. Ils sont récupérés en même temps : si leur
 #              valeur diffère, le verdict est marqué à revoir.
 #
+# mots_cles  : expressions qui désignent l'indicateur dans une phrase (en minuscules)
+# exclusions : expressions qui, présentes dans la phrase, écartent l'indicateur
+# delai_publication_jours : pour une série dont l'historique ne remonte pas
+#              assez loin, délai entre la fin d'une période et sa première
+#              publication, pour savoir quelle période était la dernière connue
+#              le jour d'un débat. Estimations tirées des calendriers habituels
+#              de publication, à confirmer.
+#
 # Manque encore : le SMIC (pas trouvé dans la BDM de l'INSEE), le chômage et
 # l'inflation en base actuelle (les séries ci-dessous couvrent les débats de
 # 2017 à 2022).
@@ -27,6 +35,7 @@ unite = "%"
 unite_evolution = "points"
 perimetre = "France hors Mayotte"
 frequence = "trimestrielle"
+mots_cles = ["chômage", "chômeurs"]
 
 [indicateurs.demandeurs_emploi_a]
 nom = "Demandeurs d'emploi inscrits en catégorie A"
@@ -38,6 +47,8 @@ unite = "millions"
 unite_evolution = "millions"
 perimetre = "France métropolitaine"
 frequence = "trimestrielle"
+mots_cles = ["catégorie a", "demandeurs d'emploi", "inscrits", "chômeurs"]
+delai_publication_jours = 30
 concurrents = ["demandeurs_emploi_abc"]
 
 [indicateurs.demandeurs_emploi_abc]
@@ -50,6 +61,8 @@ unite = "millions"
 unite_evolution = "millions"
 perimetre = "France métropolitaine"
 frequence = "trimestrielle"
+mots_cles = ["a, b, c", "a, b et c", "catégories a", "demandeurs d'emploi", "inscrits", "chômeurs"]
+delai_publication_jours = 30
 concurrents = ["demandeurs_emploi_a"]
 
 # Prix
@@ -63,6 +76,7 @@ unite = "%"
 unite_evolution = "points"
 perimetre = "France"
 frequence = "mensuelle"
+mots_cles = ["inflation", "hausse des prix", "prix à la consommation"]
 concurrents = ["inflation_ipch"]
 
 [indicateurs.inflation_ipch]
@@ -75,6 +89,8 @@ unite = "%"
 unite_evolution = "points"
 perimetre = "France"
 frequence = "mensuelle"
+mots_cles = ["inflation", "hausse des prix", "prix à la consommation harmonisé"]
+delai_publication_jours = 20
 concurrents = ["inflation_ipc"]
 
 # Activité
@@ -88,6 +104,7 @@ unite = "%"
 unite_evolution = "points"
 perimetre = "France"
 frequence = "trimestrielle"
+mots_cles = ["croissance trimestrielle", "croissance du trimestre", "sur un trimestre"]
 
 [indicateurs.pouvoir_achat]
 nom = "Pouvoir d'achat du revenu disponible des ménages"
@@ -98,6 +115,8 @@ unite = "%"
 unite_evolution = "points"
 perimetre = "France"
 frequence = "annuelle"
+mots_cles = ["pouvoir d'achat"]
+delai_publication_jours = 150
 concurrents = ["pouvoir_achat_par_uc", "pouvoir_achat_par_personne"]
 
 [indicateurs.pouvoir_achat_par_uc]
@@ -109,6 +128,8 @@ unite = "%"
 unite_evolution = "points"
 perimetre = "France"
 frequence = "annuelle"
+mots_cles = ["pouvoir d'achat par unité de consommation"]
+delai_publication_jours = 150
 concurrents = ["pouvoir_achat", "pouvoir_achat_par_personne"]
 
 [indicateurs.pouvoir_achat_par_personne]
@@ -120,6 +141,8 @@ unite = "%"
 unite_evolution = "points"
 perimetre = "France"
 frequence = "annuelle"
+mots_cles = ["pouvoir d'achat par personne", "pouvoir d'achat par habitant"]
+delai_publication_jours = 150
 concurrents = ["pouvoir_achat", "pouvoir_achat_par_uc"]
 
 # Finances publiques
@@ -134,6 +157,9 @@ unite = "% du PIB"
 unite_evolution = "points"
 perimetre = "France"
 frequence = "annuelle"
+mots_cles = ["déficit public", "déficit"]
+exclusions = ["balance commerciale", "commercial"]
+delai_publication_jours = 90
 
 [indicateurs.dette_publique]
 nom = "Dette publique au sens de Maastricht"
@@ -144,6 +170,9 @@ unite = "milliards d'euros"
 unite_evolution = "milliards d'euros"
 perimetre = "France"
 frequence = "trimestrielle"
+mots_cles = ["dette"]
+exclusions = ["de l'état", "sécurité sociale", "collectivités", "administrations locales"]
+delai_publication_jours = 90
 
 [indicateurs.dette_publique_pib]
 nom = "Dette publique en part du PIB"
@@ -154,6 +183,9 @@ unite = "% du PIB"
 unite_evolution = "points"
 perimetre = "France"
 frequence = "trimestrielle"
+mots_cles = ["dette"]
+exclusions = ["de l'état", "sécurité sociale", "collectivités", "administrations locales"]
+delai_publication_jours = 90
 
 [indicateurs.dette_etat]
 nom = "Dette de l'État au sens de Maastricht"
@@ -164,6 +196,8 @@ unite = "milliards d'euros"
 unite_evolution = "milliards d'euros"
 perimetre = "France"
 frequence = "trimestrielle"
+mots_cles = ["dette de l'état"]
+delai_publication_jours = 90
 
 [indicateurs.dette_securite_sociale]
 nom = "Dette des administrations de sécurité sociale"
@@ -174,6 +208,8 @@ unite = "milliards d'euros"
 unite_evolution = "milliards d'euros"
 perimetre = "France"
 frequence = "trimestrielle"
+mots_cles = ["dette de la sécurité sociale", "dette sociale"]
+delai_publication_jours = 90
 
 [indicateurs.dette_administrations_locales]
 nom = "Dette des administrations publiques locales"
@@ -184,6 +220,8 @@ unite = "milliards d'euros"
 unite_evolution = "milliards d'euros"
 perimetre = "France"
 frequence = "trimestrielle"
+mots_cles = ["dette des collectivités", "dette locale"]
+delai_publication_jours = 90
 
 # Pauvreté
 
@@ -196,3 +234,5 @@ unite = "%"
 unite_evolution = "points"
 # Périmètre non indiqué dans le titre de la série : à confirmer avant de le renseigner.
 frequence = "annuelle"
+mots_cles = ["taux de pauvreté", "pauvreté", "pauvres"]
+delai_publication_jours = 650

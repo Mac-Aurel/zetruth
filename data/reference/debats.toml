@@ -1,0 +1,15 @@
+# Débats du corpus : date, et date d'entrée en fonction du sortant quand l'un
+# des intervenants (ou son camp) défend son bilan. Sert à résoudre « depuis
+# l'élection », « sous votre quinquennat ».
+# La clé est le début du nom de fichier, avant « -- ».
+
+[debats.Macron_Lepen_1]
+date = 2017-05-03
+
+[debats.Macron_Lepen_2]
+date = 2022-04-20
+mandat_sortant_depuis = 2017-05-14
+
+[debats.Hollande_Sarkozy]
+date = 2012-05-02
+mandat_sortant_depuis = 2007-05-16
