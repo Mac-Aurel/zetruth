@@ -47,6 +47,7 @@ class Result(StrEnum):
 @dataclass(frozen=True)
 class Evaluated:
     annotation_id: str
+    debate: str
     expected: str
     result: Result
     detail: str
@@ -106,7 +107,7 @@ def evaluate(
         )
         outcomes = verify_sentence(utterance, debate, service, threshold, context)
         result, detail = classify(row["verdict"], _matching(outcomes, row["valeur"]))
-        evaluated.append(Evaluated(row["id"], row["verdict"], result, detail))
+        evaluated.append(Evaluated(row["id"], debate.name, row["verdict"], result, detail))
     return evaluated
 
 
@@ -122,11 +123,14 @@ def main() -> int:
 
     for e in evaluated:
         print(f"{e.annotation_id:12} attendu {e.expected:12} {e.result:17} {e.detail}")
-    counts = Counter(e.result for e in evaluated)
-    print(f"\n{len(evaluated)} affirmations évaluées")
-    for result in Result:
-        print(f"  {result:17} {counts[result]}")
-    return 1 if counts[Result.FAUX_NON_SIGNALE] else 0
+    for debate in sorted({e.debate for e in evaluated}):
+        subset = [e for e in evaluated if e.debate == debate]
+        counts = Counter(e.result for e in subset)
+        print(f"\n{debate} : {len(subset)} affirmations")
+        for result in Result:
+            print(f"  {result:17} {counts[result]}")
+    wrong = sum(e.result is Result.FAUX_NON_SIGNALE for e in evaluated)
+    return 1 if wrong else 0
 
 
 if __name__ == "__main__":

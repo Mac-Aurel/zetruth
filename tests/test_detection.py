@@ -1,6 +1,16 @@
+from pathlib import Path
+
 import pytest
 
-from zetruth.detection.evaluate import Scores, is_expected, read_rows, reference_sentences, score
+from zetruth.detection.evaluate import (
+    CONTROL_FILE,
+    DETECTION_FILE,
+    Scores,
+    is_expected,
+    read_rows,
+    reference_sentences,
+    score,
+)
 from zetruth.detection.rules import detect, has_figure, has_statistic
 from zetruth.detection.sentences import split_sentences
 
@@ -91,10 +101,11 @@ def test_phrases_du_jeu_de_reference() -> None:
     assert reference_sentences(annotations, turns) == ["Le chômage est à 7,4 %."]
 
 
-def test_le_jeu_de_detection_est_coherent() -> None:
-    rows = read_rows()
+@pytest.mark.parametrize(("path", "size"), [(DETECTION_FILE, 151), (CONTROL_FILE, 112)])
+def test_les_jeux_de_detection_sont_coherents(path: Path, size: int) -> None:
+    rows = read_rows(path)
 
-    assert len(rows) == 151
+    assert len(rows) == size
     for row in rows:
         assert row["verifiable"] in {"oui", "non"}
         assert (row["verifiable"] == "oui") == (row["type"] == "factuelle")

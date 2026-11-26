@@ -18,6 +18,8 @@ from zetruth.detection.sentences import split_sentences
 from zetruth.reference.annotations import ANNOTATIONS_FILE, read_annotations
 
 DETECTION_FILE = Path("data/reference/detection.csv")
+# Jeu de contrôle : jamais regardé pour écrire ou corriger les règles.
+CONTROL_FILE = Path("data/reference/detection_controle.csv")
 
 
 @dataclass(frozen=True)
@@ -80,18 +82,28 @@ def read_rows(path: Path = DETECTION_FILE) -> list[dict[str, str]]:
         return list(csv.DictReader(f))
 
 
-def main() -> int:
-    rows = read_rows()
-    methods: dict[str, Callable[[str], bool]] = {
-        "référence (contient un chiffre)": has_figure,
-        "règles": lambda s: detect(s).check_worthy,
-    }
-    print(f"{len(rows)} phrases, {sum(map(is_expected, rows))} affirmations chiffrées attendues\n")
-    for name, predict in methods.items():
+METHODS: dict[str, Callable[[str], bool]] = {
+    "référence (contient un chiffre)": has_figure,
+    "règles": lambda sentence: detect(sentence).check_worthy,
+}
+
+
+def print_scores(title: str, rows: Sequence[dict[str, str]]) -> None:
+    expected = sum(map(is_expected, rows))
+    print(f"{title} : {len(rows)} phrases, {expected} affirmations chiffrées attendues")
+    for name, predict in METHODS.items():
         s = score(rows, predict)
         metrics = f"précision {s.precision:.2f}  rappel {s.recall:.2f}  F1 {s.f1:.2f}"
         counts = f"{s.true_positives} justes, {s.false_positives} en trop"
-        print(f"{name:34} {metrics}  ({counts}, {s.false_negatives} manquées)")
+        print(f"  {name:32} {metrics}  ({counts}, {s.false_negatives} manquées)")
+
+
+def main() -> int:
+    rows = read_rows()
+    methods = METHODS
+    print_scores("Jeu de détection (a servi à régler les règles)", rows)
+    if CONTROL_FILE.exists():
+        print_scores("Jeu de contrôle (jamais regardé)", read_rows(CONTROL_FILE))
 
     annotations = read_annotations(ANNOTATIONS_FILE)
     turn_texts = {

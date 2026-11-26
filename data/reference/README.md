@@ -115,11 +115,21 @@ Si un filtre manque, l'outil dit lequel préciser. Eurostat ne garde aucune vers
 
 Une phrase qui mêle une promesse et un fait constaté (« nous doublerons les aides, parce qu'il y a un quart des familles monoparentales ») est vérifiable.
 
+`detection_controle.csv` a le même format (Macron / Le Pen 2017, chômage, 112 phrases). C'est un jeu de contrôle : on ne le regarde jamais pour écrire ou corriger les règles, sinon il ne mesure plus rien. Si les règles changent, c'est en regardant `detection.csv`, et on constate ensuite l'effet sur le contrôle.
+
 Pour évaluer le détecteur :
 
 ```bash
 uv run python -m zetruth.detection.evaluate
 ```
+
+## Évaluer le pipeline complet
+
+```bash
+uv run python -m zetruth.evaluation
+```
+
+Le pipeline tourne sur chaque affirmation factuelle d'un débat décrit dans `debats.toml`, et son verdict est comparé à l'annotation. Les résultats sont donnés par débat. Les affirmations de Bardella / Darmanin n'ont pas servi à écrire la normalisation : c'est le contrôle.
 
 ## Vérifier le fichier
 
