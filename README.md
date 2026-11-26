@@ -55,6 +55,8 @@ Quelques pièges qu'il faut gérer explicitement :
 
 Les API officielles sont préférées au scraping. Chaque appel est tracé.
 
+La liste fait foi dans [config/sources.toml](config/sources.toml) : toute URL qui n'appartient pas à une source de ce fichier est refusée. Les conditions d'usage de chaque source restent à vérifier dans sa documentation officielle avant d'écrire le connecteur correspondant.
+
 ## Comment ça fonctionne
 
 1. Transcription de l'audio et identification de qui parle
