@@ -71,7 +71,7 @@ La liste fait foi dans [config/sources.toml](config/sources.toml) : toute URL qu
 
 La comparaison des chiffres se fait en code, pas par un modèle de langage. Un LLM peut aider à extraire l'affirmation ou à rédiger l'explication, mais il ne décide pas seul d'un verdict, et tout ce qu'il produit sans source est rejeté.
 
-Tout est journalisé pour qu'un verdict puisse être rejoué à l'identique : transcription, requêtes, réponses des sources, versions des données, du modèle et du prompt.
+Tout est journalisé pour qu'un verdict puisse être rejoué à l'identique : la phrase et son contexte, l'empreinte de chaque réponse des sources utilisée, l'empreinte des fichiers de règles et la version du code. Le rejeu relit exactement les mêmes réponses, sans appel réseau, et signale toute différence ou toute règle modifiée depuis.
 
 ## Avancement
 
@@ -120,7 +120,8 @@ Commandes utiles :
 uv run python -m zetruth.corpus.fredsum        # télécharge les transcriptions
 uv run python -m zetruth.indicators            # télécharge à l'avance les séries du catalogue
 uv run python -m zetruth.detection.evaluate    # mesure la détection des affirmations
-uv run python -m zetruth.evaluation            # fait tourner le pipeline sur le jeu de référence
+uv run python -m zetruth.evaluation --journal  # fait tourner le pipeline et enregistre chaque verdict
+uv run python -m zetruth.audit rejouer         # rejoue les verdicts enregistrés, sans réseau
 uv run python -m zetruth.report                # génère le rapport de chaque débat dans rapports/
 ```
 

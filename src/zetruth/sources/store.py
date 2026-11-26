@@ -75,3 +75,24 @@ def _write_atomic(path: Path, content: bytes) -> None:
     tmp = path.with_name(path.name + ".tmp")
     tmp.write_bytes(content)
     tmp.replace(path)
+
+
+class PinnedStore(ResponseStore):
+    """Copie locale figée sur des réponses précises, pour rejouer un verdict.
+
+    latest() renvoie la réponse enregistrée dans le journal pour cette clé, même
+    si une réponse plus récente a été téléchargée depuis. Rien ne peut être ajouté.
+    """
+
+    def __init__(self, root: Path, pinned: list[FetchRecord]) -> None:
+        super().__init__(root)
+        self._pinned = {record.key: record for record in pinned}
+
+    def latest(self, key: str) -> tuple[bytes, FetchRecord] | None:
+        record = self._pinned.get(key)
+        if record is None:
+            raise LookupError(f"réponse absente du journal pour {key!r}")
+        return self.read(record), record
+
+    def save(self, key: str, url: str, content: bytes, fetched_at: datetime) -> FetchRecord:
+        raise RuntimeError("un rejeu ne télécharge rien")
