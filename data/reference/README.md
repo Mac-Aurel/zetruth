@@ -65,6 +65,7 @@ Ce qui est obligatoire :
 - Les sources doivent faire partie de la liste blanche du projet. Un article de presse peut aider à trouver la source, mais ne se cite pas.
 - Point de départ d'une évolution (« depuis votre élection », « sous votre quinquennat », « en cinq ans ») : la dernière donnée entièrement antérieure à l'événement cité. Pour l'élection de mai 2017, c'est le T1 2017, le T2 contenant déjà des semaines du nouveau mandat. Point d'arrivée : la dernière donnée publiée le jour du débat.
 - Un chiffre exact présenté comme « la » valeur alors que la source en donne plusieurs (plusieurs scénarios de prévision, plusieurs définitions) sans que l'intervenant le dise est `TROMPEUR`. On se place du côté de celui qui écoute : s'il repart avec une idée fausse de ce que dit la source, le verdict n'est pas `VRAI`.
+- Comparer un indicateur national à des indicateurs d'autres pays calculés autrement (l'IPC français face aux indices harmonisés des voisins) est `TROMPEUR`, même si chaque chiffre est exact : seul l'indicateur harmonisé permet la comparaison.
 - Ces règles s'appliquent à tous les intervenants, sans exception.
 - Avant de conclure `INVERIFIABLE`, chercher : le web, la presse, y compris indépendante, servent à remonter jusqu'à la source primaire. Si elle est officielle, elle fonde le verdict. Sinon le verdict reste `INVERIFIABLE`, et ce qu'on a trouvé va dans `eclairage`, chaque élément avec son lien.
 - Un institut de sondage (portée `attribution` dans `config/sources.toml`) ne prouve que ce qu'il a lui-même publié : il peut confirmer « le sondage dit 75 % », jamais « le pouvoir d'achat a baissé ».
@@ -144,6 +145,8 @@ Les verdicts de `affirmations.csv` ont été établis par une seule personne. Po
 uv run python -m zetruth.reference.blind exporter   # tire 10 affirmations au hasard (graine fixe)
 uv run python -m zetruth.reference.blind mesurer    # compare les verdicts du relecteur à la référence
 ```
+
+Première relecture (novembre 2026) : faite par l'annotateur initial à la demande du porteur du projet, donc non indépendante. Elle mesure la stabilité du jugement, pas l'accord entre deux personnes : 9 verdicts identiques sur 10, kappa de 0,84, un désaccord tranché vers le verdict le plus strict (bd22-in-001). Une relecture par une autre personne reste à faire.
 
 Le relecteur remplit `verdict_relecteur` (VRAI, FAUX, TROMPEUR, IMPRECIS ou INVERIFIABLE) et, s'il le souhaite, `commentaire_relecteur` dans `relecture.csv`, en appliquant les règles de ce guide. La mesure donne le taux d'accord et le kappa de Cohen (1 : accord parfait, 0 : pas mieux que le hasard). Chaque désaccord est discuté, tranché, et la règle précisée si besoin.
 

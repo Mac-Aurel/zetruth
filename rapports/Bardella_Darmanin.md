@@ -6,7 +6,7 @@
 
 | Intervenant | Vrai | Faux | Trompeur | Imprécis | Invérifiable |
 |---|---|---|---|---|---|
-| Gérald Darmanin | 4 | 3 | 0 | 0 | 0 |
+| Gérald Darmanin | 3 | 3 | 1 | 0 | 0 |
 | Jordan Bardella | 4 | 2 | 0 | 0 | 0 |
 
 Ce tableau ne mesure pas l'honnêteté des intervenants : il ne porte que sur les affirmations retenues, qui ne sont pas un échantillon représentatif de tout le débat.
@@ -34,18 +34,16 @@ Contexte : Aucun article des Échos trouvé avec ce chiffre. 160 000 correspond 
 
 Gérald Darmanin, sur le thème : inflation.
 
-**Verdict : Vrai**
+**Verdict : Trompeur**
 
 Ce qui est affirmé : glissement annuel de l'IPC, ensemble des ménages, entre 4 et 4,5 %, période mars 2022, périmètre France.
 
 Ce que disent les sources : 4,5.
 
-Écart : la valeur officielle (4,5) est dans la fourchette annoncée.
-
 Source : Institut national de la statistique et des études économiques, série 001761313, publié le 31 mars 2022, consulté le 26 novembre 2026.
 Lien : https://api.insee.fr/series/BDM/V1/data/SERIES_BDM/001761313?includeHistory=true
 
-Contexte : Estimation provisoire de mars, publiée le 31 mars. Avec l'IPCH, le chiffre serait 5,1.
+Contexte : Chiffre exact avec l'IPC (4,5, estimation provisoire publiée le 31 mars), mais aussitôt comparé aux indices harmonisés des autres pays pour conclure que la France a « deux fois moins » d'inflation. L'indice harmonisé français, le seul comparable, était de 5,1. Verdict revu après relecture.
 
 ### « C’est douze pour cent aux pays-bas »
 
