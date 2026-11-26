@@ -10,9 +10,12 @@ Aucun modèle de langage ici : le verdict découle de règles fixes.
    raison. Comparer des choses différentes donnerait un verdict faux avec
    une apparence de rigueur.
 4. Sinon, la règle de config/tolerances.toml donne VRAI, IMPRECIS ou FAUX.
-5. Si la source donne d'autres valeurs pour la même chose (autre scénario,
-   autre définition), le verdict est marqué à revoir : un humain juge si
-   l'intervenant a passé l'autre valeur sous silence (TROMPEUR).
+5. Si d'autres valeurs officielles mesurent la même chose (autre scénario,
+   autre définition), chacune est une lecture possible et reçoit son propre
+   verdict. Si toutes les lectures donnent le même verdict, il est net. Si
+   elles divergent, le verdict est marqué à revoir et la divergence est
+   écrite : un humain juge si l'intervenant a présenté une valeur comme la
+   seule (TROMPEUR).
 
 La valeur officielle doit déjà être la grandeur annoncée : pour « une baisse
 de 2 points », c'est la baisse calculée, pas le niveau du chômage.
@@ -26,6 +29,7 @@ from zetruth.model import (
     ClaimType,
     Confidence,
     OfficialValue,
+    Reading,
     Verdict,
     VerdictLabel,
 )
@@ -51,14 +55,14 @@ def _mismatches(claim: Claim, official: OfficialValue) -> list[str]:
     return reasons
 
 
-def _competing(primary: OfficialValue, others: Sequence[OfficialValue]) -> list[OfficialValue]:
+def _alternatives(primary: OfficialValue, others: Sequence[OfficialValue]) -> list[OfficialValue]:
+    """Autres valeurs officielles qui mesurent la même chose (même unité, période, périmètre)."""
     return [
         other
         for other in others
         if _same(other.unit, primary.unit)
         and _same(other.period, primary.period)
         and _same(other.scope, primary.scope)
-        and other.value != primary.value
     ]
 
 
@@ -88,27 +92,38 @@ def compare(claim: Claim, official_values: Sequence[OfficialValue], threshold: D
 
     claimed = claim.claimed
     assert claimed is not None  # garanti par le modèle pour une affirmation factuelle
-    label = numeric_verdict(claimed, primary.value, threshold)
+    readings = tuple(
+        Reading(
+            reference=v.reference,
+            value=v.value,
+            label=numeric_verdict(claimed, v.value, threshold),
+        )
+        for v in (primary, *_alternatives(primary, values[1:]))
+    )
+    divergent = len({r.label for r in readings}) > 1
 
     limits = []
     if not all(v.known_at_debate for v in values):
         limits.append("au moins une valeur a pu être révisée depuis le débat")
-    competing = _competing(primary, values[1:])
-    if competing:
-        listed = ", ".join(f"{v.value} ({v.reference})" for v in competing)
+    if divergent:
+        listed = ", ".join(f"{r.label} avec {r.reference} ({r.value})" for r in readings)
         limits.append(
-            f"autre valeur officielle pour la même période : {listed}. Vérifier si "
-            "l'intervenant présente la sienne comme la seule (TROMPEUR)"
+            f"le verdict dépend de la définition ou du scénario retenu : {listed}. Vérifier si "
+            "l'intervenant présente sa valeur comme la seule (TROMPEUR)"
         )
+    elif len(readings) > 1:
+        listed = ", ".join(f"{r.reference} ({r.value})" for r in readings[1:])
+        limits.append(f"même verdict avec les autres définitions officielles : {listed}")
 
     return Verdict(
         claim=claim,
-        label=label,
+        label=readings[0].label,
         official_values=values,
         gap=claimed.value - primary.value,
         confidence=Confidence.HAUTE
         if all(v.known_at_debate for v in values)
         else Confidence.MOYENNE,
         limits=" ; ".join(limits) or None,
-        needs_review=bool(competing),
+        needs_review=divergent,
+        readings=readings,
     )

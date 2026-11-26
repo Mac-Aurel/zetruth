@@ -159,6 +159,14 @@ class Lead(_Frozen):
         return url
 
 
+class Reading(_Frozen):
+    """Une lecture possible de l'affirmation : une définition ou un scénario, et son verdict."""
+
+    reference: str = Field(min_length=1)
+    value: Decimal
+    label: VerdictLabel
+
+
 class Verdict(_Frozen):
     claim: Claim
     label: VerdictLabel
@@ -174,6 +182,9 @@ class Verdict(_Frozen):
     needs_review: bool = False
     # Éclairage : ce que disent d'autres sources, sans valeur de preuve.
     leads: tuple[Lead, ...] = ()
+    # Verdict selon chaque définition ou scénario officiel disponible. La
+    # première lecture est celle du verdict principal.
+    readings: tuple[Reading, ...] = ()
 
     @model_validator(mode="after")
     def _follows_the_verdict_grid(self) -> Self:

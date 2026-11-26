@@ -290,3 +290,25 @@ def test_une_annee_dans_une_autre_proposition_ne_bloque_pas() -> None:
 
     assert isinstance(target, Target)
     assert (target.indicator.id, target.evolution) == ("dette_publique", True)
+
+
+@pytest.mark.parametrize(
+    ("sentence", "indicator", "alternatives"),
+    [
+        ("les chômeurs A, B, C sont 5,4 millions", "demandeurs_emploi_abc", ()),
+        ("il y a 5,4 millions de chômeurs", "demandeurs_emploi_a", ("demandeurs_emploi_abc",)),
+        ("on a une inflation d'un peu plus de 4 %", "inflation_ipc", ("inflation_ipch",)),
+        (
+            "le pouvoir d'achat a progressé de 2 %",
+            "pouvoir_achat",
+            ("pouvoir_achat_par_uc", "pouvoir_achat_par_personne"),
+        ),
+        ("le pouvoir d'achat par unité de consommation est de 2 %", "pouvoir_achat_par_uc", ()),
+    ],
+)
+def test_lectures_possibles(sentence: str, indicator: str, alternatives: tuple[str, ...]) -> None:
+    """Une définition concurrente n'est écartée que si les mots désignent mieux la retenue."""
+    (target,) = targets(sentence)
+
+    assert isinstance(target, Target)
+    assert (target.indicator.id, target.alternatives) == (indicator, alternatives)

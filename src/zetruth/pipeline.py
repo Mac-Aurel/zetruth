@@ -54,7 +54,11 @@ def _official_values(
         # Les définitions concurrentes du catalogue sont françaises : pas pour un autre pays.
         value = service.value(iid, period, debate.held_on, filters={"geo": target.country.code})
         return [value] if value else []
-    return service.with_competitors(iid, period, debate.held_on)
+    primary = service.value(iid, period, debate.held_on)
+    if primary is None:
+        return []
+    others = (service.value(a, period, debate.held_on) for a in target.alternatives)
+    return [primary, *(v for v in others if v is not None)]
 
 
 def verify_mention(
