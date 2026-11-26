@@ -22,6 +22,10 @@ Pour que le choix des affirmations ne biaise pas les résultats par intervenant,
 
 - `Macron_Lepen_2--Partie_1_Pouvoir_D_Achat` (débat du 20 avril 2022). Hors périmètre : les promesses (non vérifiables), et la phrase du tour 47 sur les « chiffres du 2ème trimestre », dont l'auteur est incertain dans la transcription. Les affirmations sur le programme de l'adversaire sont incluses en INVERIFIABLE, faute de source officielle.
 
+- `Macron_Lepen_2--Partie_3_Retraite` (même débat). Hors périmètre : les promesses. Les affirmations sur le programme de l'adversaire sont incluses en INVERIFIABLE.
+
+Une affirmation répétée dans le même échange par le même intervenant n'est comptée qu'une fois. Quand un intervenant reprend à son compte le chiffre de l'autre (« on a 600 milliards de dette »), c'est une affirmation de sa part, avec le même verdict.
+
 Les autres extraits ne contiennent que des affirmations choisies : leurs résultats par intervenant ne sont pas représentatifs.
 
 ## Format de `affirmations.csv`
