@@ -1,0 +1,13 @@
+# Extraits FREDSum retenus pour la V0 (économie et social).
+# Un chemin par ligne, dans le dossier transcript/ du dépôt.
+Macron_Lepen_1--Partie_1_1_Chomage.txt
+Macron_Lepen_1--Partie_1_3_Impot_Et_Pouvoir_D_Achat.txt
+Macron_Lepen_1--Partie_1_4_Protection_Sociale.txt
+Macron_Lepen_1--Partie_1_5_Retraite.txt
+Macron_Lepen_2--Partie_1_Pouvoir_D_Achat.txt
+Macron_Lepen_2--Partie_3_Retraite.txt
+Hollande_Sarkozy--Partie_1_Chomage.txt
+Hollande_Sarkozy--Partie_2_Pouvoir_D_Achat.txt
+Hollande_Sarkozy--Partie_3_Dette_Et_Deficit.txt
+Bardella_Darmanin--Partie_4_Impots.txt
+Bardella_Darmanin--Partie_5_L_Inflation.txt

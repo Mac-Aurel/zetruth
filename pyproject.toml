@@ -23,6 +23,8 @@ target-version = "py312"
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "B", "UP", "SIM", "RUF"]
+# Apostrophe typographique, courante dans les textes en français.
+allowed-confusables = ["’"]
 
 [tool.mypy]
 python_version = "3.12"
