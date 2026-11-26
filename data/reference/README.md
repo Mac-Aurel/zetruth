@@ -68,6 +68,8 @@ uv run python -m zetruth.sources.insee_bdm 001688527 2021-Q4 2022-04-20
 
 Les arguments sont l'identifiant de la série (idbank, visible sur la page de la série sur insee.fr), la période et la date du débat.
 
+La réponse de l'INSEE est gardée dans `data/cache/insee/`, les appels suivants sur la même série ne passent plus par le réseau. Pour forcer une nouvelle interrogation, ajouter `--rafraichir`. L'outil affiche l'URL interrogée et la date de consultation, à reporter dans source_url et date_consultation.
+
 Limite importante : l'historique de l'API ne commence que le 18 mai 2017, et pas pour toutes les séries. Pour les débats plus anciens (Hollande / Sarkozy 2012, Macron / Le Pen du 3 mai 2017), il faut retrouver à la main la publication de l'époque, par exemple la note Informations rapides correspondante dans les archives de l'INSEE, et mettre son lien dans source_url.
 
 ## Vérifier le fichier
