@@ -1,0 +1,73 @@
+fichier,tour,phrase,locuteur,chiffree,categorie
+Bardella_Darmanin--Partie_4_Impots.txt,0,1,Gérald Darmanin,non,programme
+Bardella_Darmanin--Partie_4_Impots.txt,0,2,Gérald Darmanin,non,programme
+Bardella_Darmanin--Partie_4_Impots.txt,6,0,Gérald Darmanin,non,programme
+Bardella_Darmanin--Partie_4_Impots.txt,8,0,Gérald Darmanin,non,programme
+Bardella_Darmanin--Partie_4_Impots.txt,9,0,Jordan Bardella,non,juridique
+Bardella_Darmanin--Partie_4_Impots.txt,11,0,Jordan Bardella,oui,propos_rapportes
+Bardella_Darmanin--Partie_4_Impots.txt,12,0,Gérald Darmanin,oui,vague
+Bardella_Darmanin--Partie_4_Impots.txt,12,1,Gérald Darmanin,non,juridique
+Bardella_Darmanin--Partie_4_Impots.txt,12,2,Gérald Darmanin,non,juridique
+Bardella_Darmanin--Partie_4_Impots.txt,15,0,Jordan Bardella,non,juridique
+Bardella_Darmanin--Partie_4_Impots.txt,16,0,Gérald Darmanin,non,programme
+Bardella_Darmanin--Partie_4_Impots.txt,18,0,Gérald Darmanin,non,programme
+Bardella_Darmanin--Partie_4_Impots.txt,19,0,Jordan Bardella,oui,propos_rapportes
+Bardella_Darmanin--Partie_4_Impots.txt,19,1,Jordan Bardella,non,juridique
+Bardella_Darmanin--Partie_4_Impots.txt,20,1,Gérald Darmanin,non,programme
+Bardella_Darmanin--Partie_5_L_Inflation.txt,2,1,Gérald Darmanin,oui,statistique
+Bardella_Darmanin--Partie_5_L_Inflation.txt,2,2,Gérald Darmanin,oui,statistique
+Bardella_Darmanin--Partie_5_L_Inflation.txt,2,3,Gérald Darmanin,oui,statistique
+Bardella_Darmanin--Partie_5_L_Inflation.txt,2,4,Gérald Darmanin,oui,juridique
+Bardella_Darmanin--Partie_5_L_Inflation.txt,2,13,Gérald Darmanin,oui,juridique
+Bardella_Darmanin--Partie_5_L_Inflation.txt,4,0,Gérald Darmanin,non,causalite
+Bardella_Darmanin--Partie_5_L_Inflation.txt,4,4,Gérald Darmanin,oui,statistique
+Bardella_Darmanin--Partie_5_L_Inflation.txt,6,0,Gérald Darmanin,oui,causalite
+Bardella_Darmanin--Partie_5_L_Inflation.txt,6,1,Gérald Darmanin,oui,statistique
+Bardella_Darmanin--Partie_5_L_Inflation.txt,6,3,Gérald Darmanin,oui,vague
+Bardella_Darmanin--Partie_5_L_Inflation.txt,8,2,Jordan Bardella,oui,statistique
+Bardella_Darmanin--Partie_5_L_Inflation.txt,8,5,Jordan Bardella,oui,vague
+Bardella_Darmanin--Partie_5_L_Inflation.txt,10,1,Jordan Bardella,oui,juridique
+Bardella_Darmanin--Partie_5_L_Inflation.txt,10,3,Jordan Bardella,oui,statistique
+Bardella_Darmanin--Partie_5_L_Inflation.txt,11,0,P2,non,propos_rapportes
+Bardella_Darmanin--Partie_5_L_Inflation.txt,12,4,Gérald Darmanin,oui,programme
+Bardella_Darmanin--Partie_5_L_Inflation.txt,14,3,Gérald Darmanin,oui,programme
+Bardella_Darmanin--Partie_5_L_Inflation.txt,16,0,Gérald Darmanin,non,programme
+Bardella_Darmanin--Partie_5_L_Inflation.txt,18,7,Gérald Darmanin,oui,statistique
+Bardella_Darmanin--Partie_5_L_Inflation.txt,18,8,Gérald Darmanin,oui,statistique
+Bardella_Darmanin--Partie_5_L_Inflation.txt,20,0,Jordan Bardella,oui,statistique
+Bardella_Darmanin--Partie_5_L_Inflation.txt,20,1,Jordan Bardella,oui,statistique
+Bardella_Darmanin--Partie_5_L_Inflation.txt,20,2,Jordan Bardella,oui,propos_rapportes
+Bardella_Darmanin--Partie_5_L_Inflation.txt,20,3,Jordan Bardella,oui,vague
+Bardella_Darmanin--Partie_5_L_Inflation.txt,20,5,Jordan Bardella,oui,propos_rapportes
+Bardella_Darmanin--Partie_5_L_Inflation.txt,20,7,Jordan Bardella,oui,propos_rapportes
+Bardella_Darmanin--Partie_5_L_Inflation.txt,20,12,Jordan Bardella,oui,statistique
+Macron_Lepen_1--Partie_1_1_Chomage.txt,0,1,P1,non,programme
+Macron_Lepen_1--Partie_1_1_Chomage.txt,0,2,P1,non,programme
+Macron_Lepen_1--Partie_1_1_Chomage.txt,1,1,Emmanuel Macron,non,statistique
+Macron_Lepen_1--Partie_1_1_Chomage.txt,1,2,Emmanuel Macron,oui,statistique
+Macron_Lepen_1--Partie_1_1_Chomage.txt,5,0,Marine Le Pen,oui,evenement
+Macron_Lepen_1--Partie_1_1_Chomage.txt,5,2,Marine Le Pen,non,juridique
+Macron_Lepen_1--Partie_1_1_Chomage.txt,5,3,Marine Le Pen,oui,statistique
+Macron_Lepen_1--Partie_1_1_Chomage.txt,5,4,Marine Le Pen,non,juridique
+Macron_Lepen_1--Partie_1_1_Chomage.txt,5,8,Marine Le Pen,non,evenement
+Macron_Lepen_1--Partie_1_1_Chomage.txt,5,13,Marine Le Pen,non,evenement
+Macron_Lepen_1--Partie_1_1_Chomage.txt,5,14,Marine Le Pen,oui,evenement
+Macron_Lepen_1--Partie_1_1_Chomage.txt,6,0,Emmanuel Macron,oui,vague
+Macron_Lepen_1--Partie_1_1_Chomage.txt,8,1,Emmanuel Macron,non,juridique
+Macron_Lepen_1--Partie_1_1_Chomage.txt,10,0,Emmanuel Macron,non,juridique
+Macron_Lepen_1--Partie_1_1_Chomage.txt,11,0,Marine Le Pen,non,causalite
+Macron_Lepen_1--Partie_1_1_Chomage.txt,16,2,Emmanuel Macron,non,evenement
+Macron_Lepen_1--Partie_1_1_Chomage.txt,19,0,Marine Le Pen,oui,evenement
+Macron_Lepen_1--Partie_1_1_Chomage.txt,19,1,Marine Le Pen,non,evenement
+Macron_Lepen_1--Partie_1_1_Chomage.txt,19,2,Marine Le Pen,non,evenement
+Macron_Lepen_1--Partie_1_1_Chomage.txt,19,3,Marine Le Pen,non,evenement
+Macron_Lepen_1--Partie_1_1_Chomage.txt,20,0,Emmanuel Macron,non,evenement
+Macron_Lepen_1--Partie_1_1_Chomage.txt,20,2,Emmanuel Macron,non,evenement
+Macron_Lepen_1--Partie_1_1_Chomage.txt,21,0,Marine Le Pen,non,evenement
+Macron_Lepen_1--Partie_1_1_Chomage.txt,22,0,Emmanuel Macron,non,evenement
+Macron_Lepen_1--Partie_1_1_Chomage.txt,25,0,Marine Le Pen,non,propos_rapportes
+Macron_Lepen_1--Partie_1_1_Chomage.txt,27,1,Marine Le Pen,non,evenement
+Macron_Lepen_1--Partie_1_1_Chomage.txt,32,0,Emmanuel Macron,non,evenement
+Macron_Lepen_1--Partie_1_1_Chomage.txt,32,1,Emmanuel Macron,non,evenement
+Macron_Lepen_1--Partie_1_1_Chomage.txt,32,4,Emmanuel Macron,non,evenement
+Macron_Lepen_1--Partie_1_1_Chomage.txt,35,0,Marine Le Pen,non,programme

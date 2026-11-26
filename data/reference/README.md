@@ -164,6 +164,22 @@ Première relecture (novembre 2026) : faite par l'annotateur initial à la deman
 
 Le relecteur remplit `verdict_relecteur` (VRAI, FAUX, TROMPEUR, IMPRECIS ou INVERIFIABLE) et, s'il le souhaite, `commentaire_relecteur` dans `relecture.csv`, en appliquant les règles de ce guide. La mesure donne le taux d'accord et le kappa de Cohen (1 : accord parfait, 0 : pas mieux que le hasard). Chaque désaccord est discuté, tranché, et la règle précisée si besoin.
 
+## Couverture (`couverture.csv`)
+
+Pour savoir quelle part des affirmations le pipeline peut traiter, chaque phrase vérifiable des deux jeux de détection (72 phrases, tirées sans sélection) est classée selon ce qu'il faudrait pour la vérifier :
+
+| Catégorie | Ce qu'il faut | Phrases |
+|---|---|---|
+| `statistique` | une série chiffrée (INSEE, Eurostat...) | 15 (21 %) |
+| `evenement` | un fait daté : décision, réforme, déclaration, vote | 17 (24 %) |
+| `juridique` | un texte de loi, une règle, un barème | 12 (17 %) |
+| `programme` | le contenu d'un programme ou d'une proposition | 13 (18 %) |
+| `propos_rapportes` | ce qu'un tiers a dit ou publié (sondage, rapport) | 7 (10 %) |
+| `vague` | une affirmation trop floue pour être tranchée | 5 (7 %) |
+| `causalite` | un lien de cause à effet | 3 (4 %) |
+
+Le pipeline sans modèle de langage ne traite que la catégorie `statistique`, et seulement pour les indicateurs du catalogue : au mieux un cinquième des affirmations. Les catégories `evenement` et `juridique` ont des sources officielles (Légifrance, Journal officiel, scrutins publics) mais demandent une recherche propre à chaque affirmation.
+
 ## Vérifier le fichier
 
 ```bash
