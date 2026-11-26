@@ -36,6 +36,7 @@ class Indicator:
     keywords: tuple[str, ...] = ()
     exclusions: tuple[str, ...] = ()
     publication_lag_days: int | None = None
+    euro_area_lag_days: int | None = None
 
 
 def _parse(indicator_id: str, raw: Mapping[str, Any]) -> Indicator:
@@ -56,8 +57,11 @@ def _parse(indicator_id: str, raw: Mapping[str, Any]) -> Indicator:
     if factor == 0:
         raise InvalidCatalogError(f"{indicator_id} : facteur nul")
     lag = raw.get("delai_publication_jours")
-    if lag is not None and (not isinstance(lag, int) or isinstance(lag, bool) or lag < 0):
-        raise InvalidCatalogError(f"{indicator_id} : délai de publication invalide {lag!r}")
+    euro_lag = raw.get("delai_publication_jours_zone_euro")
+    for value in (lag, euro_lag):
+        valid = isinstance(value, int) and not isinstance(value, bool) and value >= 0
+        if value is not None and not valid:
+            raise InvalidCatalogError(f"{indicator_id} : délai de publication invalide {value!r}")
     keywords = tuple(raw.get("mots_cles", ()))
     if any(k != k.lower() for k in keywords):
         raise InvalidCatalogError(f"{indicator_id} : mots-clés à écrire en minuscules")
@@ -79,6 +83,7 @@ def _parse(indicator_id: str, raw: Mapping[str, Any]) -> Indicator:
         keywords=keywords,
         exclusions=tuple(raw.get("exclusions", ())),
         publication_lag_days=lag,
+        euro_area_lag_days=euro_lag,
     )
 
 

@@ -91,6 +91,8 @@ perimetre = "France"
 frequence = "mensuelle"
 mots_cles = ["inflation", "hausse des prix", "prix à la consommation harmonisé"]
 delai_publication_jours = 20
+# Estimation rapide pour les pays de la zone euro, publiée dès le début du mois suivant.
+delai_publication_jours_zone_euro = 3
 concurrents = ["inflation_ipc"]
 
 # Activité

@@ -200,3 +200,15 @@ def test_resume_du_pre_calcul(tmp_path: Path) -> None:
     assert insee_line.startswith("chomage : 2 périodes, dernière 2021-Q4, 3 publications")
     assert eurostat_line.startswith("mensuel : 6 périodes, dernière 2022-03")
     assert "mise à jour du 2026-11-24" in eurostat_line
+
+
+def test_derniere_periode_avec_estimation_rapide_zone_euro(tmp_path: Path) -> None:
+    indicator = dict(
+        EUROSTAT_INDICATOR, delai_publication_jours=20, delai_publication_jours_zone_euro=3
+    )
+    svc = service(tmp_path, mensuel=indicator)
+
+    # Fixture : chômage mensuel jusqu'en 2022-03. Le 5 avril, mars est connu en zone euro seulement.
+    assert svc.latest_period("mensuel", date(2022, 4, 5), euro_area=True) == ("2022-03", False)
+    assert svc.latest_period("mensuel", date(2022, 4, 5)) == ("2022-02", False)
+    assert svc.latest_period("mensuel", date(2022, 4, 21)) == ("2022-03", False)

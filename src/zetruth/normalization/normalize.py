@@ -17,6 +17,7 @@ from datetime import date
 from pathlib import Path
 
 from zetruth.indicators.catalog import Indicator
+from zetruth.normalization.countries import Country, find_country
 from zetruth.normalization.mentions import Direction, Mention, Role
 from zetruth.series.periods import last_period_before
 
@@ -38,11 +39,15 @@ _AT_START = re.compile(
     r"quand vous êtes arrivée?s?",
     re.IGNORECASE,
 )
-_FOREIGN = re.compile(
-    r"\b(?:en|aux|de l['’]|du|que l['’]|que les)\s*(?:allemagne|espagne|italie|pays-bas|pologne|"
-    r"hongrie|europe|zone euro|royaume-uni|états-unis|belgique)",
+# Comparaison relative (« deux fois moins que l'Espagne », « 60 % de moins que
+# l'Allemagne ») : il faudrait deux valeurs et un calcul, pas encore géré.
+_RELATIVE = re.compile(
+    r"fois (?:moins|plus)|de (?:moins|plus) que|par rapport (?:à|au|aux)|"
+    r"\b(?:moins|plus) (?:d['’]\w+ |de \w+ |\w+ )?que (?:l['’]|la |le |les |nos )",
     re.IGNORECASE,
 )
+# Valeurs ailleurs dans le monde : seules les séries Eurostat se déclinent par pays.
+_ELSEWHERE = re.compile(r"autour de nous|partout|nos voisins|dans le monde", re.IGNORECASE)
 
 
 @dataclass(frozen=True)
@@ -62,6 +67,7 @@ class Target:
     decrease: bool
     start: str | None  # pour une évolution, ou pour un niveau de départ
     note: str | None = None
+    country: Country | None = None  # valeur d'un autre pays que la France
 
 
 def load_debates(path: Path = DEBATES_FILE) -> dict[str, Debate]:
@@ -106,6 +112,19 @@ def _best(mention: Mention, text: str, catalog: Mapping[str, Indicator]) -> Indi
 _CLAUSE_END = re.compile(r",|;|\bet\b|\bmais\b|\bdonc\b", re.IGNORECASE)
 
 
+def clause(mention: Mention, sentence: str, left_from: int = 0, right_to: int | None = None) -> str:
+    """La proposition de la valeur : depuis le dernier « et », virgule ou « mais »
+    qui la précède, jusqu'au prochain qui la suit, sans dépasser les valeurs voisines."""
+    left = sentence[left_from : mention.start]
+    starts = list(_CLAUSE_END.finditer(left))
+    if starts:
+        left = left[starts[-1].end() :]
+    right = sentence[mention.end : right_to]
+    if end := _CLAUSE_END.search(right):
+        right = right[: end.start()]
+    return f"{left}{sentence[mention.start : mention.end]}{right}"
+
+
 def match_indicator(
     mention: Mention,
     sentence: str,
@@ -130,6 +149,11 @@ def match_indicator(
     return _best(mention, left, catalog) or _best(mention, right, catalog)
 
 
+# Pour retrouver le sujet d'une phrase qui ne le nomme pas (« C'est douze pour
+# cent aux Pays-Bas »), on ne remonte pas plus loin que ces derniers caractères.
+CONTEXT_FOR_TOPIC = 250
+
+
 def target_for(
     mention: Mention,
     sentence: str,
@@ -138,25 +162,49 @@ def target_for(
     context: str = "",
     left_from: int = 0,
     right_to: int | None = None,
+    countries: Mapping[str, Country] | None = None,
 ) -> Target | str:
     """La cible à vérifier, ou la raison pour laquelle on ne normalise pas.
 
-    `context` est ce qui a été dit juste avant (tours précédents) : une
-    prévision annoncée au tour précédent vaut pour la phrase.
+    `context` est ce qui a été dit juste avant : une prévision annoncée au tour
+    précédent vaut pour la phrase, et le sujet de la phrase précédente peut
+    servir quand la phrase ne le nomme pas.
     """
+    own = clause(mention, sentence, left_from, right_to)
     if _FORECAST.search(f"{context} {sentence}"):
         return "prévision : pas comparable aux données publiées"
-    if _EXPLICIT_PERIOD.search(sentence):
-        return "période explicite dans la phrase, pas encore gérée"
-    if _FOREIGN.search(sentence):
-        return "comparaison internationale, pas encore gérée"
-    indicator = match_indicator(mention, sentence, catalog, left_from, right_to)
+    if _EXPLICIT_PERIOD.search(own):
+        return "période explicite dans la proposition, pas encore gérée"
+    if _RELATIVE.search(own):
+        return "comparaison relative entre deux valeurs, pas encore gérée"
+    if _ELSEWHERE.search(own):
+        return "valeur ailleurs qu'en France sans pays précis"
+
+    country = find_country(own, countries) if countries else None
+    usable = catalog
+    if country is not None:
+        usable = {k: v for k, v in catalog.items() if "geo" in v.filters}
+    indicator = match_indicator(mention, sentence, usable, left_from, right_to)
+    topic_note = None
+    if indicator is None and context:
+        indicator = _best(mention, context[-CONTEXT_FOR_TOPIC:].lower(), usable)
+        topic_note = "sujet déduit de ce qui précède la phrase"
     if indicator is None:
+        if country is not None:
+            return f"aucune série par pays pour cette valeur ({country.name})"
         return f"aucun indicateur du catalogue pour cette valeur ({mention.unit})"
+
+    if country is not None:
+        if mention.role is not Role.SEUL or mention.direction is not Direction.NIVEAU:
+            return "évolution dans un autre pays, pas encore gérée"
+        return Target(
+            indicator, evolution=False, decrease=False, start=None, note=topic_note,
+            country=country,
+        )  # fmt: skip
 
     at_start = mention.role is Role.SEUL and _AT_START.search(sentence) is not None
     if mention.role is Role.SEUL and mention.direction is Direction.NIVEAU and not at_start:
-        return Target(indicator, evolution=False, decrease=False, start=None)
+        return Target(indicator, evolution=False, decrease=False, start=None, note=topic_note)
     if debate.incumbent_since is None:
         return "évolution ou point de départ sans mandat de référence pour ce débat"
 
