@@ -50,6 +50,7 @@ class Debate:
     name: str
     held_on: date
     incumbent_since: date | None = None
+    title: str = ""
 
 
 @dataclass(frozen=True)
@@ -67,7 +68,9 @@ def load_debates(path: Path = DEBATES_FILE) -> dict[str, Debate]:
     with path.open("rb") as f:
         raw = tomllib.load(f).get("debats", {})
     return {
-        name: Debate(name, values["date"], values.get("mandat_sortant_depuis"))
+        name: Debate(
+            name, values["date"], values.get("mandat_sortant_depuis"), values.get("titre", name)
+        )
         for name, values in raw.items()
     }
 

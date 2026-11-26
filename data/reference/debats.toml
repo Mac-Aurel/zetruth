@@ -4,17 +4,21 @@
 # La clé est le début du nom de fichier, avant « -- ».
 
 [debats.Macron_Lepen_1]
+titre = "Débat Macron / Le Pen, second tour de la présidentielle"
 date = 2017-05-03
 
 [debats.Macron_Lepen_2]
+titre = "Débat Macron / Le Pen, second tour de la présidentielle"
 date = 2022-04-20
 mandat_sortant_depuis = 2017-05-14
 
 [debats.Hollande_Sarkozy]
+titre = "Débat Hollande / Sarkozy, second tour de la présidentielle"
 date = 2012-05-02
 mandat_sortant_depuis = 2007-05-16
 
 # Débat Programme contre programme, BFMTV. Darmanin défend le bilan du sortant.
 [debats.Bardella_Darmanin]
+titre = "Débat Bardella / Darmanin, « Programme contre programme » (BFMTV)"
 date = 2022-04-13
 mandat_sortant_depuis = 2017-05-14
