@@ -73,6 +73,20 @@ La comparaison des chiffres se fait en code, pas par un modèle de langage. Un L
 
 Tout est journalisé pour qu'un verdict puisse être rejoué à l'identique : la phrase et son contexte, l'empreinte de chaque réponse des sources utilisée, l'empreinte des fichiers de règles et la version du code. Le rejeu relit exactement les mêmes réponses, sans appel réseau, et signale toute différence ou toute règle modifiée depuis.
 
+### Recherche par modèle de langage (expérimental)
+
+Le pipeline sans modèle ne couvre que les statistiques du catalogue, soit au mieux un cinquième des affirmations (voir `data/reference/couverture.csv`). Pour le reste (lois, votes, événements datés), un modèle de langage cherche la source officielle : la recherche web et la lecture de pages sont limitées aux sites de la liste blanche.
+
+Le modèle propose, le code décide. Une preuve n'est retenue que si la page appartient à la liste blanche, qu'elle a vraiment été lue pendant la recherche et que l'extrait cité y figure mot pour mot. Une comparaison de chiffres est refaite avec la règle du projet. Sans preuve retenue, le verdict est INVERIFIABLE et rien n'est affiché. Chaque échange avec l'API est enregistré sous son empreinte dans `data/cache/recherche/`.
+
+```bash
+export ANTHROPIC_API_KEY=...
+uv run python -m zetruth.research verifier "phrase" --locuteur "Nom" --debat Macron_Lepen_2
+uv run python -m zetruth.research evaluer --limite 5
+```
+
+Chaque affirmation coûte des appels payants (modèle et recherches web). Ce mode n'a pas encore été évalué sur le jeu de référence : ses verdicts ne sont pas fiables tant que ce n'est pas fait.
+
 ## Avancement
 
 Le projet en est au cadrage, il n'y a pas encore de code.

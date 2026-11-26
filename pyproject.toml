@@ -5,6 +5,7 @@ description = "Vérification des affirmations factuelles des débats politiques 
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "anthropic>=2.14.0",
     "pydantic>=2.14.4",
 ]
 
