@@ -109,3 +109,5 @@ uv run ruff format --check
 uv run mypy
 uv run pytest
 ```
+
+Le jeu de référence (transcriptions de débats et affirmations annotées) est décrit dans [data/reference/README.md](data/reference/README.md).
