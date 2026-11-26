@@ -91,3 +91,21 @@ Rien ne sera considéré comme fiable sans mesure. Un jeu de référence d'affir
 ## Ce que ce projet n'est pas
 
 Ce n'est pas l'ARCOM et ça n'a aucun pouvoir de sanction. Ce n'est pas non plus un outil pour juger des opinions ou pour favoriser un camp.
+
+## Développement
+
+Le projet utilise Python 3.12 ou plus et [uv](https://docs.astral.sh/uv/) pour les dépendances.
+
+```bash
+uv sync
+cp .env.example .env
+```
+
+Vérifications (les mêmes que dans la CI) :
+
+```bash
+uv run ruff check
+uv run ruff format --check
+uv run mypy
+uv run pytest
+```
